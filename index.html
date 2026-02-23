@@ -827,15 +827,21 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(25px);
         display: flex;
-        transition: 0.6s ease;
-        opacity: 0.5;
-        transform: scale(0.9);
+        transition:
+          transform 0.6s ease,
+          opacity 0.6s ease;
+
+        /* Default state */
+        opacity: 0.35;
+        transform: scale(0.82);
+        z-index: 1;
       }
 
       .card.active {
         opacity: 1;
-        transform: scale(1);
-        box-shadow: 0 0 70px rgba(0, 194, 255, 0.25);
+        transform: scale(1.05); /* <-- THIS creates zoom */
+        z-index: 5; /* makes it appear above others */
+        box-shadow: 0 0 100px rgba(0, 255, 100, 0.25);
       }
 
       /* LEFT SIDE */
