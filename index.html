@@ -418,121 +418,7 @@
       }
     </script>
     <!-- =================== HEADER END =================  -->
-    <!-- =================Hero section ================== -->
-    <!-- <section class="bro-hero">
-      <div class="bro-container">
-        <div class="bro-left">
-          <img
-            src="Bro Traders logo.jpeg"
-            class="bro-logo"
-            alt="Bro Trading Logo"
-          />
 
-          <h1>Trade With Confidence.<br />Scale With Power.</h1>
-
-          <p>
-            Join Bro Trading and access funded trading opportunities,
-            professional mentorship, and real market strategies.
-          </p>
-
-          <div class="bro-buttons">
-            <a href="#" class="bro-btn primary">Get Started</a>
-            <a href="#" class="bro-btn outline">View Plans</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <style>
-      .bro-hero {
-        background: radial-gradient(circle at center, #10183a 0%, #0b0f2a 60%);
-        padding: 120px 20px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .bro-hero::after {
-        content: "";
-        position: absolute;
-        width: 800px;
-        height: 800px;
-        background: radial-gradient(
-          circle,
-          rgba(0, 194, 255, 0.15),
-          transparent 70%
-        );
-        top: -200px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .bro-container {
-        max-width: 1100px;
-        margin: auto;
-        position: relative;
-        z-index: 2;
-      }
-
-      .bro-logo {
-        width: 150px;
-        margin-bottom: 30px;
-      }
-
-      .bro-hero h1 {
-        color: #fff;
-        font-size: 48px;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      .bro-hero p {
-        color: #cbd5e1;
-        max-width: 600px;
-        margin: 20px auto 40px;
-        font-size: 18px;
-      }
-
-      .bro-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      .bro-btn {
-        padding: 14px 32px;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: 0.3s ease;
-      }
-
-      .bro-btn.primary {
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        color: #fff;
-      }
-
-      .bro-btn.primary:hover {
-        box-shadow: 0 0 20px rgba(0, 194, 255, 0.6);
-      }
-
-      .bro-btn.outline {
-        border: 2px solid #00c2ff;
-        color: #00c2ff;
-      }
-
-      .bro-btn.outline:hover {
-        background: #00c2ff;
-        color: #fff;
-      }
-
-      @media (max-width: 768px) {
-        .bro-hero h1 {
-          font-size: 32px;
-        }
-      }
-    </style> -->
     <!-- Swiper CSS -->
     <link
       rel="stylesheet"
@@ -572,7 +458,9 @@
 
       .bt-hero {
         min-height: 75vh;
-        background: radial-gradient(circle at center, #10183a 0%, #0b0f2a 60%);
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
         display: flex;
       }
 
@@ -695,14 +583,63 @@
     </script>
 
     <!-- ===================hero section end===================  -->
+    <!-- ================= Ticker Tape Section ================= -->
+    <section class="market-ticker-section">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script
+          type="text/javascript"
+          src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+          async
+        >
+          {
+            "symbols": [
+              {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+              {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100"},
+              {"proName": "FOREXCOM:DJI", "title": "Dow 30"},
+              {"proName": "FX:EURUSD", "title": "EUR/USD"},
+              {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+              {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+              {"proName": "OANDA:XAUUSD", "title": "Gold"},
+              {"proName": "NSE:NIFTY", "title": "NIFTY"},
+              {"proName": "CME_MINI:MNQ1!", "title": "MNQ1!"}
+            ],
+            "showSymbolLogo": true,
+            "colorTheme": "dark",
+            "isTransparent": false,
+            "displayMode": "adaptive",
+            "locale": "en"
+          }
+        </script>
+      </div>
+    </section>
+    <style>
+      .market-ticker-section {
+        width: 100%;
+        background: #000814; /* Deep dark blue */
+        padding: 10px 0;
+        border-top: 1px solid rgba(37, 99, 235, 0.3);
+        border-bottom: 1px solid rgba(37, 99, 235, 0.3);
+        overflow: hidden;
+      }
+
+      /* Remove any unwanted container spacing */
+      .market-ticker-section tv-ticker-tape {
+        width: 100%;
+        display: block;
+      }
+    </style>
+    <!-- <! ================-- Ticker Tape Section ENDS==================== -->
     <!-- ==================== Best Prop Firms Table ====================  -->
     <section class="zx-orbit-zone">
       <style>
         .zx-orbit-zone {
-          background: radial-gradient(
-            circle at center,
-            #10183a 0%,
-            #0b0f2a 60%
+          background: linear-gradient(
+            180deg,
+            #123c8c 0%,
+            #0e2e6d 35%,
+            #081c45 70%,
+            #040f22 100%
           );
           padding: 62px 7%;
           font-family: Inter, system-ui, Arial;
@@ -1065,24 +1002,14 @@
       <style>
         .nx-aurora-wrap {
           background:
-            radial-gradient(
-              circle at 10% 10%,
-              rgba(30, 144, 255, 0.35),
-              transparent 40%
-            ),
-            radial-gradient(
-              circle at 90% 20%,
-              rgba(0, 194, 255, 0.25),
-              transparent 40%
-            ),
-            #070b1a;
+            radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+            linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
           padding: 110px 5%;
           font-family: Inter, system-ui;
           color: white;
         }
 
-        /* ================= HEADER ================= */
-
+        /* HEADER */
         .nx-aurora-title {
           text-align: center;
           font-size: 46px;
@@ -1098,8 +1025,7 @@
           margin: 0 auto 40px;
         }
 
-        /* ================= BADGES ================= */
-
+        /* BADGES */
         .nx-aurora-badges {
           display: flex;
           justify-content: center;
@@ -1117,8 +1043,7 @@
           backdrop-filter: blur(10px);
         }
 
-        /* ================= GRID ================= */
-
+        /* MAIN GRID */
         .nx-aurora-grid {
           display: grid;
           grid-template-columns: 2fr 1fr;
@@ -1131,10 +1056,8 @@
           }
         }
 
-        /* ================= LEFT PANEL ================= */
-
+        /* LEFT PANEL */
         .nx-aurora-panel {
-          position: relative;
           border-radius: 22px;
           padding: 35px;
           background: linear-gradient(145deg, #101a3f, #0a122d);
@@ -1152,63 +1075,28 @@
           font-weight: 600;
         }
 
-        /* arrow buttons */
-        .nx-aurora-nav {
-          position: absolute;
-          top: 25px;
-          right: 25px;
-          display: flex;
-          gap: 10px;
-        }
-
-        .nx-aurora-arrow {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.06);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: 0.3s;
-        }
-
-        .nx-aurora-arrow:hover {
-          background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        }
-
-        /* dots */
-        .nx-aurora-dots {
-          display: flex;
-          gap: 6px;
-          margin-top: 8px;
-        }
-
-        .nx-aurora-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.3);
-        }
-
-        .nx-aurora-dot.active {
-          background: #00c2ff;
-        }
-
-        /* ================= CARD GRID ================= */
-
+        /* 2 ROW × 3 COLUMN GRID */
         .nx-aurora-cards {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 18px;
         }
 
-        @media (max-width: 900px) {
+        /* Tablet */
+        @media (max-width: 1000px) {
+          .nx-aurora-cards {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
           .nx-aurora-cards {
             grid-template-columns: 1fr;
           }
         }
 
+        /* CARD */
         .nx-aurora-card {
           background: #0a0f24;
           border-radius: 14px;
@@ -1246,9 +1134,11 @@
           font-size: 13px;
           margin-top: 4px;
           color: #00c2ff;
+          border: 1px solid;
+          border-radius: 20px;
+          padding: 2px 6px;
         }
 
-        /* offer badge */
         .nx-aurora-offer {
           text-align: right;
         }
@@ -1267,8 +1157,7 @@
           opacity: 0.7;
         }
 
-        /* ================= RIGHT PANEL ================= */
-
+        /* RIGHT PANEL */
         .nx-aurora-side {
           border-radius: 22px;
           padding: 30px;
@@ -1292,11 +1181,6 @@
           border-radius: 12px;
           margin-bottom: 15px;
           border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .nx-aurora-rank {
-          font-size: 16px;
-          margin-right: 8px;
         }
 
         .nx-aurora-side-off {
@@ -1329,12 +1213,8 @@
             Exclusive February Forex Offers 🔥
           </div>
 
-          <div class="nx-aurora-nav">
-            <div class="nx-aurora-arrow">‹</div>
-            <div class="nx-aurora-arrow">›</div>
-          </div>
-
           <div class="nx-aurora-cards">
+            <!-- Row 1 -->
             <div class="nx-aurora-card">
               <div class="nx-aurora-card-left">
                 <div class="nx-aurora-logo">QT</div>
@@ -1376,9 +1256,51 @@
                 <div class="nx-aurora-match">MATCH</div>
               </div>
             </div>
+
+            <!-- Row 2 -->
+            <div class="nx-aurora-card">
+              <div class="nx-aurora-card-left">
+                <div class="nx-aurora-logo">AC</div>
+                <div>
+                  Alpha Capital
+                  <div class="nx-aurora-stars">★★★★☆ 4.1</div>
+                </div>
+              </div>
+              <div class="nx-aurora-offer">
+                <div class="nx-aurora-off">15% OFF</div>
+                <div class="nx-aurora-match">MATCH</div>
+              </div>
+            </div>
+
+            <div class="nx-aurora-card">
+              <div class="nx-aurora-card-left">
+                <div class="nx-aurora-logo">TS</div>
+                <div>
+                  The5ers
+                  <div class="nx-aurora-stars">★★★★★ 4.8</div>
+                </div>
+              </div>
+              <div class="nx-aurora-offer">
+                <div class="nx-aurora-off">5% OFF</div>
+                <div class="nx-aurora-match">MATCH</div>
+              </div>
+            </div>
+
+            <div class="nx-aurora-card">
+              <div class="nx-aurora-card-left">
+                <div class="nx-aurora-logo">FF</div>
+                <div>
+                  Finotive
+                  <div class="nx-aurora-stars">★★★★☆ 4.2</div>
+                </div>
+              </div>
+              <div class="nx-aurora-offer">
+                <div class="nx-aurora-off">25% OFF</div>
+                <div class="nx-aurora-match">MATCH</div>
+              </div>
+            </div>
           </div>
         </div>
-
         <!-- RIGHT -->
         <div class="nx-aurora-side">
           <div class="nx-aurora-side-title">
@@ -1386,34 +1308,474 @@
           </div>
 
           <div class="nx-aurora-side-card">
-            <div><span class="nx-aurora-rank">🥇</span>Tradeify</div>
+            <div class="nx-aurora-side-left">
+              <div class="nx-aurora-name">
+                <span class="nx-aurora-rank">🥇</span>Tradeify
+              </div>
+              <div class="nx-aurora-rating-stars">★★★★★ 4.4</div>
+            </div>
             <div class="nx-aurora-side-off">40% OFF</div>
           </div>
 
           <div class="nx-aurora-side-card">
-            <div><span class="nx-aurora-rank">🥈</span>My Funded Futures</div>
+            <div class="nx-aurora-side-left">
+              <div class="nx-aurora-name">
+                <span class="nx-aurora-rank">🥈</span>TMy Funded Futures
+              </div>
+              <div class="nx-aurora-rating-stars">★★★★★ 4.2</div>
+            </div>
             <div class="nx-aurora-side-off">50% OFF</div>
           </div>
 
           <div class="nx-aurora-side-card">
-            <div><span class="nx-aurora-rank">🥉</span>Alpha Futures</div>
+            <div class="nx-aurora-side-left">
+              <div class="nx-aurora-name">
+                <span class="nx-aurora-rank">🥉</span>Alpha Futures
+              </div>
+              <div class="nx-aurora-rating-stars">★★★★ 4.0</div>
+            </div>
             <div class="nx-aurora-side-off">15% OFF</div>
           </div>
         </div>
       </div>
     </section>
+    <script>
+      const track = document.getElementById("nxTrack");
+      const nextBtn = document.getElementById("nxNext");
+      const prevBtn = document.getElementById("nxPrev");
+
+      let index = 0;
+
+      function getVisibleCards() {
+        if (window.innerWidth < 600) return 1;
+        if (window.innerWidth < 1000) return 2;
+        return 3;
+      }
+
+      function updateSlider() {
+        const card = document.querySelector(".nx-aurora-card");
+        const gap = 20;
+        const width = card.offsetWidth + gap;
+        track.style.transform = `translateX(-${index * width}px)`;
+      }
+
+      nextBtn.addEventListener("click", () => {
+        const total = document.querySelectorAll(".nx-aurora-card").length;
+        const visible = getVisibleCards();
+        if (index < total - visible) {
+          index++;
+          updateSlider();
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        if (index > 0) {
+          index--;
+          updateSlider();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        index = 0;
+        updateSlider();
+      });
+    </script>
 
     <!-- ===============comparison firm End===================  -->
+    <!-- ===================== Marketing Section=====================  -->
+    <section class="market-section">
+      <h1>Prepare to Enter the Market</h1>
+      <p class="subtitle">
+        Preparation is everything. Start your trading day informed with our
+        economic calendar, breaking news, market sentiment updates, and
+        real-time charts to guide every decision confidently.
+      </p>
+
+      <!-- Tabs -->
+      <div class="market-tabs">
+        <button class="tab-btn active" data-tab="calendar">
+          Economic Calendar
+        </button>
+        <button class="tab-btn" data-tab="charts">Charts</button>
+        <button class="tab-btn" data-tab="stories">Top Stories</button>
+        <button class="tab-btn" data-tab="analysis">Technical Analysis</button>
+      </div>
+
+      <!-- Content Container -->
+      <div class="market-box">
+        <!-- ECONOMIC CALENDAR -->
+        <div class="tab-content active" id="calendar">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-events.js"
+              async
+            >
+              {
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "locale": "en",
+                "countryFilter": "ar,au,br,ca,cn,fr,de,in,id,it,jp,kr,mx,ru,sa,za,tr,gb,us,eu",
+                "importanceFilter": "-1,0,1",
+                "width": "100%",
+                "height": 550
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+
+        <!-- CHARTS -->
+        <div class="tab-content" id="charts">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
+              async
+            >
+              {
+                "lineWidth": 2,
+                "chartType": "area",
+                "backgroundColor": "#0b1120",
+                "widgetFontColor": "#DBDBDB",
+                "colorTheme": "dark",
+                "autosize": true,
+                "width": "100%",
+                "height": 550,
+                "symbols": [
+                  ["Apple","NASDAQ:AAPL|1D"],
+                  ["Google","NASDAQ:GOOGL|1D"],
+                  ["Microsoft","NASDAQ:MSFT|1D"]
+                ]
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+
+        <!-- TOP STORIES -->
+        <div class="tab-content" id="stories">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js"
+              async
+            >
+              {
+                "displayMode": "regular",
+                "feedMode": "all_symbols",
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "locale": "en",
+                "width": "100%",
+                "height": 550
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+
+        <!-- TECHNICAL ANALYSIS -->
+        <div class="tab-content" id="analysis">
+          <div class="analysis-grid">
+            <!-- NQ1 -->
+            <div class="analysis-card">
+              <h3>Technical Analysis for NQ1!</h3>
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script
+                  type="text/javascript"
+                  src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
+                  async
+                >
+                  {
+                    "interval": "1m",
+                    "width": "100%",
+                    "height": 450,
+                    "symbol": "CME_MINI:NQ1!",
+                    "showIntervalTabs": true,
+                    "locale": "en",
+                    "colorTheme": "dark",
+                    "isTransparent": true
+                  }
+                </script>
+              </div>
+            </div>
+
+            <!-- ES1 -->
+            <!-- ES1 -->
+            <div class="analysis-card">
+              <h3>Technical Analysis for ES1!</h3>
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script
+                  type="text/javascript"
+                  src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
+                  async
+                >
+                  {
+                    "interval": "1m",
+                    "width": "100%",
+                    "height": 450,
+                    "symbol": "CME_MINI:ES1!",
+                    "showIntervalTabs": true,
+                    "locale": "en",
+                    "colorTheme": "dark",
+                    "isTransparent": true
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <style>
+      .market-section {
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        padding: 80px 20px;
+        text-align: center;
+        color: #fff;
+      }
+
+      .market-section h1 {
+        font-size: 48px;
+        font-weight: 700;
+        font-family: "DM Mono", monospace;
+      }
+
+      .subtitle {
+        max-width: 800px;
+        margin: 20px auto 50px;
+        color: #bbb;
+        line-height: 1.6;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .market-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+
+      .tab-btn {
+        padding: 14px 28px;
+        border-radius: 12px;
+        border: 1px solid #1e3a8a;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+        font-family: "DM Mono", monospace;
+      }
+
+      .tab-btn:hover {
+        background: #1e3a8a;
+      }
+
+      .tab-btn.active {
+        background: #2563eb; /* Royal Blue */
+        border-color: #2563eb;
+        color: #fff;
+      }
+
+      .market-box {
+        border: 1px solid #1e3a8a;
+        border-radius: 20px;
+        padding: 30px;
+        background: #0b1120;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .analysis-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .analysis-card {
+        background: #111827;
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid #1e3a8a;
+      }
+
+      .analysis-card h3 {
+        margin-bottom: 20px;
+        color: #60a5fa;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .analysis-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script>
+      const tabs = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((btn) => btn.classList.remove("active"));
+          contents.forEach((c) => c.classList.remove("active"));
+
+          tab.classList.add("active");
+          document.getElementById(tab.dataset.tab).classList.add("active");
+        });
+      });
+    </script>
+    <!-- ===================== Marketing Section END=====================  -->
+    <!-- =========== Youtube Section ========= -->
+    <section class="yt-hero">
+      <div class="yt-container">
+        <!-- LEFT -->
+        <div class="yt-content">
+          <h2>
+            Watch Us Trade Live <br />
+            On Youtube!
+          </h2>
+
+          <p>Patrick Wieland Day Trading LIVE – Weekdays At 9am EST</p>
+          <p>The D-Money Show LIVE – Weekdays At 1:30pm EST</p>
+
+          <a href="#" class="yt-btn">Follow on YouTube</a>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="yt-media">
+          <img
+            src="https://images.unsplash.com/photo-1762340273700-70c17506e578?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="YouTube Live Trading"
+          />
+        </div>
+      </div>
+    </section>
+    <style>
+      /* YOUTUBE HERO SECTION */
+      .yt-hero {
+        min-height: 75vh;
+        display: flex;
+        align-items: center;
+        padding: 50px 6%;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: #fff;
+      }
+
+      .yt-container {
+        max-width: 1400px;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+      }
+
+      /* LEFT SIDE */
+      .yt-content {
+        flex: 1;
+        max-width: 550px;
+        margin-top: -34px;
+      }
+
+      .yt-content h2 {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        font-family: "DM Mono", monospace;
+      }
+
+      .yt-content p {
+        font-size: 18px;
+        color: #d1d5db;
+        margin-bottom: 12px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .yt-btn {
+        display: inline-block;
+        padding: 16px 42px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 13px;
+      }
+
+      .yt-btn:hover {
+        transform: translateY(-3px);
+        background: white;
+        color: #0b0f2a;
+        border: 5px solid #00c2ff;
+      }
+
+      /* RIGHT SIDE */
+      .yt-media {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .yt-media img {
+        width: 100%;
+        max-width: 650px;
+        border-radius: 22px;
+        object-fit: cover;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 992px) {
+        .yt-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .yt-content h2 {
+          font-size: 38px;
+        }
+
+        .yt-media img {
+          margin-top: 40px;
+        }
+      }
+    </style>
+    <!-- ============ Youtube section END=======  -->
 
     <!-- =======================FinaL CTA==================  -->
     <section class="qx-signal-zone">
       <style>
         .qx-signal-zone {
-          background: radial-gradient(
-            circle at center,
-            #10183a 0%,
-            #0b0f2a 60%
-          );
+          background:
+            radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+            linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
           padding: 60px 5%;
           text-align: center;
           font-family: Inter, system-ui, Arial;

@@ -1,337 +1,121 @@
-<section class="nx-aurora-wrap">
-  <style>
-    .nx-aurora-wrap {
-      background:
-        radial-gradient(
-          circle at 10% 10%,
-          rgba(30, 144, 255, 0.35),
-          transparent 40%
-        ),
-        radial-gradient(
-          circle at 90% 20%,
-          rgba(0, 194, 255, 0.25),
-          transparent 40%
-        ),
-        #070b1a;
-      padding: 110px 5%;
-      font-family: Inter, system-ui;
-      color: white;
-    }
-
-    /* ================= HEADER ================= */
-
-    .nx-aurora-title {
-      text-align: center;
-      font-size: 46px;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .nx-aurora-sub {
-      text-align: center;
-      font-size: 18px;
-      opacity: 0.8;
-      max-width: 820px;
-      margin: 0 auto 40px;
-    }
-
-    /* ================= BADGES ================= */
-
-    .nx-aurora-badges {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 70px;
-    }
-
-    .nx-aurora-pill {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 194, 255, 0.25);
-      padding: 12px 22px;
-      border-radius: 40px;
-      font-size: 14px;
-      backdrop-filter: blur(10px);
-    }
-
-    /* ================= GRID ================= */
-
-    .nx-aurora-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 35px;
-    }
-
-    @media (max-width: 1100px) {
-      .nx-aurora-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ================= LEFT PANEL ================= */
-
-    .nx-aurora-panel {
-      position: relative;
-      border-radius: 22px;
-      padding: 35px;
-      background: linear-gradient(145deg, #101a3f, #0a122d);
-      border: 1px solid rgba(0, 194, 255, 0.4);
-      box-shadow:
-        0 0 0 1px rgba(0, 194, 255, 0.2),
-        0 30px 70px rgba(0, 0, 0, 0.8),
-        0 0 60px rgba(0, 194, 255, 0.15);
-    }
-
-    .nx-aurora-panel-title {
-      text-align: center;
-      font-size: 22px;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-
-    /* arrow buttons */
-    .nx-aurora-nav {
-      position: absolute;
-      top: 25px;
-      right: 25px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .nx-aurora-arrow {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .nx-aurora-arrow:hover {
-      background: linear-gradient(90deg, #00c2ff, #1e90ff);
-    }
-
-    /* dots */
-    .nx-aurora-dots {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .nx-aurora-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    .nx-aurora-dot.active {
-      background: #00c2ff;
-    }
-
-    /* ================= CARD GRID ================= */
-
-    .nx-aurora-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    @media (max-width: 900px) {
-      .nx-aurora-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .nx-aurora-card {
-      background: #0a0f24;
-      border-radius: 14px;
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: 0.3s;
-    }
-
-    .nx-aurora-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 194, 255, 0.25);
-    }
-
-    .nx-aurora-card-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nx-aurora-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: #151b3a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-
-    .nx-aurora-stars {
-      font-size: 13px;
-      margin-top: 4px;
-      color: #00c2ff;
-    }
-
-    /* offer badge */
-    .nx-aurora-offer {
-      text-align: right;
-    }
-
-    .nx-aurora-off {
-      background: linear-gradient(90deg, #00c2ff, #1e90ff);
-      padding: 5px 12px;
-      border-radius: 16px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .nx-aurora-match {
-      font-size: 11px;
-      margin-top: 6px;
-      opacity: 0.7;
-    }
-
-    /* ================= RIGHT PANEL ================= */
-
-    .nx-aurora-side {
-      border-radius: 22px;
-      padding: 30px;
-      background: linear-gradient(145deg, #0f182f, #0a1228);
-      border: 1px solid rgba(0, 194, 255, 0.5);
-      box-shadow: 0 0 40px rgba(0, 194, 255, 0.2);
-    }
-
-    .nx-aurora-side-title {
-      text-align: center;
-      font-size: 20px;
-      margin-bottom: 25px;
-    }
-
-    .nx-aurora-side-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #0a0f24;
-      padding: 14px;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .nx-aurora-rank {
-      font-size: 16px;
-      margin-right: 8px;
-    }
-
-    .nx-aurora-side-off {
-      background: linear-gradient(90deg, #00c2ff, #1e90ff);
-      padding: 5px 10px;
-      border-radius: 14px;
-      font-size: 12px;
-    }
-  </style>
-
-  <h1 class="nx-aurora-title">Compare the Best Prop Trading Firms of 2026</h1>
-  <p class="nx-aurora-sub">
-    Trusted platform to compare prop trading firms using verified data and
-    insights, including reviews, rules, and rankings.
-  </p>
-
-  <div class="nx-aurora-badges">
-    <div class="nx-aurora-pill">50+ Verified Top Prop Firms</div>
-    <div class="nx-aurora-pill">1000+ Challenges</div>
-    <div class="nx-aurora-pill">9000+ Real Trader Reviews</div>
-    <div class="nx-aurora-pill">4M+ Monthly Website Views</div>
-  </div>
-
-  <div class="nx-aurora-grid">
+<!-- =========== Youtube Section ========= -->
+<section class="yt-hero">
+  <div class="yt-container">
     <!-- LEFT -->
-    <div class="nx-aurora-panel">
-      <div class="nx-aurora-panel-title">
-        Exclusive February Forex Offers 🔥
-      </div>
+    <div class="yt-content">
+      <h2>
+        Watch Us Trade Live <br />
+        On Youtube!
+      </h2>
 
-      <div class="nx-aurora-nav">
-        <div class="nx-aurora-arrow">‹</div>
-        <div class="nx-aurora-arrow">›</div>
-      </div>
+      <p>Patrick Wieland Day Trading LIVE – Weekdays At 9am EST</p>
+      <p>The D-Money Show LIVE – Weekdays At 1:30pm EST</p>
 
-      <div class="nx-aurora-cards">
-        <div class="nx-aurora-card">
-          <div class="nx-aurora-card-left">
-            <div class="nx-aurora-logo">QT</div>
-            <div>
-              QT Funded
-              <div class="nx-aurora-stars">★★★★☆ 3.9</div>
-            </div>
-          </div>
-          <div class="nx-aurora-offer">
-            <div class="nx-aurora-off">60% OFF</div>
-            <div class="nx-aurora-match">MATCH</div>
-          </div>
-        </div>
-
-        <div class="nx-aurora-card">
-          <div class="nx-aurora-card-left">
-            <div class="nx-aurora-logo">MV</div>
-            <div>
-              Maven
-              <div class="nx-aurora-stars">★★★★★ 4.3</div>
-            </div>
-          </div>
-          <div class="nx-aurora-offer">
-            <div class="nx-aurora-off">4% OFF</div>
-            <div class="nx-aurora-match">MATCH</div>
-          </div>
-        </div>
-
-        <div class="nx-aurora-card">
-          <div class="nx-aurora-card-left">
-            <div class="nx-aurora-logo">GF</div>
-            <div>
-              Goat Funded
-              <div class="nx-aurora-stars">★★★★★ 4.4</div>
-            </div>
-          </div>
-          <div class="nx-aurora-offer">
-            <div class="nx-aurora-off">30% OFF</div>
-            <div class="nx-aurora-match">MATCH</div>
-          </div>
-        </div>
-      </div>
+      <a href="#" class="yt-btn">Follow on YouTube</a>
     </div>
 
     <!-- RIGHT -->
-    <div class="nx-aurora-side">
-      <div class="nx-aurora-side-title">Most Popular Futures Prop Firms 🏆</div>
-
-      <div class="nx-aurora-side-card">
-        <div><span class="nx-aurora-rank">🥇</span>Tradeify</div>
-        <div class="nx-aurora-side-off">40% OFF</div>
-      </div>
-
-      <div class="nx-aurora-side-card">
-        <div><span class="nx-aurora-rank">🥈</span>My Funded Futures</div>
-        <div class="nx-aurora-side-off">50% OFF</div>
-      </div>
-
-      <div class="nx-aurora-side-card">
-        <div><span class="nx-aurora-rank">🥉</span>Alpha Futures</div>
-        <div class="nx-aurora-side-off">15% OFF</div>
-      </div>
+    <div class="yt-media">
+      <img
+        src="https://images.unsplash.com/photo-1762340273700-70c17506e578?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="YouTube Live Trading"
+      />
     </div>
   </div>
 </section>
+<style>
+  /* YOUTUBE HERO SECTION */
+  .yt-hero {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    padding: 50px 6%;
+    background:
+      radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+      linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+    color: #fff;
+  }
+
+  .yt-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  /* LEFT SIDE */
+  .yt-content {
+    flex: 1;
+    max-width: 550px;
+    margin-top: -34px;
+  }
+
+  .yt-content h2 {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    font-family: "DM Mono", monospace;
+  }
+
+  .yt-content p {
+    font-size: 18px;
+    color: #d1d5db;
+    margin-bottom: 12px;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  .yt-btn {
+    display: inline-block;
+    padding: 16px 42px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #00c2ff, #1e90ff);
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 13px;
+  }
+
+  .yt-btn:hover {
+    transform: translateY(-3px);
+    background: white;
+    color: #0b0f2a;
+    border: 5px solid #00c2ff;
+  }
+
+  /* RIGHT SIDE */
+  .yt-media {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .yt-media img {
+    width: 100%;
+    max-width: 650px;
+    border-radius: 22px;
+    object-fit: cover;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .yt-container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .yt-content h2 {
+      font-size: 38px;
+    }
+
+    .yt-media img {
+      margin-top: 40px;
+    }
+  }
+</style>
+<!-- ============ Youtube section END=======  -->
