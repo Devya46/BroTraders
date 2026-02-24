@@ -879,8 +879,6 @@
     </section>
 
     <style>
-      /* ================= Largest Deal Section ================= */
-
       .largest-deal-section {
         padding: 120px 0;
         background:
@@ -1160,10 +1158,11 @@
         }
 
         .card {
-          min-width: 95%;
+          min-width: 80%;
           flex-direction: column;
           scroll-snap-align: center;
           border-radius: 24px;
+          margin: 7px -2px;
         }
 
         .card-divider {
@@ -1179,7 +1178,7 @@
 
         .card-left,
         .card-right {
-          padding: 40px 25px;
+          padding: 25px 25px;
           text-align: center;
         }
 
@@ -1320,30 +1319,57 @@
       let index = 0;
       const cards = document.querySelectorAll(".card");
 
-      function updateCarousel() {
-        const cardWidth = cards[0].offsetWidth + 40;
-        track.style.transform = `translateX(calc(50% - ${cardWidth / 2}px - ${index * cardWidth}px))`;
-
+      function setActiveCard(i) {
         cards.forEach((card) => card.classList.remove("active"));
-        cards[index].classList.add("active");
+        cards[i].classList.add("active");
       }
 
+      function updateCarousel() {
+        if (window.innerWidth <= 900) return;
+
+        const cardWidth = cards[0].offsetWidth + 40;
+        track.style.transform = `translateX(calc(50% - ${cardWidth / 2}px - ${index * cardWidth}px))`;
+        setActiveCard(index);
+      }
+
+      // Desktop arrows
       document.querySelector(".next").onclick = () => {
+        if (window.innerWidth <= 900) return;
+
         index = (index + 1) % deals.length;
         updateCarousel();
       };
 
       document.querySelector(".prev").onclick = () => {
+        if (window.innerWidth <= 900) return;
+
         index = (index - 1 + deals.length) % deals.length;
         updateCarousel();
       };
 
-      window.addEventListener("load", updateCarousel);
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 900) {
-          updateCarousel();
-        }
+      // ✅ Mobile Scroll Detection
+      track.addEventListener("scroll", () => {
+        if (window.innerWidth > 900) return;
+
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        cards.forEach((card, i) => {
+          const rect = card.getBoundingClientRect();
+          const distance = Math.abs(
+            rect.left + rect.width / 2 - window.innerWidth / 2,
+          );
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+
+        setActiveCard(closestIndex);
       });
+
+      // Clipboard copy
       document.addEventListener("click", function (e) {
         if (e.target.classList.contains("copy-text")) {
           const code = e.target.getAttribute("data-code");
@@ -1358,6 +1384,9 @@
           });
         }
       });
+
+      window.addEventListener("load", updateCarousel);
+      window.addEventListener("resize", updateCarousel);
     </script>
     <!-- ================ largest deal section end =================   -->
 
@@ -1614,8 +1643,117 @@
             "https://onlypropfirms.com/go/warbux/",
             "★★★★★",
           ],
+          [
+            "Take Profit Trader",
+            "https://onlypropfirms.com/wp-content/uploads/2025/07/take-profit-trader-logo.svg",
+            5,
+            "Tradovate, TradingView, NinjaTrader",
+            "40% Off",
+            "PW",
+            "https://onlypropfirms.com/go/take-profit-trader/",
+            "★★★★★",
+          ],
+          [
+            "Tradeify",
+            "https://onlypropfirms.com/wp-content/uploads/2025/12/White-logo-no-background-scaled.png",
+            5,
+            "Tradovate, NinjaTrader, Quantower",
+            "30% Off",
+            "PW",
+            "https://onlypropfirms.com/go/tradeify/",
+            "★★★★★",
+          ],
+          [
+            "Legends Trading",
+            "https://onlypropfirms.com/wp-content/uploads/2025/07/legends-sa_fnl.svg",
+            10,
+            "Tradovate, NinjaTrader, Rithmic",
+            "25% Off",
+            "PW",
+            "https://onlypropfirms.com/go/legends-trading/",
+            "★★★★☆",
+          ],
+          [
+            "Funded Futures",
+            "https://onlypropfirms.com/wp-content/uploads/2025/07/myfundedfutures-logo.png",
+            5,
+            "Quantower, EdgeProX, MotiveWave, NinjaTrader",
+            "50% Off",
+            "PW",
+            "https://onlypropfirms.com/go/funded-futures-network/",
+            "★★★★★",
+          ],
+          [
+            "DayTraders.com",
+            "https://onlypropfirms.com/wp-content/uploads/2025/07/dt_logo3.svg",
+            5,
+            "Rithmic, Project X",
+            "90% Off",
+            "PW",
+            "https://onlypropfirms.com/go/daytraders/",
+            "★★★★★",
+          ],
+          [
+            "TheTradeMakers",
+            "https://onlypropfirms.com/wp-content/uploads/2025/10/logo_on_dark_bg.png",
+            5,
+            "Black Arrow",
+            "50% Off",
+            "PW",
+            "https://onlypropfirms.com/go/the-trade-makers/",
+            "★★★★★",
+          ],
+          [
+            "BluSky Trading",
+            "https://onlypropfirms.com/wp-content/uploads/2025/08/blusky.svg",
+            5,
+            "Tradovate, NinjaTrader, Volumetrica",
+            "30% Off",
+            "PW",
+            "https://onlypropfirms.com/go/blusky-trading/",
+            "★★★★☆",
+          ],
+          [
+            "Bulenox",
+            "https://onlypropfirms.com/wp-content/uploads/2025/08/bulenox-logo.svg",
+            11,
+            "Rithmic, NinjaTrader, Project X",
+            "30% Off",
+            "PW",
+            "https://onlypropfirms.com/go/bulenox/",
+            "★★★★☆",
+          ],
+          [
+            "TradeDay",
+            "https://onlypropfirms.com/wp-content/uploads/2025/08/trade_day_new_logo.svg",
+            6,
+            "Tradovate, NinjaTrader, TradingView, Quantower, Project X",
+            "40% Off",
+            "PW",
+            "https://onlypropfirms.com/go/tradeday/",
+            "★★★★★",
+          ],
+          [
+            "Earn2Trade",
+            "https://onlypropfirms.com/wp-content/uploads/2025/08/estlogonew.svg",
+            3,
+            "NinjaTrader",
+            "60% Off",
+            "PW",
+            "https://onlypropfirms.com/go/earn2trade/",
+            "★★★★☆",
+          ],
+          [
+            "UProfit",
+            "https://onlypropfirms.com/wp-content/uploads/2025/08/uprofit-logo.svg",
+            20,
+            "TradingView, Tradoverse",
+            "50% Off",
+            "PW",
+            "https://onlypropfirms.com/go/uprofit-trader/",
+            "★★★★☆",
+          ],
         ];
-
         const tbody = document.getElementById("zx-table-body");
 
         firmData.forEach((f) => {
