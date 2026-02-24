@@ -58,7 +58,62 @@
     transform: scale(1);
     box-shadow: 0 0 70px rgba(0, 194, 255, 0.25);
   }
+  /* ================= SOLID BORDER RUNNER ================= */
 
+  .card.active {
+    position: relative;
+    z-index: 2;
+  }
+
+  .card.active::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: 30px;
+    padding: 3px;
+
+    background:
+      linear-gradient(90deg, #00c2ff, #00c2ff) top,
+      linear-gradient(180deg, #00c2ff, #00c2ff) right,
+      linear-gradient(270deg, #00c2ff, #00c2ff) bottom,
+      linear-gradient(360deg, #00c2ff, #00c2ff) left;
+
+    background-size:
+      200% 3px,
+      3px 200%,
+      200% 3px,
+      3px 200%;
+
+    background-repeat: no-repeat;
+
+    animation: borderRun 2.5s linear infinite;
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+  }
+
+  @keyframes borderRun {
+    0% {
+      background-position:
+        -200% 0,
+        100% -200%,
+        200% 100%,
+        0 200%;
+    }
+
+    100% {
+      background-position:
+        200% 0,
+        100% 200%,
+        -200% 100%,
+        0 -200%;
+    }
+  }
   /* LEFT SIDE */
   .card-left {
     flex: 1.1;
@@ -105,7 +160,34 @@
     margin-bottom: 18px;
     font-weight: bold;
   }
+  /* ================= DELAYED DROP DISCOUNT ================= */
 
+  /* Default hidden state */
+  .card .discount {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  /* Animate only when active */
+  .card.active .discount {
+    animation: delayedDrop 0.8s cubic-bezier(0.22, 1.2, 0.36, 1) forwards;
+    animation-delay: 0.9s; /* ⬅ Change this for more/less wait */
+  }
+
+  @keyframes delayedDrop {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   .details {
     opacity: 0.85;
     line-height: 1.7;
