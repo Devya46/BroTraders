@@ -271,6 +271,135 @@
       margin: auto;
     }
   }
+  /* ================= TABLET IMPROVEMENTS ================= */
+
+  @media (max-width: 1100px) {
+    .largest-deal-section {
+      padding: 90px 0;
+    }
+
+    .lds-title {
+      font-size: 28px;
+      margin-bottom: 50px;
+      padding: 0 20px;
+    }
+
+    .card {
+      min-width: 75%;
+      margin: 0 15px;
+    }
+
+    .card-left,
+    .card-right {
+      padding: 40px 30px;
+    }
+
+    .discount {
+      font-size: 26px;
+    }
+
+    .nav {
+      font-size: 28px;
+    }
+  }
+
+  /* ================= MOBILE OPTIMIZATION ================= */
+
+  @media (max-width: 768px) {
+    .largest-deal-section {
+      padding: 70px 0;
+    }
+
+    .lds-title {
+      font-size: 22px;
+      margin-bottom: 35px;
+    }
+
+    .carousel {
+      padding: 0 10px;
+    }
+
+    .card {
+      min-width: 92%;
+      margin: 0 10px;
+      flex-direction: column;
+      border-radius: 22px;
+    }
+
+    .card-left,
+    .card-right {
+      padding: 30px 20px;
+    }
+
+    .card-logo {
+      height: 65px;
+    }
+
+    .lucid-logo {
+      height: 90px !important;
+    }
+
+    .card-left h3 {
+      font-size: 18px;
+    }
+
+    .discount {
+      font-size: 22px;
+    }
+
+    .details {
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+    }
+
+    .nav {
+      font-size: 22px;
+      top: 45%;
+    }
+  }
+
+  /* ================= SMALL MOBILE ================= */
+
+  @media (max-width: 480px) {
+    .card {
+      min-width: 95%;
+    }
+
+    .discount {
+      font-size: 20px;
+    }
+
+    .details {
+      font-size: 13px;
+    }
+  }
+  /* ================= MOBILE SWIPE ENABLE ================= */
+
+  @media (max-width: 900px) {
+    .carousel {
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      transform: none !important; /* Disable JS translate */
+    }
+
+    .card {
+      scroll-snap-align: center;
+    }
+
+    /* Hide arrows on mobile */
+    .nav {
+      display: none;
+    }
+  }
 </style>
 
 <script>
@@ -385,8 +514,11 @@
   };
 
   window.addEventListener("load", updateCarousel);
-  window.addEventListener("resize", updateCarousel);
-
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) {
+      updateCarousel();
+    }
+  });
   document.addEventListener("click", function (e) {
     if (e.target.classList.contains("copy-text")) {
       const code = e.target.getAttribute("data-code");
