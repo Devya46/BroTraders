@@ -10,6 +10,8 @@
 </section>
 
 <style>
+  /* ================= Largest Deal Section ================= */
+
   .largest-deal-section {
     padding: 120px 0;
     background:
@@ -20,11 +22,16 @@
     overflow: hidden;
   }
 
+  /* ================= Title ================= */
+
   .lds-title {
     text-align: center;
-    font-size: 34px;
+    font-size: 38px;
+    font-weight: 800;
     margin-bottom: 70px;
   }
+
+  /* ================= Carousel ================= */
 
   .carousel {
     position: relative;
@@ -39,9 +46,10 @@
     transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
   }
 
-  /* ===== CARD ===== */
+  /* ================= Card ================= */
+
   .card {
-    min-width: 48%;
+    min-width: 50%;
     margin: 0 20px;
     border-radius: 28px;
     background: rgba(0, 0, 0, 0.45);
@@ -57,19 +65,17 @@
     opacity: 1;
     transform: scale(1);
     box-shadow: 0 0 70px rgba(0, 194, 255, 0.25);
-  }
-  /* ================= SOLID BORDER RUNNER ================= */
-
-  .card.active {
     position: relative;
     z-index: 2;
   }
 
+  /* ================= ACTIVE BORDER ANIMATION ================= */
+
   .card.active::before {
     content: "";
     position: absolute;
-    inset: -12px;
-    border-radius: 30px;
+    inset: -10px;
+    border-radius: 32px;
     padding: 3px;
 
     background:
@@ -85,7 +91,6 @@
       3px 200%;
 
     background-repeat: no-repeat;
-
     animation: borderRun 2.5s linear infinite;
 
     -webkit-mask:
@@ -105,7 +110,6 @@
         200% 100%,
         0 200%;
     }
-
     100% {
       background-position:
         200% 0,
@@ -114,10 +118,12 @@
         0 -200%;
     }
   }
-  /* LEFT SIDE */
+
+  /* ================= Left Side ================= */
+
   .card-left {
     flex: 1.1;
-    padding: 50px 30px;
+    padding: 55px 35px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -125,9 +131,8 @@
   }
 
   .card-logo {
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 18px;
+    height: 85px;
+    margin-bottom: 20px;
   }
 
   .lucid-logo {
@@ -135,49 +140,51 @@
   }
 
   .card-left h3 {
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: 700;
   }
 
-  /* DIVIDER */
+  /* ================= Divider ================= */
+
   .card-divider {
     width: 1px;
     background: linear-gradient(to bottom, transparent, #00c2ff, transparent);
     opacity: 0.6;
   }
 
-  /* RIGHT SIDE */
+  /* ================= Right Side ================= */
+
   .card-right {
     flex: 1.9;
-    padding: 50px 45px;
+    padding: 55px 45px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .discount {
-    font-size: 30px;
-    color: #00c2ff;
-    margin-bottom: 18px;
-    font-weight: bold;
-  }
-  /* ================= DELAYED DROP DISCOUNT ================= */
+  /* ================= Discount Animation ================= */
 
-  /* Default hidden state */
+  .discount {
+    font-size: 32px;
+    font-weight: 900;
+    color: #00c2ff;
+    margin-bottom: 20px;
+  }
+
   .card .discount {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: translateY(-40px);
   }
 
-  /* Animate only when active */
   .card.active .discount {
     animation: delayedDrop 0.8s cubic-bezier(0.22, 1.2, 0.36, 1) forwards;
-    animation-delay: 0.9s; /* ⬅ Change this for more/less wait */
+    animation-delay: 0.6s;
   }
 
   @keyframes delayedDrop {
     0% {
       opacity: 0;
-      transform: translateY(-50px);
+      transform: translateY(-40px);
     }
     70% {
       opacity: 1;
@@ -188,27 +195,28 @@
       transform: translateY(0);
     }
   }
+
+  /* ================= Text ================= */
+
   .details {
-    opacity: 0.85;
-    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.9;
     margin-bottom: 25px;
+    opacity: 0.9;
   }
 
   .code {
+    font-size: 16px;
     margin-bottom: 25px;
-    font-size: 15px;
   }
 
   .copy-text {
     color: #00c2ff;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
   }
 
-  .copy-text:hover {
-    color: #ffffff;
-  }
+  /* ================= Button ================= */
 
   .btn {
     padding: 14px 40px;
@@ -217,7 +225,8 @@
     cursor: pointer;
     background: linear-gradient(90deg, #00c2ff, #1e90ff);
     color: #fff;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 16px;
     transition: 0.3s;
     width: fit-content;
   }
@@ -228,7 +237,8 @@
     color: #0b0f2a;
   }
 
-  /* ARROWS */
+  /* ================= Arrows ================= */
+
   .nav {
     position: absolute;
     top: 50%;
@@ -248,11 +258,37 @@
     right: 0;
   }
 
-  /* MOBILE */
-  @media (max-width: 900px) {
+  /* ================= Tablet ================= */
+
+  @media (max-width: 1100px) {
+    .lds-title {
+      font-size: 34px;
+    }
+
     .card {
-      min-width: 90%;
+      min-width: 80%;
+    }
+
+    .discount {
+      font-size: 30px;
+    }
+  }
+
+  /* ================= Mobile ================= */
+
+  @media (max-width: 900px) {
+    .carousel-track {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      transform: none !important;
+    }
+
+    .card {
+      min-width: 95%;
       flex-direction: column;
+      scroll-snap-align: center;
+      border-radius: 24px;
     }
 
     .card-divider {
@@ -263,226 +299,49 @@
 
     .card-left,
     .card-right {
+      padding: 40px 25px;
       text-align: center;
-      padding: 35px 25px;
-    }
-
-    .btn {
-      margin: auto;
-    }
-  }
-  /* ================= TABLET IMPROVEMENTS ================= */
-
-  @media (max-width: 1100px) {
-    .largest-deal-section {
-      padding: 90px 0;
     }
 
     .lds-title {
       font-size: 28px;
-      margin-bottom: 50px;
-      padding: 0 20px;
-    }
-
-    .card {
-      min-width: 75%;
-      margin: 0 15px;
-    }
-
-    .card-left,
-    .card-right {
-      padding: 40px 30px;
-    }
-
-    .discount {
-      font-size: 26px;
-    }
-
-    .nav {
-      font-size: 28px;
-    }
-  }
-
-  /* ================= MOBILE OPTIMIZATION ================= */
-
-  @media (max-width: 768px) {
-    .largest-deal-section {
-      padding: 70px 0;
-    }
-
-    .lds-title {
-      font-size: 22px;
-      margin-bottom: 35px;
-    }
-
-    .carousel {
-      padding: 0 10px;
-    }
-
-    .card {
-      min-width: 92%;
-      margin: 0 10px;
-      flex-direction: column;
-      border-radius: 22px;
-    }
-
-    .card-left,
-    .card-right {
-      padding: 30px 20px;
-    }
-
-    .card-logo {
-      height: 65px;
-    }
-
-    .lucid-logo {
-      height: 90px !important;
+      line-height: 1.3;
     }
 
     .card-left h3 {
-      font-size: 18px;
-    }
-
-    .discount {
       font-size: 22px;
     }
 
+    .discount {
+      font-size: 28px;
+    }
+
     .details {
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .btn {
       width: 100%;
-      padding: 12px;
     }
 
-    .nav {
-      font-size: 22px;
-      top: 45%;
-    }
-  }
-
-  /* ================= SMALL MOBILE ================= */
-
-  @media (max-width: 480px) {
-    .card {
-      min-width: 95%;
-    }
-
-    .discount {
-      font-size: 20px;
-    }
-
-    .details {
-      font-size: 13px;
-    }
-  }
-  /* ================= MOBILE SWIPE ENABLE ================= */
-
-  @media (max-width: 900px) {
-    .carousel {
-      overflow: hidden;
-    }
-
-    .carousel-track {
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      transform: none !important; /* Disable JS translate */
-    }
-
-    .card {
-      scroll-snap-align: center;
-    }
-
-    /* Hide arrows on mobile */
     .nav {
       display: none;
     }
   }
-  /* ================= TABLET TEXT IMPROVEMENT ================= */
 
-  @media (max-width: 900px) {
+  /* ================= Small Mobile ================= */
+
+  @media (max-width: 420px) {
     .lds-title {
       font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .card-left h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-top: 8px;
     }
 
     .discount {
       font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 1px;
     }
 
     .details {
       font-size: 15px;
-      line-height: 1.8;
-      opacity: 0.9;
-    }
-
-    .code {
-      font-size: 14px;
-      margin-top: 10px;
-    }
-  }
-
-  /* ================= MOBILE TEXT OPTIMIZATION ================= */
-
-  @media (max-width: 600px) {
-    .largest-deal-section {
-      padding: 60px 0;
-    }
-
-    .lds-title {
-      font-size: 20px;
-      line-height: 1.4;
-      padding: 0 15px;
-    }
-
-    .card-left h3 {
-      font-size: 18px;
-    }
-
-    .discount {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .details {
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .code {
-      font-size: 13px;
-    }
-
-    .btn {
-      font-size: 14px;
-      font-weight: 600;
-    }
-  }
-
-  /* ================= EXTRA SMALL MOBILE ================= */
-
-  @media (max-width: 420px) {
-    .lds-title {
-      font-size: 18px;
-    }
-
-    .discount {
-      font-size: 20px;
-    }
-
-    .details {
-      font-size: 13px;
     }
   }
 </style>
