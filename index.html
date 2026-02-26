@@ -68,7 +68,7 @@
       </div>
 
       <!-- RIGHT SIDE BUTTONS -->
-      <div class="bt-right-links">
+      <!-- <div class="bt-right-links">
         <a href="https://www.youtube.com/c/PatrickWieland" target="_blank"
           >#1 Day Trader on YouTube</a
         >
@@ -76,8 +76,8 @@
         <a href="https://onlypropfirms.com/register/" target="_blank"
           >Subscription</a
         >
-        <!-- <a href="https://onlypropfirms.com/login/" target="_blank">Login</a> -->
-      </div>
+        <a href="https://onlypropfirms.com/login/" target="_blank">Login</a>
+      </div> -->
     </div>
 
     <style>
@@ -260,16 +260,16 @@
             <div class="bt-drop-menu" id="funding">
               <div class="bt-drop-grid">
                 <div>
-                  <a href="#">Firm Lists</a>
-                  <a href="#">Prop Firm Comparison</a>
-                  <a href="#">True Cost to Funding</a>
-                  <a href="#">Prop Firm Starting Costs</a>
-                  <a href="#">Largest Drawdown</a>
-                  <a href="#">Quickest Funding</a>
-                  <a href="#">Best Deals</a>
+                  <a href="#"><strong>Firm Lists :</strong></a>
+                  <a href="comparison.html">Prop Firm Comparison</a>
+                  <a href="TrueCost.html">True Cost to Funding</a>
+                  <a href="StartCost.html">Prop Firm Starting Costs</a>
+                  <a href="Drawdown.html">Largest Drawdown</a>
+                  <a href="QuickFunding.html">Quickest Funding</a>
+                  <a href="bestDeals.html">Best Deals</a>
                 </div>
                 <div>
-                  <a href="#">Top Firms</a>
+                  <a href="#"><strong>Top Firms :</strong></a>
                   <a href="ApexFunding.html">Apex Trader Funding</a>
                   <a href="TradeifyTrader.html">Tradeify</a>
                   <a href="BluSky Trading.html">BlueSky Trading</a>
@@ -326,23 +326,42 @@
       /* ================= HEADER ================= */
 
       .bt-header {
+        position: sticky;
+        top: 0;
         width: 100%;
-        background: #000;
         z-index: 1000;
+        background: #000; /* Normal state */
+        transition: all 0.35s ease;
+      }
+
+      .bt-header.bt-scrolled {
+        background: rgba(10, 15, 30, 0.75);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(0, 194, 255, 0.25);
       }
 
       .bt-container {
         max-width: 1400px;
         margin: auto;
-        padding: 0 20px;
+        padding: 0px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        transition: padding 0.3s ease;
+      }
+
+      .bt-header.bt-scrolled .bt-container {
+        padding: 0px 30px;
       }
 
       .bt-logo img {
         height: 90px;
-        width: 140px;
+        transition: height 0.3s ease;
+      }
+
+      .bt-header.bt-scrolled .bt-logo img {
+        height: 70px;
       }
 
       /* ================= NAV ================= */
@@ -420,19 +439,20 @@
       /* ================= CTA ================= */
 
       .bt-cta {
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        padding: 10px 24px;
-        border-radius: 6px;
+        background: linear-gradient(135deg, #00c2ff, #1e90ff);
+        padding: 12px 26px;
+        border-radius: 30px;
         color: #fff;
         text-decoration: none;
         font-weight: 600;
-        transition: 0.3s;
+        letter-spacing: 0.5px;
+        transition: 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 194, 255, 0.5);
       }
 
       .bt-cta:hover {
         transform: translateY(-3px);
-        background: #fff;
-        color: #0b0f2a;
+        box-shadow: 0 0 25px rgba(0, 194, 255, 0.9);
       }
 
       /* ================= HAMBURGER ================= */
@@ -518,6 +538,10 @@
           margin-top: 10px;
           background: transparent;
           border: none;
+          background: rgba(15, 20, 45, 0.6);
+          backdrop-filter: blur(25px);
+          border: 1px solid rgba(0, 194, 255, 0.3);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
         }
 
         /* 2 Column grid */
@@ -568,6 +592,11 @@
           m.classList.remove("active");
         });
       }
+      const header = document.querySelector(".bt-header");
+
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("bt-scrolled", window.scrollY > 50);
+      });
     </script>
     <!-- ================= HEADER END ================= -->
 

@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GiveAway | Bro Traders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="shortcut icon"
+      href="Bro Traders logo.jpeg"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NZ+Basic:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "DM Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+    <div class="bt-topbar">
+      <!-- SCROLLING SECTION -->
+      <div class="bt-ticker-wrapper">
+        <div class="bt-arrow">&#10094;</div>
+
+        <div class="bt-ticker">
+          <div class="bt-ticker-track">
+            <a href="https://lucidtrading.com/ref/pw/" target="_blank">
+              Lucid Trading is 50% Off All Accounts! Use Code: PW
+            </a>
+
+            <a
+              href="https://takeprofittrader.com/?referralCode=ONLYPROPFIRMS"
+              target="_blank"
+            >
+              ✅ TPT is 40% Off & No Fee! Use Code: PW
+            </a>
+
+            <a href="https://warbuxbtc.com/" target="_blank">
+              💀 20% Off At WarBux!
+            </a>
+
+            <a href="#">
+              🫴 40% Off 150K Select Plan! 30% Off All Other Tradeify Accounts!
+              Use Code: PW
+            </a>
+
+            <a href="https://apextraderfunding.com/?c=PW" target="_blank">
+              🚨 90% Off Apex! 1 Day To Pass Use Code: PW
+            </a>
+
+            <!-- duplicate for smooth loop -->
+            <a href="https://lucidtrading.com/ref/pw/" target="_blank">
+              Lucid Trading is 50% Off All Accounts! Use Code: PW
+            </a>
+          </div>
+        </div>
+
+        <div class="bt-arrow">&#10095;</div>
+      </div>
+
+      <!-- RIGHT SIDE BUTTONS -->
+      <!-- <div class="bt-right-links">
+        <a href="https://www.youtube.com/c/PatrickWieland" target="_blank"
+          >#1 Day Trader on YouTube</a
+        >
+        <a href="https://bigdickhouse.com/" target="_blank">OPF Shop</a>
+        <a href="https://onlypropfirms.com/register/" target="_blank"
+          >Subscription</a
+        >
+        <a href="https://onlypropfirms.com/login/" target="_blank">Login</a>
+      </div> -->
+    </div>
+
+    <style>
+      /* ================= TOP BAR ================= */
+
+      .bt-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #000;
+        height: 42px;
+        font-size: 14px;
+        overflow: hidden;
+        position: relative;
+        z-index: 99999;
+      }
+
+      /* ================= TICKER ================= */
+
+      .bt-ticker-wrapper {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        background: #ffa239;
+        overflow: hidden;
+      }
+
+      .bt-arrow {
+        padding: 0 12px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+      }
+
+      .bt-ticker {
+        overflow: hidden;
+        white-space: nowrap;
+        flex: 1;
+      }
+
+      .bt-ticker-track {
+        display: inline-block;
+        animation: scrollTicker 30s linear infinite;
+      }
+
+      .bt-ticker-track a {
+        display: inline-block;
+        margin-right: 60px;
+        color: #000;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .bt-ticker-track a:hover {
+        text-decoration: underline;
+      }
+
+      /* Smooth infinite scroll */
+      @keyframes scrollTicker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ================= RIGHT SIDE ================= */
+
+      .bt-right-links {
+        display: flex;
+        align-items: center;
+        background: #f3f3f3;
+      }
+
+      .bt-right-links a {
+        padding: 0 16px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        color: #000;
+        text-decoration: none;
+        border-left: 1px solid #ddd;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .bt-right-links a:hover {
+        background: #e5e5e5;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      /* ====== Tablet ====== */
+      @media (max-width: 1024px) {
+        .bt-topbar {
+          height: 40px;
+          font-size: 13px;
+        }
+
+        .bt-ticker-track {
+          animation: scrollTicker 25s linear infinite;
+        }
+
+        .bt-right-links a {
+          padding: 0 12px;
+          font-size: 13px;
+        }
+      }
+
+      /* ====== Small Tablet ====== */
+      @media (max-width: 900px) {
+        .bt-right-links {
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        .bt-right-links a {
+          flex: 0 0 auto;
+        }
+      }
+
+      /* ====== Mobile ====== */
+      @media (max-width: 600px) {
+        .bt-topbar {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .bt-ticker-wrapper {
+          width: 100%;
+        }
+
+        .bt-right-links {
+          width: 100%;
+          justify-content: center;
+          background: #111;
+        }
+
+        .bt-right-links a {
+          border-left: none;
+          border-right: 1px solid #222;
+          color: #fff;
+          font-size: 12px;
+          padding: 6px 10px;
+          height: auto;
+        }
+
+        .bt-arrow {
+          font-size: 16px;
+          padding: 0 8px;
+        }
+
+        .bt-ticker-track {
+          animation: scrollTicker 20s linear infinite;
+        }
+      }
+    </style>
+    <!-- ================= TOP ANNOUNCEMENT BAR END================= -->
+    <!-- ================= BRO TRADING HEADER ================= -->
+    <header class="bt-header">
+      <div class="bt-container">
+        <!-- Logo -->
+        <div class="bt-logo">
+          <img src="Bro_Traders_logo-removebg-preview.png" alt="Bro Trading" />
+        </div>
+
+        <!-- Navigation -->
+        <nav class="bt-nav">
+          <!-- Mobile Close Button -->
+          <div class="bt-mobile-close" onclick="closeMobileMenu()">✕</div>
+
+          <!-- Funding Plans -->
+          <div class="bt-dropdown">
+            <button class="bt-drop-btn" onclick="toggleDropdown('funding')">
+              Funding Plans ▾
+            </button>
+
+            <div class="bt-drop-menu" id="funding">
+              <div class="bt-drop-grid">
+                <div>
+                  <a href="#"><strong>Firm Lists :</strong></a>
+                  <a href="comparison.html">Prop Firm Comparison</a>
+                  <a href="TrueCost.html">True Cost to Funding</a>
+                  <a href="StartCost.html">Prop Firm Starting Costs</a>
+                  <a href="Drawdown.html">Largest Drawdown</a>
+                  <a href="QuickFunding.html">Quickest Funding</a>
+                  <a href="bestDeals.html">Best Deals</a>
+                </div>
+                <div>
+                  <a href="#"><strong>Top Firms :</strong></a>
+                  <a href="ApexFunding.html">Apex Trader Funding</a>
+                  <a href="TradeifyTrader.html">Tradeify</a>
+                  <a href="BluSky Trading.html">BlueSky Trading</a>
+                  <a href="MyFundedFuture.html">Funded Future</a>
+                  <!-- <a href="#">Tradeify</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Learn -->
+          <div class="bt-dropdown">
+            <button class="bt-drop-btn" onclick="toggleDropdown('learn')">
+              Learn ▾
+            </button>
+            <div class="bt-drop-menu small" id="learn">
+              <a href="#">Lessons</a>
+              <a href="#">Articles</a>
+              <a href="#">The 2-Hour Trading Day</a>
+            </div>
+          </div>
+
+          <!-- Resources -->
+          <div class="bt-dropdown">
+            <button class="bt-drop-btn" onclick="toggleDropdown('resources')">
+              Resources ▾
+            </button>
+            <div class="bt-drop-menu small" id="resources">
+              <a href="MarketAnalysis.html">Market Analysis</a>
+              <a href="TradingTools.html">Trading Tools</a>
+            </div>
+          </div>
+
+          <!-- <a href="#" class="bt-link">About</a> -->
+          <a href="#" class="bt-link">GiveAways</a>
+        </nav>
+
+        <!-- CTA -->
+        <a href="#" class="bt-cta">Get Funded</a>
+
+        <!-- Hamburger -->
+        <div class="bt-hamburger" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Overlay -->
+    <div class="bt-overlay" onclick="closeMobileMenu()"></div>
+
+    <style>
+      /* ================= HEADER ================= */
+
+      .bt-header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: #000; /* Normal state */
+        transition: all 0.35s ease;
+      }
+
+      .bt-header.bt-scrolled {
+        background: rgba(10, 15, 30, 0.75);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(0, 194, 255, 0.25);
+      }
+
+      .bt-container {
+        max-width: 1400px;
+        margin: auto;
+        padding: 0px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: padding 0.3s ease;
+      }
+
+      .bt-header.bt-scrolled .bt-container {
+        padding: 0px 30px;
+      }
+
+      .bt-logo img {
+        height: 90px;
+        transition: height 0.3s ease;
+      }
+
+      .bt-header.bt-scrolled .bt-logo img {
+        height: 70px;
+      }
+
+      /* ================= NAV ================= */
+
+      .bt-nav {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .bt-link,
+      .bt-drop-btn {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .bt-link:hover,
+      .bt-drop-btn:hover {
+        color: #00c2ff;
+      }
+
+      /* ================= DROPDOWN ================= */
+
+      .bt-dropdown {
+        position: relative;
+      }
+
+      .bt-drop-menu {
+        position: absolute;
+        top: 170%;
+        left: 0;
+        min-width: 650px;
+        padding: 30px;
+        border-radius: 14px;
+        background: rgba(15, 20, 45, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 194, 255, 0.6);
+        display: none;
+        z-index: 1001;
+      }
+
+      .bt-drop-menu.small {
+        min-width: 260px;
+        padding: 20px;
+      }
+
+      .bt-drop-menu.active {
+        display: block;
+      }
+
+      .bt-drop-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .bt-drop-menu a {
+        display: block;
+        color: #cbd5e1;
+        text-decoration: none;
+        margin-bottom: 12px;
+        transition: 0.3s;
+      }
+
+      .bt-drop-menu a:hover {
+        color: #00c2ff;
+        padding-left: 5px;
+      }
+
+      /* ================= CTA ================= */
+
+      .bt-cta {
+        background: linear-gradient(135deg, #00c2ff, #1e90ff);
+        padding: 12px 26px;
+        border-radius: 30px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 194, 255, 0.5);
+      }
+
+      .bt-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px rgba(0, 194, 255, 0.9);
+      }
+
+      /* ================= HAMBURGER ================= */
+
+      .bt-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+      }
+
+      .bt-hamburger span {
+        width: 26px;
+        height: 3px;
+        background: #fff;
+      }
+
+      /* ================= MOBILE MENU ================= */
+
+      .bt-mobile-close {
+        display: none;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        font-size: 26px;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .bt-overlay {
+        position: fixed;
+        inset: 0;
+        backdrop-filter: blur(2px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 900;
+      }
+
+      .bt-overlay.active {
+        display: block;
+      }
+
+      @media (max-width: 1024px) {
+        .bt-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 85%; /* Wider for better layout */
+          max-width: 420px;
+          height: 100vh;
+          background: #0b0f2a;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 100px 25px 40px;
+          gap: 20px;
+          transition: 0.4s ease;
+          z-index: 1002;
+          overflow-y: auto;
+        }
+
+        .bt-nav.active {
+          right: 0;
+          top: 15px;
+        }
+
+        .bt-hamburger {
+          display: flex;
+        }
+
+        .bt-cta {
+          display: none;
+        }
+
+        .bt-mobile-close {
+          display: block;
+        }
+
+        /* Dropdown styling */
+        .bt-drop-menu {
+          position: static;
+          min-width: 100%;
+          padding: 15px 0;
+          margin-top: 10px;
+          background: transparent;
+          border: none;
+          background: rgba(15, 20, 45, 0.6);
+          backdrop-filter: blur(25px);
+          border: 1px solid rgba(0, 194, 255, 0.3);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 2 Column grid */
+        .bt-drop-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px 25px;
+        }
+
+        .bt-drop-menu a {
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      }
+
+      /* Extra small mobile → 1 column */
+      @media (max-width: 480px) {
+        .bt-drop-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+
+    <script>
+      function toggleDropdown(id) {
+        const menu = document.getElementById(id);
+        const isActive = menu.classList.contains("active");
+
+        document.querySelectorAll(".bt-drop-menu").forEach((m) => {
+          m.classList.remove("active");
+        });
+
+        if (!isActive) {
+          menu.classList.add("active");
+        }
+      }
+
+      function toggleMobileMenu() {
+        document.querySelector(".bt-nav").classList.add("active");
+        document.querySelector(".bt-overlay").classList.add("active");
+      }
+
+      function closeMobileMenu() {
+        document.querySelector(".bt-nav").classList.remove("active");
+        document.querySelector(".bt-overlay").classList.remove("active");
+
+        document.querySelectorAll(".bt-drop-menu").forEach((m) => {
+          m.classList.remove("active");
+        });
+      }
+      const header = document.querySelector(".bt-header");
+
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("bt-scrolled", window.scrollY > 50);
+      });
+    </script>
+    <!-- ================= HEADER END ================= -->
+    <!-- ========== best Deal hero section=========  -->
+    <section class="best-deals-hero">
+      <div class="best-deals-content">
+        <h1>Top Firm Comparison</h1>
+        <p>
+          Looking to break down prop firms by their metrics and features? <br />
+          This Master Sheet lets you do exactly that—compare every account from
+          every firm in one place. Whether you’re evaluating drawdown types,
+          number of accounts, discounts, or pricing, this tool gives you the
+          clarity and confidence to make informed decisions. Stop guessing and
+          start knowing exactly what you’re getting before you buy. Your next
+          prop firm evaluation starts here.
+        </p>
+      </div>
+    </section>
+    <style>
+      .best-deals-hero {
+        min-height: 73vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+
+        color: #ffffff;
+        padding: 40px 20px;
+      }
+
+      .best-deals-content h1 {
+        font-size: clamp(48px, 8vw, 90px);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        margin: 0;
+        font-family: "DM Mono", monospace;
+      }
+      .best-deals-content p {
+        font-size: 19px;
+        margin: 20px 214px;
+        opacity: 0.9;
+        line-height: 1.6;
+        font-family: "DM Sans", sans-serif;
+      }
+      /* Tablet */
+      @media (max-width: 992px) {
+        .best-deals-hero {
+          padding: 0px 20px;
+        }
+
+        .best-deals-content h1 {
+          font-size: clamp(36px, 10vw, 80px);
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 576px) {
+        .best-deals-hero {
+          padding: 0px 16px;
+        }
+
+        .best-deals-content h1 {
+          font-size: 38px;
+          line-height: 1.2;
+        }
+      }
+    </style>
+    <!-- ==========best Deal hero section End========= -->
+    <!-- ====== Giveaway Section ======  -->
+    <!-- ========== Premium Giveaway Form Section ========== -->
+    <section class="giveaway-section">
+      <div class="giveaway-wrapper">
+        <div class="giveaway-header">
+          <h2>🎁 Enter The Giveaway</h2>
+          <p>
+            Join now for a chance to win exclusive access and premium rewards.
+            Limited entries available.
+          </p>
+        </div>
+
+        <form class="giveaway-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" required />
+              <label>First Name</label>
+            </div>
+
+            <div class="form-group">
+              <input type="text" required />
+              <label>Last Name</label>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <input type="email" required />
+            <label>Email Address</label>
+          </div>
+
+          <button type="submit" class="submit-btn">Secure My Entry →</button>
+
+          <p class="form-disclaimer">
+            By submitting, you agree to receive occasional updates and
+            promotional emails. You can unsubscribe anytime.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <style>
+      /* ========== Giveaway Section ========== */
+      .giveaway-section {
+        padding: 120px 20px;
+        background:
+          radial-gradient(circle at bottom center, #1e3a8a 0%, transparent 60%),
+          linear-gradient(180deg, #030712 0%, #0b1d3a 100%);
+        display: flex;
+        justify-content: center;
+      }
+
+      .giveaway-wrapper {
+        width: 100%;
+        max-width: 900px;
+        padding: 60px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 60px rgba(0, 162, 255, 0.15);
+      }
+
+      /* Header */
+      .giveaway-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .giveaway-header h2 {
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 12px;
+        font-family: "DM Mono", monospace;
+      }
+
+      .giveaway-header p {
+        font-size: 18px;
+        opacity: 0.85;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* Form Layout */
+      .giveaway-form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 24px;
+      }
+
+      .form-group {
+        position: relative;
+        flex: 1;
+      }
+
+      .form-group.full {
+        width: 100%;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 18px 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        transition: 0.3s ease;
+      }
+
+      /* Floating Label */
+      .form-group label {
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.6);
+        pointer-events: none;
+        transition: 0.3s ease;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .form-group input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .form-group input:focus + label,
+      .form-group input:valid + label {
+        top: -10px;
+        left: 14px;
+        font-size: 12px;
+        background: #0b1d3a;
+        padding: 0 6px;
+        border-radius: 6px;
+      }
+
+      /* Button */
+      .submit-btn {
+        padding: 18px;
+        border-radius: 14px;
+        border: none;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        background: linear-gradient(90deg, #2563eb, #06b6d4);
+        color: white;
+        transition: 0.3s ease;
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(37, 99, 235, 0.6);
+      }
+
+      /* Disclaimer */
+      .form-disclaimer {
+        text-align: center;
+        font-size: 13px;
+        opacity: 0.6;
+        margin-top: -10px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* ========== Responsive ========== */
+      @media (max-width: 768px) {
+        .giveaway-wrapper {
+          padding: 40px 24px;
+        }
+
+        .form-row {
+          flex-direction: column;
+        }
+
+        .giveaway-header h2 {
+          font-size: 32px;
+        }
+      }
+    </style>
+    <!-- ====== GiveAway Section End ======  -->
+  </body>
+</html>

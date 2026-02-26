@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon | Bro Traders</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+        padding: 20px;
+
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: #ffffff;
+      }
+
+      /* Rising Sun */
+      .sun {
+        position: absolute;
+        bottom: -150px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          #facc15 0%,
+          #f97316 60%,
+          transparent 70%
+        );
+        animation: sunrise 6s ease-out forwards;
+        filter: blur(2px);
+        z-index: 0;
+      }
+
+      @keyframes sunrise {
+        from {
+          bottom: -150px;
+        }
+        to {
+          bottom: 65%;
+        }
+      }
+
+      .container {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        width: 100%;
+      }
+
+      /* Logo */
+      .logo img {
+        width: 160px;
+        max-width: 60%;
+        margin-bottom: -5px;
+        border-radius: 15px;
+      }
+
+      /* Animated Heading */
+      h1 {
+        font-size: clamp(32px, 5vw, 52px);
+        margin-bottom: 15px;
+        background: white;
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientMove 8s linear infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      p {
+        font-size: clamp(15px, 2.5vw, 18px);
+        margin-bottom: 35px;
+        color: #e2efff;
+      }
+
+      /* Countdown */
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+
+      .time-box {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 18px 22px;
+        border-radius: 14px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+        min-width: 85px;
+        transition: 0.3s;
+      }
+
+      .time-box:hover {
+        transform: translateY(-4px);
+      }
+
+      .time-box h2 {
+        font-size: clamp(22px, 4vw, 30px);
+      }
+
+      .time-box span {
+        font-size: 13px;
+        color: #94a3b8;
+      }
+
+      /* Email Form */
+      .subscribe {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .subscribe input {
+        padding: 13px 18px;
+        border: none;
+        border-radius: 50px;
+        outline: none;
+        width: 260px;
+        max-width: 100%;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+
+      .subscribe button {
+        padding: 13px 28px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .subscribe button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 18px #3b82f6;
+      }
+
+      /* Popup */
+      .popup {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #16a34a;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: 0.4s ease;
+        z-index: 999;
+      }
+
+      .popup.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Waves */
+      .waves {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 40px 18px;
+        }
+
+        /* Make logo smaller and cleaner */
+        .logo img {
+          width: 120px;
+          max-width: 50%;
+          margin-bottom: 10px;
+        }
+
+        /* Better spacing for heading */
+        h1 {
+          margin-top: 5px;
+          margin-bottom: 12px;
+        }
+
+        p {
+          margin-bottom: 25px;
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        /* Countdown in ONE LINE */
+        .countdown {
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          gap: 8px;
+          margin-bottom: 30px;
+        }
+
+        .time-box {
+          padding: 12px 8px;
+          min-width: unset;
+          width: 23%;
+          border-radius: 12px;
+        }
+
+        .time-box h2 {
+          font-size: 18px;
+        }
+
+        .time-box span {
+          font-size: 11px;
+        }
+
+        /* Email section cleaner */
+        .subscribe {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .subscribe input {
+          width: 100%;
+          max-width: 320px;
+        }
+
+        .subscribe button {
+          width: 100%;
+          max-width: 320px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="sun"></div>
+
+    <div class="container">
+      <div class="logo">
+        <img src="Bro Traders logo.jpeg" alt="Logo" />
+      </div>
+
+      <h1>Coming Soon</h1>
+      <p>
+        We’re launching something amazing in <strong>15 Days</strong>. Stay
+        tuned 🚀
+      </p>
+
+      <div class="countdown">
+        <div class="time-box">
+          <h2 id="days">00</h2>
+          <span>Days</span>
+        </div>
+        <div class="time-box">
+          <h2 id="hours">00</h2>
+          <span>Hours</span>
+        </div>
+        <div class="time-box">
+          <h2 id="minutes">00</h2>
+          <span>Minutes</span>
+        </div>
+        <div class="time-box">
+          <h2 id="seconds">00</h2>
+          <span>Seconds</span>
+        </div>
+      </div>
+
+      <form class="subscribe" id="emailForm">
+        <input
+          type="email"
+          id="emailInput"
+          placeholder="Enter your email"
+          required
+        />
+        <button type="submit">Notify Me</button>
+      </form>
+    </div>
+
+    <div class="popup" id="popupMessage">
+      🎉 Thank you! We’ll notify you soon.
+    </div>
+
+    <!-- Waves -->
+    <div class="waves">
+      <svg viewBox="0 0 1440 320">
+        <path
+          fill="#0b1d3a"
+          d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,245.3C672,245,768,203,864,176C960,149,1056,139,1152,149.3C1248,160,1344,192,1392,208L1440,224L1440,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+
+    <script>
+      // Countdown (15 days from now)
+      const launchDate = new Date().getTime() + 15 * 24 * 60 * 60 * 1000;
+
+      setInterval(function () {
+        const now = new Date().getTime();
+        const distance = launchDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("hours").innerHTML = hours
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("minutes").innerHTML = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").innerHTML = seconds
+          .toString()
+          .padStart(2, "0");
+      }, 1000);
+
+      // Email Popup
+      const form = document.getElementById("emailForm");
+      const popup = document.getElementById("popupMessage");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        popup.classList.add("show");
+        form.reset();
+
+        setTimeout(() => {
+          popup.classList.remove("show");
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
