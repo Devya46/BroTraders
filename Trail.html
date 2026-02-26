@@ -1,4 +1,4 @@
-<!-- ========== Top Firm + Giveaway Section ========== -->
+<!-- ========== Top Firm + Premium Giveaway Section ========== -->
 <section class="best-deals-hero premium-combined">
   <div class="best-deals-content">
     <!-- LEFT CONTENT -->
@@ -47,8 +47,8 @@
     </div>
   </div>
 </section>
+
 <style>
-  /* ========== Combined Section Layout ========== */
   /* ===== Section Layout ===== */
   .premium-combined {
     padding: 100px 20px;
@@ -74,11 +74,16 @@
     min-width: 300px;
   }
 
-  .hero-text h1,
-  .hero-text p,
-  .giveaway-card h2,
-  .checkbox-container span {
-    color: #ffffff;
+  .hero-text h1 {
+    font-size: clamp(42px, 6vw, 70px);
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+  .hero-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    opacity: 0.9;
   }
 
   /* FORM CARD */
@@ -91,10 +96,6 @@
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 40px rgba(0, 150, 255, 0.2);
-  }
-
-  .giveaway-card h2 {
-    margin-bottom: 25px;
   }
 
   /* FORM */
@@ -129,8 +130,8 @@
   }
 
   #giveawayForm input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    border-color: #00c2ff;
+    box-shadow: 0 0 12px rgba(0, 194, 255, 0.6);
   }
 
   /* CHECKBOX */
@@ -140,7 +141,6 @@
     gap: 10px;
     font-size: 13px;
     line-height: 1.5;
-    color: #ffffff;
   }
 
   .checkbox-container input {
@@ -148,18 +148,22 @@
     cursor: pointer;
   }
 
-  /* BUTTON */
+  /* ===== PREMIUM 3D BUTTON ===== */
   #submitBtn {
-    padding: 14px;
+    padding: 15px;
     border-radius: 12px;
-    border: none;
     font-size: 16px;
     font-weight: 600;
-    background: linear-gradient(90deg, #2563eb, #06b6d4);
-    color: #ffffff;
+    background: linear-gradient(90deg, #00c2ff, #1e90ff);
+    color: white;
+    border: none;
     cursor: not-allowed;
-    opacity: 0.5;
-    transition: 0.3s ease;
+    opacity: 0.6;
+    transition: all 0.25s ease;
+
+    box-shadow:
+      0 6px 0 #0b5ed7,
+      0 12px 20px rgba(0, 194, 255, 0.4);
   }
 
   #submitBtn.active {
@@ -168,8 +172,22 @@
   }
 
   #submitBtn.active:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+    background: white;
+    color: #0b0f2a;
+    border: 3px solid #00c2ff;
+
+    box-shadow:
+      0 4px 0 #00a8e6,
+      0 15px 25px rgba(0, 194, 255, 0.6);
+
+    transform: translateY(2px);
+  }
+
+  #submitBtn.active:active {
+    transform: translateY(6px);
+    box-shadow:
+      0 2px 0 #00a8e6,
+      0 8px 15px rgba(0, 194, 255, 0.4);
   }
 
   /* MOBILE */
@@ -183,27 +201,30 @@
     }
   }
 </style>
+
 <script>
-  const marketingCheck = document.getElementById("marketingCheck");
-  const rulesCheck = document.getElementById("rulesCheck");
-  const submitBtn = document.getElementById("submitBtn");
-  const form = document.getElementById("giveawayForm");
+  document.addEventListener("DOMContentLoaded", function () {
+    const marketingCheck = document.getElementById("marketingCheck");
+    const rulesCheck = document.getElementById("rulesCheck");
+    const submitBtn = document.getElementById("submitBtn");
+    const form = document.getElementById("giveawayForm");
 
-  function validateCheckboxes() {
-    if (marketingCheck.checked && rulesCheck.checked) {
-      submitBtn.disabled = false;
-      submitBtn.classList.add("active");
-    } else {
-      submitBtn.disabled = true;
-      submitBtn.classList.remove("active");
+    function validateCheckboxes() {
+      if (marketingCheck.checked && rulesCheck.checked) {
+        submitBtn.disabled = false;
+        submitBtn.classList.add("active");
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.classList.remove("active");
+      }
     }
-  }
 
-  marketingCheck.addEventListener("change", validateCheckboxes);
-  rulesCheck.addEventListener("change", validateCheckboxes);
+    marketingCheck.addEventListener("change", validateCheckboxes);
+    rulesCheck.addEventListener("change", validateCheckboxes);
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // stop page refresh
-    alert("Form Submitted Successfully!");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Form Submitted Successfully!");
+    });
   });
 </script>

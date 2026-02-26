@@ -321,12 +321,19 @@
     </div>
 
     <script>
-      // Countdown (15 days from now)
-      const launchDate = new Date().getTime() + 15 * 24 * 60 * 60 * 1000;
+      // 🔴 SET YOUR REAL LAUNCH DATE HERE (YYYY, Month-1, Day, Hour, Minute, Second)
+      const launchDate = new Date(2026, 2, 13, 0, 0, 0).getTime();
+      // Example above = March 13, 2026 (Month is 0-based, so 2 = March)
 
-      setInterval(function () {
+      function updateCountdown() {
         const now = new Date().getTime();
         const distance = launchDate - now;
+
+        if (distance <= 0) {
+          document.querySelector(".countdown").innerHTML =
+            "<h2>We Are Live 🚀</h2>";
+          return;
+        }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor(
@@ -347,22 +354,10 @@
         document.getElementById("seconds").innerHTML = seconds
           .toString()
           .padStart(2, "0");
-      }, 1000);
+      }
 
-      // Email Popup
-      const form = document.getElementById("emailForm");
-      const popup = document.getElementById("popupMessage");
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        popup.classList.add("show");
-        form.reset();
-
-        setTimeout(() => {
-          popup.classList.remove("show");
-        }, 3000);
-      });
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     </script>
   </body>
 </html>
