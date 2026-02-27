@@ -1,313 +1,156 @@
-<!-- ===================== Marketing Section ===================== -->
-<section class="market-section">
-  <h1>Prepare to Enter the Market</h1>
-  <p class="subtitle">
-    Preparation is everything. Start your trading day informed with our economic
-    calendar, breaking news, market sentiment updates, and real-time charts to
-    guide every decision confidently.
-  </p>
+<!-- ========== BRO TRADING HERO ========== -->
+<section class="bro-hero">
+  <div class="bro-container">
+    <!-- LEFT SIDE -->
+    <div class="bro-left">
+      <div class="big-text">
+        <span class="text-back">BRO</span>
+        <span class="text-front">TRADING</span>
+      </div>
 
-  <div class="market-dashboard">
-    <!-- SIDEBAR -->
-    <div class="market-sidebar">
-      <button class="tab-btn active" data-tab="calendar">
-        Economic Calendar >
-      </button>
-      <button class="tab-btn" data-tab="charts">Charts ></button>
-      <button class="tab-btn" data-tab="stories">Top Stories ></button>
-      <button class="tab-btn" data-tab="analysis">Technical Analysis ></button>
+      <p class="bro-subtext">
+        Discover the most powerful prop firm deals curated for serious traders.
+        Save more. Scale faster. Trade smarter.
+      </p>
     </div>
 
-    <!-- CONTENT AREA -->
-    <div class="market-content">
-      <div class="market-box">
-        <!-- ECONOMIC CALENDAR -->
-        <div class="tab-content active" id="calendar">
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script
-              type="text/javascript"
-              src="https://s3.tradingview.com/external-embedding/embed-widget-events.js"
-              async
-            >
-              {
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "locale": "en",
-                "countryFilter": "ar,au,br,ca,cn,fr,de,in,id,it,jp,kr,mx,ru,sa,za,tr,gb,us,eu",
-                "importanceFilter": "-1,0,1",
-                "width": "100%",
-                "height": 550
-              }
-            </script>
-          </div>
-        </div>
-
-        <!-- CHARTS -->
-        <div class="tab-content" id="charts">
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script
-              type="text/javascript"
-              src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
-              async
-            >
-              {
-                "lineWidth": 2,
-                "chartType": "area",
-                "backgroundColor": "#0b1120",
-                "widgetFontColor": "#DBDBDB",
-                "colorTheme": "dark",
-                "autosize": true,
-                "width": "100%",
-                "height": 550,
-                "symbols": [
-                  ["Apple","NASDAQ:AAPL|1D"],
-                  ["Google","NASDAQ:GOOGL|1D"],
-                  ["Microsoft","NASDAQ:MSFT|1D"]
-                ]
-              }
-            </script>
-          </div>
-        </div>
-
-        <!-- TOP STORIES -->
-        <div class="tab-content" id="stories">
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script
-              type="text/javascript"
-              src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js"
-              async
-            >
-              {
-                "displayMode": "regular",
-                "feedMode": "all_symbols",
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "locale": "en",
-                "width": "100%",
-                "height": 550
-              }
-            </script>
-          </div>
-        </div>
-
-        <!-- TECHNICAL ANALYSIS -->
-        <div class="tab-content" id="analysis">
-          <div class="mobile-analysis-toggle">
-            <button class="analysis-toggle-btn active" data-analysis="nq">
-              NQ1
-            </button>
-            <button class="analysis-toggle-btn" data-analysis="es">ES1</button>
-          </div>
-
-          <div class="analysis-grid">
-            <div class="analysis-card analysis-nq active-analysis">
-              <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script
-                  type="text/javascript"
-                  src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
-                  async
-                >
-                  {
-                    "interval": "1m",
-                    "width": "100%",
-                    "height": 450,
-                    "symbol": "CME_MINI:NQ1!",
-                    "showIntervalTabs": true,
-                    "locale": "en",
-                    "colorTheme": "dark",
-                    "isTransparent": true
-                  }
-                </script>
-              </div>
-            </div>
-
-            <div class="analysis-card analysis-es">
-              <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script
-                  type="text/javascript"
-                  src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
-                  async
-                >
-                  {
-                    "interval": "1m",
-                    "width": "100%",
-                    "height": 450,
-                    "symbol": "CME_MINI:ES1!",
-                    "showIntervalTabs": true,
-                    "locale": "en",
-                    "colorTheme": "dark",
-                    "isTransparent": true
-                  }
-                </script>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- RIGHT SIDE DEAL CARD -->
+    <div class="bro-right">
+      <div class="deal-card">
+        <h3>Exclusive Launch Deal</h3>
+        <div class="deal-discount">UP TO 50% OFF</div>
+        <p>
+          Limited-time discounts on top prop firms. Compare offers and claim the
+          best one today.
+        </p>
+        <a href="#" class="deal-btn">View Deals</a>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .market-section {
+  .bro-hero {
+    min-height: 80vh;
+    padding: 80px 20px;
     background:
       radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
       linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
-    padding: 90px 20px;
-    text-align: center;
-    color: #fff;
-  }
-
-  .market-section h1 {
-    font-size: 48px;
-    font-family: "DM Mono", monospace;
-  }
-
-  .subtitle {
-    max-width: 800px;
-    margin: 20px auto 60px;
-    color: #bbb;
-    font-family: "Roboto", sans-serif;
-  }
-
-  /* DASHBOARD */
-  .market-dashboard {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 40px;
-    max-width: 1350px;
-    margin: auto;
-  }
-
-  /* SIDEBAR */
-  .market-sidebar {
     display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-top: 55px;
+    align-items: center;
+    color: white;
   }
 
-  .market-sidebar .tab-btn {
-    text-align: left;
-    padding: 14px 28px;
-    border-radius: 12px;
-    border: 1px solid #1e3a8a;
-    background: #0000005c;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
-    font-family: "DM Mono", monospace;
+  .bro-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
   }
 
-  .market-sidebar .tab-btn.active {
-    background: black;
-    border-color: #2563eb;
+  /* LEFT SIDE */
+  .bro-left {
+    flex: 1;
+    min-width: 300px;
   }
 
-  .market-sidebar .tab-btn:hover {
-    border-color: #00c2ff;
-  }
-  .mobile-analysis-toggle {
-    display: none;
-    margin-bottom: 20px;
-    justify-content: center;
-    gap: 15px;
+  .big-text {
+    position: relative;
+    line-height: 0.9;
   }
 
-  /* CONTENT */
-  .market-box {
-    border-radius: 22px;
-    padding: 35px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .tab-content {
-    display: none;
-  }
-  .tab-content.active {
+  .text-back {
     display: block;
+    font-size: clamp(60px, 8vw, 130px);
+    font-weight: 800;
+    color: #1e3a8a;
+    letter-spacing: 4px;
   }
 
-  .analysis-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
+  .text-front {
+    display: block;
+    font-size: clamp(70px, 10vw, 150px);
+    font-weight: 900;
+    color: white;
+    margin-top: -20px;
   }
 
-  .analysis-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .bro-subtext {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #cbd5e1;
+    max-width: 500px;
+  }
+
+  /* RIGHT SIDE CARD */
+  .bro-right {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .deal-card {
+    background: linear-gradient(180deg, #1e3a8a, #0b1d3a);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 350px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .deal-card h3 {
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .deal-discount {
+    background: linear-gradient(90deg, #00c2ff, #1e90ff);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .deal-card p {
+    font-size: 15px;
+    color: #e2e8f0;
+    margin-bottom: 25px;
+  }
+
+  .deal-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    background: #00c2ff;
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+
+  .deal-btn:hover {
+    background: white;
   }
 
   /* MOBILE */
-  @media (max-width: 1000px) {
-    .market-dashboard {
-      grid-template-columns: 1fr;
+  @media (max-width: 768px) {
+    .bro-container {
+      flex-direction: column;
+      text-align: center;
     }
 
-    .market-sidebar {
-      flex-direction: row;
-      overflow-x: auto;
+    .text-front {
+      margin-top: -10px;
     }
 
-    .market-sidebar .tab-btn {
-      white-space: nowrap;
-      flex: 0 0 auto;
-    }
-
-    .analysis-grid {
-      grid-template-columns: 1fr;
+    .bro-subtext {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const tabs = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((btn) => btn.classList.remove("active"));
-        contents.forEach((c) => c.classList.remove("active"));
-
-        tab.classList.add("active");
-        document.getElementById(tab.dataset.tab).classList.add("active");
-      });
-    });
-
-    const toggleBtns = document.querySelectorAll(".analysis-toggle-btn");
-
-    toggleBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        toggleBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        document
-          .querySelectorAll(".analysis-card")
-          .forEach((card) => card.classList.remove("active-analysis"));
-
-        if (btn.dataset.analysis === "nq") {
-          document
-            .querySelector(".analysis-nq")
-            .classList.add("active-analysis");
-        } else {
-          document
-            .querySelector(".analysis-es")
-            .classList.add("active-analysis");
-        }
-      });
-    });
-  });
-</script>
-<!-- ===================== Marketing Section END ===================== -->
