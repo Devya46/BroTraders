@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Funded Future Network | Bro Trading</title>
+    <title>My Funded Future | Bro Trading</title>
     <link
       rel="shortcut icon"
-      href="Bro Traders logo.jpeg"
+      href="../Bro Traders logo.jpeg"
       type="image/x-icon"
     />
     <style>
@@ -238,7 +238,10 @@
       <div class="bt-container">
         <!-- Logo -->
         <div class="bt-logo">
-          <img src="Bro_Traders_logo-removebg-preview.png" alt="Bro Trading" />
+          <img
+            src="../Bro_Traders_logo-removebg-preview.png"
+            alt="Bro Trading"
+          />
         </div>
 
         <!-- Navigation -->
@@ -919,12 +922,12 @@
           </div>
 
           <p class="fps-summary-text">
-            Funded Future Network, established in January 2021 in the United
-            States, is a futures-focused prop firm offering a 1-Step evaluation
-            program. Account sizes range from $25,000 to $300,000. Supported
-            platforms include Tradovate, Rithmic, TradingView, NinjaTrader,
-            Quantower, Sierra Chart and more. Traders can access major futures
-            like E-mini S&P 500, NASDAQ 100, and Mini-DOW.
+            My Funded Future, established in January 2021 in the United States,
+            is a futures-focused prop firm offering a 1-Step evaluation program.
+            Account sizes range from $25,000 to $300,000. Supported platforms
+            include Tradovate, Rithmic, TradingView, NinjaTrader, Quantower,
+            Sierra Chart and more. Traders can access major futures like E-mini
+            S&P 500, NASDAQ 100, and Mini-DOW.
           </p>
         </div>
 
@@ -1178,37 +1181,58 @@
         <!-- LEFT -->
         <div class="yt-content">
           <h2>
-            Watch Us Trade Live <br />
-            On Youtube!
+            Trade Live With <br />
+            BroTradingz
           </h2>
 
-          <p>Patrick Wieland Day Trading LIVE – Weekdays At 9am EST</p>
-          <p>The D-Money Show LIVE – Weekdays At 1:30pm EST</p>
+          <p>Live Futures Trading Sessions</p>
+          <p>Market Breakdown • Strategy Execution • Real-Time Entries</p>
+          <p>Join Our Community of Serious Traders</p>
 
-          <a href="#" class="yt-btn">Follow on YouTube</a>
+          <a
+            href="https://m.youtube.com/@Brotradingz"
+            target="_blank"
+            class="yt-btn"
+          >
+            Subscribe on YouTube
+          </a>
         </div>
 
         <!-- RIGHT -->
         <div class="yt-media">
-          <img
-            src="https://images.unsplash.com/photo-1762340273700-70c17506e578?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0"
-            alt="YouTube Live Trading"
-          />
+          <div class="yt-video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/KXO67YQ-ous"
+              title="BroTradingz Live Trading"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
 
     <style>
-      /* YOUTUBE HERO SECTION */
+      /* ================= YOUTUBE HERO SECTION ================= */
+
       .yt-hero {
         min-height: 75vh;
         display: flex;
         align-items: center;
-        padding: 50px 6%;
+        padding: 60px 6%;
         background:
           radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
           linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
-        color: #fff;
+        color: #ffffff;
       }
 
       .yt-container {
@@ -1222,10 +1246,10 @@
       }
 
       /* LEFT SIDE */
+
       .yt-content {
         flex: 1;
         max-width: 550px;
-        margin-top: -34px;
       }
 
       .yt-content h2 {
@@ -1243,6 +1267,8 @@
         font-family: "DM Sans", sans-serif;
       }
 
+      /* BUTTON */
+
       .yt-btn {
         display: inline-block;
         padding: 16px 42px;
@@ -1251,59 +1277,69 @@
         color: #ffffff;
         font-weight: 600;
         text-decoration: none;
+        margin-top: 20px;
         transition: all 0.3s ease;
-        margin-top: 13px;
+        /* box-shadow: 0 10px 25px rgba(0, 194, 255, 0.4); */
       }
 
       .yt-btn:hover {
-        transform: translateY(-3px);
-        background: white;
+        /* transform: translateY(-4px); */
+        background: #ffffff;
         color: #0b0f2a;
-        border: 5px solid #00c2ff;
+        border: 3px solid #00c2ff;
       }
 
-      /* RIGHT SIDE */
+      /* RIGHT SIDE (VIDEO) */
+
       .yt-media {
         flex: 1;
         display: flex;
         justify-content: center;
       }
 
-      .yt-media img {
+      .yt-video-wrapper {
+        position: relative;
         width: 100%;
         max-width: 650px;
+        padding-top: 56.25%; /* 16:9 Ratio */
         border-radius: 22px;
-        object-fit: cover;
+        overflow: hidden;
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
       }
 
-      /* ================= MOBILE / TAB ONLY ================= */
+      .yt-video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
       @media (max-width: 992px) {
         .yt-container {
           flex-direction: column;
           text-align: center;
         }
 
-        /* IMAGE FIRST */
         .yt-media {
           order: -1;
           margin-bottom: 30px;
-        }
-
-        .yt-content {
-          margin-top: -65px;
         }
 
         .yt-content h2 {
           font-size: 34px;
         }
 
-        .yt-media img {
-          max-width: 100%;
+        .yt-content p {
+          font-size: 16px;
         }
       }
     </style>
     <!-- ============ Youtube section END=======  -->
+
     <!-- ================== CTF Compare Top Firm Section ================== -->
     <section class="ctf-compare-vault">
       <div class="ctf-compare-header">
@@ -1528,37 +1564,37 @@
         <div class="apex-logo-box">
           <img
             src="https://onlypropfirms.com/wp-content/uploads/2025/07/myfundedfutures-logo.png"
-            alt="Funded Future Network Logo"
+            alt="My Funded Future Logo"
           />
         </div>
 
         <!-- Right Content -->
         <div class="apex-content">
           <div class="apex-stars">★ ★ ★ ★ ★</div>
-          <h2>So try, Funded Future Network <span>NOW</span>...!!</h2>
+          <h2>So try, My Funded Future <span>NOW</span>...!!</h2>
 
           <p>
-            Funded Futures Network is a solid addition to OnlyPropFirms,
-            especially for traders who value flexibility and strong support. The
-            firm offers several trader-first features designed to improve the
-            overall trading experience. One standout is their trailing maximum
+            My Funded Futures is a solid addition to OnlyPropFirms, especially
+            for traders who value flexibility and strong support. The firm
+            offers several trader-first features designed to improve the overall
+            trading experience. One standout is their trailing maximum
             end-of-trade drawdown, a structure that’s still relatively rare in
             the prop firm space and gives traders more clarity around risk.
             <br />
             <br />
-            Funded Futures Network also delivers a clean, easy-to-use trader
+            My Funded Futures also delivers a clean, easy-to-use trader
             dashboard and supports daily withdrawals, so accessing profits is
             simple and efficient. What really sets them apart, though, is their
             customer support—boasting an average 10-second human response time,
             which is almost unheard of in this industry.<br />
             <br />
-            If you’re looking for a firm that genuinely puts traders first,
-            Funded Futures Network is absolutely worth checking out.
+            If you’re looking for a firm that genuinely puts traders first, My
+            Funded Futures is absolutely worth checking out.
           </p>
 
           <div class="apex-buttons">
             <a href="#" class="apex-btn">Get Evaluation</a>
-            <a href="#" class="apex-btn">Copy Code</a>
+            <!-- <a href="#" class="apex-btn">Copy Code</a> -->
           </div>
         </div>
       </div>
@@ -1678,7 +1714,7 @@
         <!-- Column 1 : Brand -->
         <div class="bt-footer-col bt-footer-brand">
           <img
-            src="Bro_Traders_logo-removebg-preview.png"
+            src="../Bro_Traders_logo-removebg-preview.png"
             alt="Bro Trading"
             class="bt-footer-logo"
           />
