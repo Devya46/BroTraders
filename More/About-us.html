@@ -1,0 +1,1881 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Bro Traders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="shortcut icon"
+      href="../Bro Traders logo.jpeg"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NZ+Basic:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+    <div class="bt-topbar">
+      <!-- SCROLLING SECTION -->
+      <div class="bt-ticker-wrapper">
+        <div class="bt-arrow">&#10094;</div>
+
+        <div class="bt-ticker">
+          <div class="bt-ticker-track">
+            <a href="https://lucidtrading.com/ref/brotrading/" target="_blank">
+              Lucid Trading is upto 50% Off All Accounts! Use Code: BROTRADING
+            </a>
+
+            <a
+              href="https://apextraderfunding.com/?keyword=&c=&gclid=&gad_source="
+              target="_blank"
+            >
+              ✅ Apex Trader Funding is 90% Off! Use Code: BRO
+            </a>
+
+            <a
+              href="https://myfundedfutures.com/challenge?ref=5117"
+              target="_blank"
+            >
+              💀 Upto 50% Off At MyFundedFutures & No Activation fees!
+            </a>
+
+            <a href="https://tradeify.co/?ref=BFYQ2HKM" target="_blank">
+              🚨 30% Off Tradeify! MAX 2 Day To Pass Use Code: BRO
+            </a>
+
+            <!-- duplicate for smooth loop -->
+            <a
+              href="https://daytraders.com/?keyword=&c=TWCEMMNK&gclid=&gad_source="
+              target="_blank"
+            >
+              DayTraders.com is 90% Off(Limited Time Offer) All Accounts! Use
+              Code: BROTRADING
+            </a>
+          </div>
+        </div>
+
+        <div class="bt-arrow">&#10095;</div>
+      </div>
+
+      <!-- RIGHT SIDE BUTTONS -->
+      <!-- <div class="bt-right-links">
+        <a href="https://www.youtube.com/c/PatrickWieland" target="_blank"
+          >#1 Day Trader on YouTube</a
+        >
+        <a href="https://bigdickhouse.com/" target="_blank">OPF Shop</a>
+        <a href="https://onlypropfirms.com/register/" target="_blank"
+          >Subscription</a
+        >
+        <a href="https://onlypropfirms.com/login/" target="_blank">Login</a>
+      </div> -->
+    </div>
+
+    <style>
+      /* ================= TOP BAR ================= */
+
+      .bt-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #000;
+        height: 42px;
+        font-size: 14px;
+        overflow: hidden;
+        position: relative;
+        z-index: 99999;
+      }
+
+      /* ================= TICKER ================= */
+
+      .bt-ticker-wrapper {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        background: #ffa239;
+        overflow: hidden;
+      }
+
+      .bt-arrow {
+        padding: 0 12px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+      }
+
+      .bt-ticker {
+        overflow: hidden;
+        white-space: nowrap;
+        flex: 1;
+      }
+
+      .bt-ticker-track {
+        display: inline-block;
+        animation: scrollTicker 30s linear infinite;
+      }
+
+      .bt-ticker-track a {
+        display: inline-block;
+        margin-right: 60px;
+        color: #000;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .bt-ticker-track a:hover {
+        text-decoration: underline;
+      }
+
+      /* Smooth infinite scroll */
+      @keyframes scrollTicker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ================= RIGHT SIDE ================= */
+
+      .bt-right-links {
+        display: flex;
+        align-items: center;
+        background: #f3f3f3;
+      }
+
+      .bt-right-links a {
+        padding: 0 16px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        color: #000;
+        text-decoration: none;
+        border-left: 1px solid #ddd;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .bt-right-links a:hover {
+        background: #e5e5e5;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      /* ====== Tablet ====== */
+      @media (max-width: 1024px) {
+        .bt-topbar {
+          height: 40px;
+          font-size: 13px;
+        }
+
+        .bt-ticker-track {
+          animation: scrollTicker 25s linear infinite;
+        }
+
+        .bt-right-links a {
+          padding: 0 12px;
+          font-size: 13px;
+        }
+      }
+
+      /* ====== Small Tablet ====== */
+      @media (max-width: 900px) {
+        .bt-right-links {
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        .bt-right-links a {
+          flex: 0 0 auto;
+        }
+      }
+
+      /* ====== Mobile ====== */
+      @media (max-width: 600px) {
+        .bt-topbar {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .bt-ticker-wrapper {
+          width: 100%;
+        }
+
+        .bt-right-links {
+          width: 100%;
+          justify-content: center;
+          background: #111;
+        }
+
+        .bt-right-links a {
+          border-left: none;
+          border-right: 1px solid #222;
+          color: #fff;
+          font-size: 12px;
+          padding: 6px 10px;
+          height: auto;
+        }
+
+        .bt-arrow {
+          font-size: 16px;
+          padding: 0 8px;
+        }
+
+        .bt-ticker-track {
+          animation: scrollTicker 20s linear infinite;
+        }
+      }
+    </style>
+    <!-- ================= TOP ANNOUNCEMENT BAR END================= -->
+
+    <!-- ================= BRO TRADING HEADER ================= -->
+    <header class="bt-header">
+      <div class="bt-container">
+        <!-- Logo -->
+        <div class="bt-logo">
+          <a href="../index.html"
+            ><img
+              src="../Bro_Traders_logo-removebg-preview.png"
+              alt="Bro Trading"
+          /></a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="bt-nav">
+          <!-- Mobile Close Button -->
+          <div class="bt-mobile-close" onclick="closeMobileMenu()">✕</div>
+
+          <a href="index.html" class="bt-link">Home</a>
+          <!-- Funding Plans -->
+          <div class="bt-dropdown">
+            <button class="bt-drop-btn" onclick="toggleDropdown('funding')">
+              Funding Plans ▾
+            </button>
+
+            <div class="bt-drop-menu" id="funding">
+              <div class="bt-drop-grid">
+                <div>
+                  <a href="#"><strong>Firm Lists :</strong></a>
+                  <a href="../CompareTopFrims/comparison.html"
+                    >Prop Firm Comparison</a
+                  >
+                  <a href="../CompareTopFrims/TrueCost.html"
+                    >True Cost to Funding</a
+                  >
+                  <a href="../CompareTopFrims/StartCost.html"
+                    >Prop Firm Starting Costs</a
+                  >
+                  <a href="../CompareTopFrims/Drawdown.html"
+                    >Largest Drawdown</a
+                  >
+                  <a href="../CompareTopFrims/QuickFunding.html"
+                    >Quickest Funding</a
+                  >
+                  <a href="../CompareTopFrims/BestDeals.html">Best Deals</a>
+                </div>
+                <div>
+                  <a href="#"><strong>Top Firms :</strong></a>
+                  <a href="../Frims/ApexFunding.html">Apex Trader Funding</a>
+                  <a href="../Frims/TradeifyTrader.html">Tradeify</a>
+                  <a href="../Frims/BluSky Trading.html">Lucid Trading</a>
+                  <a href="../Frims/MyFundedFuture.html"> My Funded Future</a>
+                  <a href="../Frims/DayTraders.html">Day Traders.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Learn -->
+          <!-- <div class="bt-dropdown">
+        <button class="bt-drop-btn" onclick="toggleDropdown('learn')">
+          Learn ▾
+        </button>
+        <div class="bt-drop-menu small" id="learn">
+          <a href="#">Lessons</a>
+          <a href="#">Articles</a>
+          <a href="#">The 2-Hour Trading Day</a>
+        </div>
+      </div> -->
+
+          <!-- Resources -->
+          <div class="bt-dropdown">
+            <button class="bt-drop-btn" onclick="toggleDropdown('resources')">
+              Resources ▾
+            </button>
+            <div class="bt-drop-menu small" id="resources">
+              <a href="../Resourses/MarketAnalysis.html">Market Analysis</a>
+              <a href="../Resourses/TradingTools.html">Trading Tools</a>
+            </div>
+          </div>
+
+          <!-- <a href="#" class="bt-link">About</a> -->
+          <a href="../GiveAway.html" class="bt-link">GiveAways</a>
+        </nav>
+
+        <!-- CTA -->
+        <a href="../Subscribe.html" class="bt-cta">Subscribe</a>
+
+        <!-- Hamburger -->
+        <div class="bt-hamburger" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Overlay -->
+    <div class="bt-overlay" onclick="closeMobileMenu()"></div>
+
+    <style>
+      /* ================= HEADER ================= */
+
+      .bt-header {
+        position: fixed;
+        top: 40px; /* same as ticker height */
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: #000;
+        transition: all 0.35s ease;
+      }
+
+      .bt-header.bt-scrolled {
+        top: 0;
+        background: rgba(10, 15, 30, 0.75);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(0, 194, 255, 0.25);
+      }
+
+      .bt-container {
+        max-width: 1400px;
+        margin: auto;
+        padding: 0px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: padding 0.3s ease;
+      }
+
+      .bt-header.bt-scrolled .bt-container {
+        padding: 0px 30px;
+      }
+
+      .bt-logo img {
+        height: 90px;
+        transition: height 0.3s ease;
+      }
+
+      .bt-header.bt-scrolled .bt-logo img {
+        height: 70px;
+      }
+
+      /* ================= NAV ================= */
+
+      .bt-nav {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .bt-link,
+      .bt-drop-btn {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .bt-link:hover,
+      .bt-drop-btn:hover {
+        color: #00c2ff;
+      }
+
+      /* ================= DROPDOWN ================= */
+
+      .bt-dropdown {
+        position: relative;
+      }
+
+      .bt-drop-menu {
+        position: absolute;
+        top: 170%;
+        left: 0;
+        min-width: 650px;
+        padding: 30px;
+        border-radius: 14px;
+        background: rgba(15, 20, 45, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 194, 255, 0.6);
+        display: none;
+        z-index: 1001;
+      }
+
+      .bt-drop-menu.small {
+        min-width: 260px;
+        padding: 20px;
+      }
+
+      .bt-drop-menu.active {
+        display: block;
+      }
+
+      .bt-drop-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .bt-drop-menu a {
+        display: block;
+        color: #cbd5e1;
+        text-decoration: none;
+        margin-bottom: 12px;
+        transition: 0.3s;
+      }
+
+      .bt-drop-menu a:hover {
+        color: #00c2ff;
+        padding-left: 5px;
+      }
+      /* ================= HOVER DROPDOWN (DESKTOP ONLY) ================= */
+      @media (min-width: 1025px) {
+        .bt-dropdown:hover .bt-drop-menu {
+          display: block;
+        }
+      }
+
+      /* ================= CTA ================= */
+
+      .bt-cta {
+        background: linear-gradient(135deg, #00c2ff, #1e90ff);
+        padding: 12px 26px;
+        border-radius: 30px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: 0.3s ease;
+        /* box-shadow: 0 0 15px rgba(0, 194, 255, 0.5); */
+      }
+
+      .bt-cta:hover {
+        transform: translateY(-3px);
+        background: white;
+        color: #0b0f2a;
+      }
+
+      /* ================= HAMBURGER ================= */
+
+      .bt-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+      }
+
+      .bt-hamburger span {
+        width: 26px;
+        height: 3px;
+        background: #fff;
+      }
+
+      /* ================= MOBILE MENU ================= */
+
+      .bt-mobile-close {
+        display: none;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        font-size: 26px;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .bt-overlay {
+        position: fixed;
+        inset: 0;
+        backdrop-filter: blur(2px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 900;
+      }
+
+      .bt-overlay.active {
+        display: block;
+      }
+
+      @media (max-width: 1024px) {
+        .bt-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 85%; /* Wider for better layout */
+          max-width: 420px;
+          height: 100vh;
+          background: #0b0f2a;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 100px 25px 40px;
+          gap: 20px;
+          transition: 0.4s ease;
+          z-index: 1002;
+          overflow-y: auto;
+        }
+
+        .bt-nav.active {
+          right: 0;
+          top: 15px;
+        }
+
+        .bt-hamburger {
+          display: flex;
+        }
+
+        .bt-cta {
+          display: none;
+        }
+
+        .bt-mobile-close {
+          display: block;
+        }
+
+        /* Dropdown styling */
+        .bt-drop-menu {
+          position: static;
+          min-width: 100%;
+          padding: 15px 0;
+          margin-top: 10px;
+          background: transparent;
+          border: none;
+          background: rgba(15, 20, 45, 0.6);
+          backdrop-filter: blur(25px);
+          border: 1px solid rgba(0, 194, 255, 0.3);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 2 Column grid */
+        .bt-drop-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px 25px;
+        }
+
+        .bt-drop-menu a {
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      }
+
+      /* Extra small mobile → 1 column */
+      @media (max-width: 480px) {
+        .bt-drop-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+
+    <script>
+      function toggleDropdown(id) {
+        const menu = document.getElementById(id);
+
+        // Close ALL dropdowns first
+        document.querySelectorAll(".bt-drop-menu").forEach((m) => {
+          if (m.id !== id) {
+            m.classList.remove("active");
+          }
+        });
+
+        // Toggle clicked one
+        menu.classList.toggle("active");
+      }
+
+      function toggleMobileMenu() {
+        document.querySelector(".bt-nav").classList.add("active");
+        document.querySelector(".bt-overlay").classList.add("active");
+      }
+
+      function closeMobileMenu() {
+        document.querySelector(".bt-nav").classList.remove("active");
+        document.querySelector(".bt-overlay").classList.remove("active");
+
+        document.querySelectorAll(".bt-drop-menu").forEach((m) => {
+          m.classList.remove("active");
+        });
+      }
+      const header = document.querySelector(".bt-header");
+
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("bt-scrolled", window.scrollY > 50);
+      });
+      // Close other dropdowns on hover (desktop only)
+      if (window.innerWidth > 1024) {
+        document.querySelectorAll(".bt-dropdown").forEach((dropdown) => {
+          dropdown.addEventListener("mouseenter", function () {
+            const activeMenu = document.querySelector(".bt-drop-menu.active");
+            if (activeMenu && !this.contains(activeMenu)) {
+              activeMenu.classList.remove("active");
+            }
+          });
+        });
+      }
+    </script>
+    <!-- ================= HEADER END ================= -->
+    <!-- About Us Section -->
+    <section class="privacy-section">
+      <!-- Header Image -->
+      <div class="privacy-hero">
+        <img
+          src="https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg"
+          alt="About BroTraders"
+        />
+        <div class="privacy-overlay">
+          <h1>About BroTraders</h1>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="privacy-content">
+        <p>
+          BroTraders was created to help traders make smarter and more informed
+          decisions when choosing a proprietary trading firm. With the rapid
+          growth of prop firms in the trading industry, many traders struggle to
+          find reliable information about evaluations, payouts, rules, and the
+          best funding opportunities. BroTraders aims to simplify that process.
+        </p>
+
+        <h2>1. Our Mission</h2>
+        <p>
+          Our mission is to provide traders with clear, transparent, and
+          easy-to-understand information about the best prop trading firms. We
+          compare firms based on funding options, evaluation rules, profit
+          splits, payout speed, and discounts so traders can quickly find the
+          right firm for their trading style.
+        </p>
+
+        <h2>2. What We Do</h2>
+        <p>
+          BroTraders provides detailed comparisons, exclusive discounts, and
+          resources for traders looking to get funded. Our platform helps
+          traders explore different firms, understand their rules, and choose
+          the best evaluation programs available in the market.
+        </p>
+
+        <h2>3. Prop Firm Comparisons</h2>
+        <p>
+          We analyze and compare top futures and trading prop firms so traders
+          can easily see the differences between them. Our comparison tables
+          highlight important factors such as profit split, evaluation duration,
+          account sizes, and trading conditions.
+        </p>
+
+        <h2>4. Exclusive Deals & Discounts</h2>
+        <p>
+          BroTraders partners with leading prop firms to provide exclusive promo
+          codes and discounts. Traders can access special offers and reduced
+          evaluation fees through our platform.
+        </p>
+
+        <h2>5. Giveaways & Community</h2>
+        <p>
+          To support the trading community, we regularly run giveaways where
+          traders can win funded account challenges and trading tools. We also
+          aim to build a community where traders can learn, grow, and share
+          experiences.
+        </p>
+
+        <h2>6. Transparency</h2>
+        <p>
+          Our goal is to keep the information on BroTraders transparent and
+          helpful. While we may partner with prop firms through affiliate
+          programs, our goal is always to provide honest comparisons and useful
+          resources for traders.
+        </p>
+
+        <h2>7. Our Vision</h2>
+        <p>
+          We aim to become a trusted hub for prop trading resources — helping
+          traders discover the best firms, access exclusive deals, and navigate
+          the prop trading industry with confidence.
+        </p>
+
+        <h2>8. Contact Us</h2>
+        <p>
+          If you have questions, suggestions, or partnership inquiries, feel
+          free to contact us.
+          <br />
+          <strong>Email:</strong> support@brotraders.com
+        </p>
+      </div>
+    </section>
+    <style>
+      /* ===== PAGE SECTION ===== */
+      .privacy-section {
+        width: 100%;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: #ffffff;
+        font-family: "Inter", sans-serif;
+      }
+
+      /* ===== HERO IMAGE ===== */
+      .privacy-hero {
+        position: relative;
+        width: 100%;
+        height: 320px;
+        overflow: hidden;
+      }
+
+      .privacy-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* overlay */
+      .privacy-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .privacy-overlay h1 {
+        font-size: 48px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      /* ===== CONTENT ===== */
+      .privacy-content {
+        max-width: 900px;
+        margin: auto;
+        padding: 70px 20px;
+        line-height: 1.7;
+      }
+
+      /* paragraph */
+      .privacy-content p {
+        font-size: 17px;
+        margin-bottom: 22px;
+        color: #cbd5f5;
+      }
+
+      /* headings */
+      .privacy-content h2 {
+        margin-top: 35px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      /* links */
+      .privacy-content a {
+        color: #7c83ff;
+        text-decoration: none;
+      }
+
+      .privacy-content a:hover {
+        text-decoration: underline;
+      }
+
+      /* ===== MOBILE ===== */
+      @media (max-width: 768px) {
+        .privacy-overlay h1 {
+          font-size: 32px;
+        }
+
+        .privacy-hero {
+          height: 220px;
+        }
+
+        .privacy-content {
+          padding: 50px 18px;
+        }
+      }
+    </style>
+    <!-- About Us Section END -->
+    <!-- ===== Favorite Firms Section ===== -->
+    <section class="zx-comparison-section">
+      <h2 class="ff-title">Favorite Firms</h2>
+      <p class="ff-subtitle">
+        Select your Favorite Firm. On this page, you can pick and show support
+        for your favorite firm. The pick can be changed at any time here or in
+        your member section.
+      </p>
+      <!-- FILTER BAR -->
+      <div class="zx-controls">
+        <input type="text" id="zx-search" placeholder="Search firm..." />
+
+        <select id="zx-account-filter">
+          <option value="">Account Size</option>
+          <option value="50000">$50K</option>
+          <option value="100000">$100K</option>
+        </select>
+
+        <select id="zx-dd-filter">
+          <option value="">Drawdown Type</option>
+          <option value="Trailing">Trailing</option>
+          <option value="Static">Static</option>
+        </select>
+      </div>
+
+      <div class="zx-table-wrapper">
+        <table id="zx-table">
+          <thead>
+            <tr>
+              <th>Logo</th>
+              <th>Firm</th>
+
+              <th data-key="account" draggable="true">Account</th>
+              <th data-key="eval" draggable="true">Evaluation</th>
+              <th data-key="activation" draggable="true">Activation</th>
+              <th data-key="truecost" draggable="true">True Cost</th>
+              <th data-key="ddt" draggable="true">DDT</th>
+              <th data-key="goal" draggable="true">Goal</th>
+              <th data-key="dd" draggable="true">DD</th>
+              <th data-key="mindays" draggable="true">Min Days</th>
+              <th data-key="discount" draggable="true">Discount</th>
+
+              <th>Code</th>
+              <th>Website</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <style>
+      .zx-comparison-section {
+        padding: 70px 150px;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: white;
+        font-family: "DM Sans", sans-serif;
+      }
+      .ff-title {
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 15px;
+        /* font-family: "DM Mono", monospace; */
+      }
+
+      .ff-subtitle {
+        text-align: center;
+        opacity: 0.8;
+        max-width: 750px;
+        margin: 0 auto 60px;
+        line-height: 1.6;
+      }
+
+      .zx-controls {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .zx-controls input,
+      .zx-controls select {
+        padding: 10px 14px;
+        background: #0f172a;
+        border: 1px solid #1e293b;
+        border-radius: 6px;
+        color: #e2e8f0;
+        font-size: 14px;
+      }
+
+      .zx-table-wrapper {
+        overflow: auto;
+      }
+
+      #zx-table {
+        width: 100%;
+        min-width: 1400px;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #071327;
+        border-radius: 12px;
+        overflow: hidden;
+        color: white;
+        font-family: "Roboto", sans-serif;
+      }
+
+      #zx-table th {
+        background: #0f172a;
+        padding: 14px;
+        font-weight: 600;
+        text-align: left;
+        position: sticky;
+        top: 0;
+        padding: 14px 10px;
+        font-size: 14px;
+        text-align: center !important;
+      }
+
+      #zx-table th[data-key] {
+        cursor: pointer;
+      }
+      #zx-table th {
+        user-select: none;
+      }
+
+      #zx-table td {
+        padding: 17px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        text-align: center;
+        font-size: 18px;
+      }
+
+      #zx-table tr:hover {
+        background: rgba(0, 194, 255, 0.08);
+      }
+
+      .zx-logo {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+      }
+
+      .zx-true {
+        color: #22c55e;
+        font-weight: 700;
+      }
+
+      .zx-code {
+        background: #1e293b;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        color: #00c2ff;
+        cursor: pointer;
+      }
+
+      .zx-code:hover {
+        background: #00c2ff;
+        color: #0b1d3a;
+      }
+      .Web {
+        padding: 10px;
+        background: blue;
+        color: white;
+        border-radius: 10px;
+      }
+      .sort-icon {
+        margin-left: 6px;
+        font-size: 12px;
+        opacity: 0.7;
+      }
+      .dragging {
+        opacity: 0.5;
+      }
+
+      .drag-over {
+        border-left: 3px solid #00c2ff;
+      }
+      /* WEBSITE BUTTON */
+      .zx-visit-btn {
+        display: inline-block;
+        padding: 6px 14px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: white;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+
+      .zx-visit-btn:hover {
+        background: white;
+        color: #0b1d3a;
+        /* box-shadow: 0 4px 10px rgba(0, 194, 255, 0.4); */
+      }
+      .zx-table-wrapper {
+        overflow: auto;
+
+        /* Firefox */
+        scrollbar-width: thin;
+        scrollbar-color: #568bff #0b1a2a;
+      }
+
+      .zx-table-wrapper::-webkit-scrollbar {
+        height: 66px;
+        width: 66px;
+      }
+
+      .zx-table-wrapper::-webkit-scrollbar-thumb {
+        background: #28a3fb;
+        border-radius: 10px;
+      }
+    </style>
+    <script>
+      const firms = [
+        {
+          firm: "Apex Traders",
+          logo: "https://apextraderfunding.com/assets/2024/images/apex-logo-stack-light.png?v=1744408131",
+          account: 50000,
+          eval: 250,
+          activation: 100,
+          truecost: 350,
+          ddt: "Trailing",
+          goal: 3000,
+          dd: 2500,
+          mindays: 7,
+          discount: "40%",
+          code: "BRO",
+          website: "https://apextraderfunding.com/member/aff/go/buurtie",
+        },
+        {
+          firm: "Tradeify",
+          logo: "https://onlypropfirms.com/wp-content/uploads/2025/12/White-logo-no-background-scaled.png",
+          account: 100000,
+          eval: 230,
+          activation: 95,
+          truecost: 325,
+          ddt: "Static",
+          goal: 6000,
+          dd: 4000,
+          mindays: 5,
+          discount: "20%",
+          code: "BRO",
+          website: "https://tradeify.co/?ref=BFYQ2HKM",
+        },
+        {
+          firm: "MyFundedFutures",
+          logo: "https://onlypropfirms.com/wp-content/uploads/2025/07/myfundedfutures-logo.png",
+          account: 50000,
+          eval: 210,
+          activation: 90,
+          truecost: 300,
+          ddt: "Trailing",
+          goal: 3000,
+          dd: 2000,
+          mindays: 5,
+          discount: "10%",
+          code: "BRO",
+          website: "https://myfundedfutures.com/challenge?ref=5117",
+        },
+        {
+          firm: "Lucid Trading",
+          logo: "https://onlypropfirms.com/wp-content/uploads/2025/10/lucidicon-1.png",
+          account: 100000,
+          eval: 220,
+          activation: 89,
+          truecost: 309,
+          ddt: "Static",
+          goal: 6000,
+          dd: 4000,
+          mindays: 5,
+          discount: "15%",
+          code: "BROTRADING",
+          website: "https://lucidtrading.com/ref/brotrading/",
+        },
+        {
+          firm: "DayTraders",
+          logo: "https://onlypropfirms.com/wp-content/uploads/2025/07/dt_logo3.svg",
+          account: 50000,
+          eval: 199,
+          activation: 80,
+          truecost: 279,
+          ddt: "Trailing",
+          goal: 3000,
+          dd: 2000,
+          mindays: 7,
+          discount: "50%",
+          code: "BROTRADING",
+          website: "https://daytraders.com/go/brotrading?c=TWCEMMNK",
+        },
+      ];
+
+      let filteredData = [...firms];
+      let sortState = { key: null, direction: -1 };
+
+      const tbody = document.querySelector("#zx-table tbody");
+
+      /* ======================
+   RENDER
+====================== */
+      function render(data) {
+        tbody.innerHTML = "";
+        data.forEach((f) => {
+          tbody.innerHTML += `
+    <tr>
+      <td><img src="${f.logo}" class="zx-logo"></td>
+      <td>${f.firm}</td>
+      <td>$${f.account.toLocaleString()}</td>
+      <td>$${f.eval}</td>
+      <td>$${f.activation}</td>
+      <td class="zx-true">$${f.truecost}</td>
+      <td>${f.ddt}</td>
+      <td>$${f.goal}</td>
+      <td>$${f.dd}</td>
+      <td>${f.mindays}</td>
+      <td>${f.discount}</td>
+      <td><button class="zx-code" onclick="copyCode(this,'${f.code}')">${f.code}</button></td>
+      <td><a href="${f.website}" target="_blank" class="zx-visit-btn">Visit</a></td>
+    </tr>`;
+        });
+      }
+
+      render(filteredData);
+
+      /* ======================
+   FILTERS
+====================== */
+      function applyFilters() {
+        const search = document.getElementById("zx-search").value.toLowerCase();
+        const account = document.getElementById("zx-account-filter").value;
+        const ddt = document.getElementById("zx-dd-filter").value;
+
+        filteredData = firms.filter(
+          (f) =>
+            f.firm.toLowerCase().includes(search) &&
+            (!account || f.account == account) &&
+            (!ddt || f.ddt == ddt),
+        );
+
+        render(filteredData);
+      }
+
+      document
+        .getElementById("zx-search")
+        .addEventListener("input", applyFilters);
+      document
+        .getElementById("zx-account-filter")
+        .addEventListener("change", applyFilters);
+      document
+        .getElementById("zx-dd-filter")
+        .addEventListener("change", applyFilters);
+
+      /* ======================
+   SORT
+====================== */
+      document.querySelectorAll("#zx-table th[data-key]").forEach((th) => {
+        const key = th.dataset.key;
+        const icon = document.createElement("span");
+        icon.className = "sort-icon";
+        icon.textContent = "▼";
+        th.appendChild(icon);
+
+        th.addEventListener("click", () => {
+          if (sortState.key === key) {
+            sortState.direction *= -1;
+          } else {
+            sortState.key = key;
+            sortState.direction = -1;
+          }
+
+          filteredData.sort(
+            (a, b) => (a[key] > b[key] ? 1 : -1) * sortState.direction,
+          );
+
+          document
+            .querySelectorAll(".sort-icon")
+            .forEach((i) => (i.textContent = "▼"));
+
+          icon.textContent = sortState.direction === -1 ? "▼" : "▲";
+
+          render(filteredData);
+        });
+      });
+
+      /* ======================
+   DRAG
+====================== */
+      let dragStartIndex = null;
+      const table = document.getElementById("zx-table");
+      const headers = table.querySelectorAll("th[draggable=true]");
+
+      headers.forEach((header) => {
+        header.addEventListener("dragstart", function () {
+          dragStartIndex = this.cellIndex;
+          this.classList.add("dragging");
+        });
+
+        header.addEventListener("dragend", function () {
+          this.classList.remove("dragging");
+        });
+
+        header.addEventListener("dragover", function (e) {
+          e.preventDefault();
+          this.classList.add("drag-over");
+        });
+
+        header.addEventListener("dragleave", function () {
+          this.classList.remove("drag-over");
+        });
+
+        header.addEventListener("drop", function () {
+          const dragEndIndex = this.cellIndex;
+          moveColumn(dragStartIndex, dragEndIndex);
+          this.classList.remove("drag-over");
+        });
+      });
+
+      function moveColumn(from, to) {
+        if (from === to) return;
+        for (let row of table.rows) {
+          row.insertBefore(row.cells[from], row.cells[to]);
+        }
+      }
+
+      /* COPY */
+      function copyCode(btn, code) {
+        navigator.clipboard.writeText(code);
+        btn.innerText = "Copied!";
+        setTimeout(() => (btn.innerText = code), 1200);
+      }
+    </script>
+
+    <!-- ===== Favorite Firms Section END ===== -->
+    <!-- ================== CTF Compare Top Firm Section ================== -->
+    <section class="ctf-compare-vault">
+      <div class="ctf-compare-header">
+        <h2>Compare Top Firms</h2>
+
+        <div class="ctf-compare-nav">
+          <button class="ctf-nav-btn ctf-prev" id="ctfPrev">&#10094;</button>
+          <button class="ctf-nav-btn ctf-next" id="ctfNext">&#10095;</button>
+        </div>
+      </div>
+
+      <div class="ctf-slider-shell" id="ctfSlider">
+        <div class="ctf-slider-track">
+          <!-- KEEP ALL YOUR CARDS SAME -->
+
+          <!-- Card 1 -->
+          <a href="comparison.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/?size=100&id=110187&format=png&color=000000"
+              />
+            </div>
+            <h3>Prop Firm Comparison</h3>
+            <p>
+              Compare top prop firms instantly — discover rules, pricing, and
+              payouts.
+            </p>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="bestDeals.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/?size=100&id=117333&format=png&color=000000"
+              />
+            </div>
+            <h3>Best Deals</h3>
+            <p>
+              Unlock the best prop firm deals — exclusive discounts and offers.
+            </p>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="StartCost.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img src="https://img.icons8.com/fluency/96/00c2ff/play.png" />
+            </div>
+            <h3>Starting Costs</h3>
+            <p>Find the lowest starting costs fast.</p>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="TrueCost.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/fluency/96/00c2ff/bank-card-back-side.png"
+              />
+            </div>
+            <h3>True Cost</h3>
+            <p>See the real price of getting funded.</p>
+          </a>
+
+          <!-- Card 5 -->
+          <a href="Drawdown.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/fluency/96/00c2ff/combo-chart--v1.png"
+              />
+            </div>
+            <h3>Largest Drawdown</h3>
+            <p>Compare firms by drawdown limits.</p>
+          </a>
+
+          <!-- Card 6 -->
+          <a href="QuickFunding.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img src="https://img.icons8.com/fluency/96/00c2ff/rocket.png" />
+            </div>
+            <h3>Quickest Funding</h3>
+            <p>Discover the quickest funding paths.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ===== DESKTOP (UNCHANGED) ===== */
+      .ctf-compare-vault {
+        padding: 80px 7%;
+        color: white;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        overflow: hidden;
+      }
+
+      .ctf-compare-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+      }
+
+      .ctf-compare-header h2 {
+        font-size: 42px;
+        /* font-family: "DM Mono", monospace; */
+      }
+
+      .ctf-compare-nav {
+        display: flex;
+        gap: 12px;
+      }
+
+      .ctf-nav-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: #fff;
+        transition: 0.3s;
+      }
+
+      .ctf-nav-btn.disabled {
+        background: #111;
+        color: #555;
+        cursor: not-allowed;
+      }
+
+      /* ===== SLIDER ===== */
+      .ctf-slider-shell {
+        overflow: hidden;
+      }
+
+      .ctf-slider-track {
+        display: flex;
+        gap: 30px;
+      }
+
+      .ctf-compare-card {
+        min-width: 298px;
+        padding: 41px 28px 30px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        background: #0000005c;
+        text-align: center;
+      }
+      .ctf-compare-card h3 {
+        padding: 10px;
+      }
+
+      /* ================= MOBILE ONLY ================= */
+      @media (max-width: 900px) {
+        .ctf-compare-header {
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .ctf-compare-header h2 {
+          font-size: 26px;
+        }
+
+        /* Enable normal horizontal scroll */
+        .ctf-slider-shell {
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .ctf-slider-shell::-webkit-scrollbar {
+          display: none;
+        }
+
+        .ctf-slider-track {
+          gap: 10px;
+        }
+
+        .ctf-compare-card {
+          min-width: 100%;
+          scroll-snap-align: start;
+        }
+      }
+    </style>
+
+    <script>
+      const shell = document.getElementById("ctfSlider");
+      const prevBtn = document.getElementById("ctfPrev");
+      const nextBtn = document.getElementById("ctfNext");
+
+      function updateButtons() {
+        const maxScroll = shell.scrollWidth - shell.clientWidth;
+
+        prevBtn.classList.toggle("disabled", shell.scrollLeft <= 5);
+        nextBtn.classList.toggle("disabled", shell.scrollLeft >= maxScroll - 5);
+      }
+
+      nextBtn.addEventListener("click", () => {
+        shell.scrollBy({ left: shell.clientWidth, behavior: "smooth" });
+      });
+
+      prevBtn.addEventListener("click", () => {
+        shell.scrollBy({ left: -shell.clientWidth, behavior: "smooth" });
+      });
+
+      shell.addEventListener("scroll", updateButtons);
+      window.addEventListener("resize", updateButtons);
+
+      updateButtons();
+    </script>
+    <!-- ==================CTF Compare Top Firm Section END ================== -->
+
+    <!-- =========== Youtube Section ========= -->
+    <section class="yt-hero">
+      <div class="yt-container">
+        <!-- LEFT -->
+        <div class="yt-content">
+          <h2>
+            Trade Live With <br />
+            BroTrading
+          </h2>
+
+          <p>Live Futures Trading Sessions</p>
+          <p>Market Breakdown • Strategy Execution • Real-Time Entries</p>
+          <p>Join Our Community of Serious Traders</p>
+
+          <a
+            href="https://m.youtube.com/@Brotradingz"
+            target="_blank"
+            class="yt-btn"
+          >
+            Subscribe on YouTube
+          </a>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="yt-media">
+          <div class="yt-video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/KXO67YQ-ous"
+              title="BroTradingz Live Trading"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .yt-hero {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        padding: 70px 6%;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: #ffffff;
+      }
+
+      .yt-container {
+        max-width: 1400px;
+        width: 93%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+      }
+
+      /* LEFT SIDE */
+
+      .yt-content {
+        flex: 1;
+        max-width: 550px;
+      }
+
+      .yt-content h2 {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        /* font-family: "DM Mono", monospace; */
+      }
+
+      .yt-content p {
+        font-size: 18px;
+        color: #d1d5db;
+        margin-bottom: 12px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* BUTTON */
+
+      .yt-btn {
+        display: inline-block;
+        padding: 14px 36px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .yt-btn:hover {
+        background: #ffffff;
+        color: #0b0f2a;
+        border: 2px solid #00c2ff;
+      }
+
+      /* RIGHT SIDE (VIDEO) */
+
+      .yt-media {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .yt-video-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 650px;
+        padding-top: 56.25%;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .yt-video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      @media (max-width: 992px) {
+        .yt-hero {
+          min-height: auto;
+          padding: 60px 20px;
+        }
+
+        .yt-container {
+          flex-direction: column;
+          text-align: center;
+          gap: 35px;
+        }
+
+        .yt-media {
+          order: -1;
+        }
+
+        .yt-video-wrapper {
+          max-width: 100%;
+          border-radius: 16px;
+        }
+
+        .yt-content h2 {
+          font-size: 30px;
+          line-height: 1.25;
+        }
+
+        .yt-content p {
+          font-size: 15px;
+        }
+
+        .yt-btn {
+          padding: 12px 28px;
+          font-size: 14px;
+        }
+      }
+
+      /* SMALL PHONES */
+
+      @media (max-width: 480px) {
+        .yt-content h2 {
+          font-size: 24px;
+        }
+
+        .yt-content p {
+          font-size: 14px;
+        }
+      }
+    </style>
+    <!-- ============ Youtube section END=======  -->
+
+    <!-- ================= BRO TRADING FOOTER ================= -->
+    <footer class="bt-footer">
+      <div class="bt-footer-container">
+        <!-- Brand -->
+        <div class="bt-footer-brand">
+          <a href="../index.html"
+            ><img
+              src="../Bro_Traders_logo-removebg-preview.png"
+              alt="Bro Trading"
+              class="bt-footer-logo"
+          /></a>
+          <p class="bt-footer-text">
+            Bro Trading is a premium trading resource platform helping traders
+            compare Bro Tradings, improve skills, and scale profitably.
+          </p>
+
+          <!-- Social Icons -->
+          <div class="bt-social-icons">
+            <a href="https://m.youtube.com/@Brotradingz" target="_blank">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 1 -->
+        <div class="bt-footer-col">
+          <h4>Bro Trading Finder</h4>
+          <a href="../CompareTopFrims/comparison.html">Top Frims Comparison</a>
+          <a href="../CompareTopFrims/TrueCost.html">True Cost to Funding</a>
+          <a href="../CompareTopFrims/StartCost.html">Starting Costs</a>
+          <a href="../CompareTopFrims/Drawdown.html">Largest Drawdown</a>
+          <a href="../CompareTopFrims/QuickFunding.html">Quickest Funding</a>
+          <a href="../CompareTopFrims/BestDeals.html">Best Deals</a>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="bt-footer-col">
+          <h4>Resources</h4>
+          <a href="../Resourses/MarketAnalysis.html">Market Analysis</a>
+          <a href="../Resourses/TradingTools.html">Trading Tools</a>
+          <a href="About-us.html">About Us</a>
+          <a href="Contact-Us.html">Contact Us</a>
+          <a href="Privacy-Terms.html">Privacy Terms</a>
+          <a href="Refund-policy.html">Refund Policy</a>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="bt-footer-col bt-resources">
+          <h4>Bro Tradings Frims</h4>
+          <a href="../Frims/ApexFunding.html">Apex Trader Funding</a>
+          <a href="../Frims/TradeifyTrader.html">Tradeify</a>
+          <a href="../Frims/Lucid Trading.html">Lucid Trading</a>
+          <a href="../Frims/MyFundedFuture.html">My Funded Futures</a>
+          <a href="../Frims/DayTrader.html">Day Trader</a>
+        </div>
+      </div>
+
+      <div class="bt-footer-bottom">
+        © 2026 Bro Trading. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      .bt-footer {
+        background: #000;
+        color: #fff;
+        padding: 52px 20px 40px;
+      }
+
+      .bt-footer-container {
+        max-width: 1250px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 80px;
+      }
+
+      /* Brand */
+      .bt-footer-logo {
+        width: 170px;
+        margin-bottom: 25px;
+      }
+
+      .bt-footer-text {
+        color: #9ca3af;
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+      }
+
+      /* Social Icons */
+      .bt-social-icons {
+        display: flex;
+        gap: 18px;
+      }
+
+      .bt-social-icons a {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #111;
+        border-radius: 50%;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-size: 16px;
+      }
+
+      .bt-social-icons a:hover {
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        transform: translateY(-4px);
+      }
+
+      /* Columns */
+      .bt-footer-col h4 {
+        font-size: 16px;
+        margin-bottom: 22px;
+        font-weight: 600;
+      }
+      .bt-footer-col {
+        margin-top: 37px;
+        padding: 0;
+        margin-left: -1px;
+      }
+
+      .bt-footer-col a {
+        display: block;
+        color: #9ca3af;
+        text-decoration: none;
+        margin-bottom: 12px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .bt-footer-col a:hover {
+        color: #fff;
+        transform: translateX(4px);
+      }
+
+      /* Bottom */
+      .bt-footer-bottom {
+        text-align: center;
+        margin-top: 80px;
+        padding-top: 25px;
+        border-top: 1px solid #111;
+        color: #666;
+        font-size: 13px;
+      }
+
+      /* ================= TABLET ================= */
+      @media (max-width: 1024px) {
+        .bt-footer-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 50px;
+        }
+
+        .bt-footer-brand {
+          grid-column: span 2;
+          text-align: center;
+        }
+
+        .bt-social-icons {
+          justify-content: center;
+        }
+        .bt-resources {
+          grid-column: span 2;
+          text-align: center;
+          margin-top: -15px;
+        }
+      }
+
+      /* ================= MOBILE ================= */
+      @media (max-width: 600px) {
+        .bt-footer {
+          padding: 70px 20px 30px;
+        }
+
+        .bt-footer-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 35px;
+          text-align: center;
+        }
+
+        .bt-footer-brand {
+          grid-column: span 2;
+        }
+
+        .bt-footer-logo {
+          margin: 0 auto 20px;
+          display: block;
+        }
+
+        .bt-footer-text {
+          margin: auto;
+          max-width: 320px;
+        }
+
+        .bt-social-icons {
+          justify-content: center;
+        }
+        .bt-resources {
+          grid-column: span 2;
+          text-align: center;
+          margin-top: -15px;
+        }
+      }
+    </style>
+    <!-- ================= BRO TRADING FOOTER END ================= -->
+  </body>
+</html>

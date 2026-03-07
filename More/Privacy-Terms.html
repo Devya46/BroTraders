@@ -2,16 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=
-    , initial-scale=1.0"
-    />
-    <title>Best Deals | Bro Trading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Terms | Bro Traders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="shortcut icon"
       href="../Bro Traders logo.jpeg"
       type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NZ+Basic:wght@100..400&display=swap"
+      rel="stylesheet"
     />
     <style>
       * {
@@ -20,6 +22,10 @@
         box-sizing: border-box;
         font-family: "Roboto", sans-serif;
         box-sizing: border-box;
+      }
+      html,
+      body {
+        overflow-x: hidden;
       }
     </style>
   </head>
@@ -33,25 +39,25 @@
         <div class="bt-ticker">
           <div class="bt-ticker-track">
             <a href="https://lucidtrading.com/ref/brotrading/" target="_blank">
-              Lucid Trading is 50% Off All Accounts! Use Code: BROTRADING
+              Lucid Trading is upto 50% Off All Accounts! Use Code: BROTRADING
             </a>
 
             <a
               href="https://apextraderfunding.com/?keyword=&c=&gclid=&gad_source="
               target="_blank"
             >
-              ✅ Apex Trader Funding is 40% Off & No Fee! Use Code: BRO
+              ✅ Apex Trader Funding is 90% Off! Use Code: BRO
             </a>
 
             <a
               href="https://myfundedfutures.com/challenge?ref=5117"
               target="_blank"
             >
-              💀 20% Off At MyFundedFutures!
+              💀 Upto 50% Off At MyFundedFutures & No Activation fees!
             </a>
 
             <a href="https://tradeify.co/?ref=BFYQ2HKM" target="_blank">
-              🚨 90% Off Tradeify! 1 Day To Pass Use Code: BRO
+              🚨 30% Off Tradeify! MAX 2 Day To Pass Use Code: BRO
             </a>
 
             <!-- duplicate for smooth loop -->
@@ -59,7 +65,8 @@
               href="https://daytraders.com/?keyword=&c=TWCEMMNK&gclid=&gad_source="
               target="_blank"
             >
-              DayTraders.com is 50% Off All Accounts! Use Code: BROTRADING
+              DayTraders.com is 90% Off(Limited Time Offer) All Accounts! Use
+              Code: BROTRADING
             </a>
           </div>
         </div>
@@ -238,22 +245,25 @@
       }
     </style>
     <!-- ================= TOP ANNOUNCEMENT BAR END================= -->
+
     <!-- ================= BRO TRADING HEADER ================= -->
     <header class="bt-header">
       <div class="bt-container">
         <!-- Logo -->
         <div class="bt-logo">
-          <img
-            src="../Bro_Traders_logo-removebg-preview.png"
-            alt="Bro Trading"
-          />
+          <a href="../index.html"
+            ><img
+              src="../Bro_Traders_logo-removebg-preview.png"
+              alt="Bro Trading"
+          /></a>
         </div>
 
         <!-- Navigation -->
         <nav class="bt-nav">
           <!-- Mobile Close Button -->
           <div class="bt-mobile-close" onclick="closeMobileMenu()">✕</div>
-          <a href="../index.html" class="bt-link">Home</a>
+
+          <a href="index.html" class="bt-link">Home</a>
           <!-- Funding Plans -->
           <div class="bt-dropdown">
             <button class="bt-drop-btn" onclick="toggleDropdown('funding')">
@@ -264,12 +274,22 @@
               <div class="bt-drop-grid">
                 <div>
                   <a href="#"><strong>Firm Lists :</strong></a>
-                  <a href="comparison.html">Prop Firm Comparison</a>
-                  <a href="TrueCost.html">True Cost to Funding</a>
-                  <a href="StartCost.html">Prop Firm Starting Costs</a>
-                  <a href="Drawdown.html">Largest Drawdown</a>
-                  <a href="QuickFunding.html">Quickest Funding</a>
-                  <a href="BestDeals.html">Best Deals</a>
+                  <a href="../CompareTopFrims/comparison.html"
+                    >Prop Firm Comparison</a
+                  >
+                  <a href="../CompareTopFrims/TrueCost.html"
+                    >True Cost to Funding</a
+                  >
+                  <a href="../CompareTopFrims/StartCost.html"
+                    >Prop Firm Starting Costs</a
+                  >
+                  <a href="../CompareTopFrims/Drawdown.html"
+                    >Largest Drawdown</a
+                  >
+                  <a href="../CompareTopFrims/QuickFunding.html"
+                    >Quickest Funding</a
+                  >
+                  <a href="../CompareTopFrims/BestDeals.html">Best Deals</a>
                 </div>
                 <div>
                   <a href="#"><strong>Top Firms :</strong></a>
@@ -311,7 +331,7 @@
         </nav>
 
         <!-- CTA -->
-        <a href="Subscribe.html" class="bt-cta">Subscribe</a>
+        <a href="../Subscribe.html" class="bt-cta">Subscribe</a>
 
         <!-- Hamburger -->
         <div class="bt-hamburger" onclick="toggleMobileMenu()">
@@ -329,15 +349,17 @@
       /* ================= HEADER ================= */
 
       .bt-header {
-        position: sticky;
-        top: 0;
+        position: fixed;
+        top: 40px; /* same as ticker height */
+        left: 0;
         width: 100%;
         z-index: 1000;
-        background: #000; /* Normal state */
+        background: #000;
         transition: all 0.35s ease;
       }
 
       .bt-header.bt-scrolled {
+        top: 0;
         background: rgba(10, 15, 30, 0.75);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
@@ -621,806 +643,230 @@
       }
     </script>
     <!-- ================= HEADER END ================= -->
-
-    <!-- ========== BEST DEALS HERO SECTION ========== -->
-    <section class="comparison-hero">
-      <div class="comparison-container">
-        <!-- LEFT SIDE -->
-        <div class="comparison-left">
-          <h1 class="main-heading">
-            <span class="line1"> THE <span class="highlight">BEST</span> </span>
-            <span class="line2">DEALS!</span>
-          </h1>
-
-          <p class="subtext">
-            Unlock exclusive prop firm discounts, limited-time offers, and
-            verified promo codes. Save more on evaluation fees, activation
-            costs, and resets — all curated by Bro Traders.
-          </p>
+    <!-- Privacy Policy Section -->
+    <section class="privacy-section">
+      <!-- Hero Image -->
+      <div class="privacy-hero">
+        <img
+          src="https://images.unsplash.com/photo-1417733403748-83bbc7c05140?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="BroTraders Privacy Policy"
+        />
+        <div class="privacy-overlay">
+          <h1>Privacy Policy</h1>
         </div>
+      </div>
 
-        <!-- RIGHT SIDE -->
-        <div class="comparison-right">
-          <div class="card large-card">
-            <img
-              src="https://plus.unsplash.com/premium_vector-1682309294185-ab67b54027fd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dHJhZGluZ3xlbnwwfHwwfHx8MA%3D%3D"
-              alt="Trading Charts"
-            />
-          </div>
+      <!-- Content -->
+      <div class="privacy-content">
+        <p>
+          At <strong>BroTraders</strong>, protecting the privacy of our visitors
+          is extremely important to us. This Privacy Policy document explains
+          the types of information that are collected and recorded by BroTraders
+          and how we use it. By using this website, you agree to the collection
+          and use of information in accordance with this policy.
+        </p>
 
-          <div class="card small-card">
-            <img
-              src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&auto=format&fit=crop&q=60"
-              alt="Finance Growth"
-            />
-          </div>
-        </div>
+        <h2>1. Information We Collect</h2>
+        <p>
+          When you visit BroTraders, certain information may be collected
+          automatically. This includes your IP address, browser type, device
+          information, operating system, referring pages, and the date and time
+          of your visit. This information is used to analyze trends and improve
+          the functionality of our website.
+        </p>
+
+        <p>
+          We may also collect personal information such as your name or email
+          address if you voluntarily provide it through contact forms,
+          newsletter subscriptions, or giveaway registrations.
+        </p>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>
+          The information we collect may be used for several purposes,
+          including:
+        </p>
+
+        <p>
+          • Improving website performance and user experience<br />
+          • Responding to inquiries and providing support<br />
+          • Sending updates, promotions, or newsletters (if subscribed)<br />
+          • Managing giveaways, events, or promotions<br />
+          • Analyzing traffic and website usage
+        </p>
+
+        <h2>3. Affiliate Links and Partnerships</h2>
+        <p>
+          BroTraders participates in affiliate marketing programs. Some links on
+          our website may be affiliate links, meaning we may earn a commission
+          if users sign up or make a purchase through those links. These
+          commissions help support the maintenance and development of the
+          website.
+        </p>
+
+        <p>
+          Our affiliate partnerships do not influence our commitment to
+          providing transparent comparisons and useful information for traders.
+        </p>
+
+        <h2>4. Cookies</h2>
+        <p>
+          BroTraders uses cookies to store information about visitors'
+          preferences and to optimize the user experience. Cookies help us
+          understand how users interact with our website and allow us to improve
+          website functionality.
+        </p>
+
+        <p>
+          You may disable cookies through your browser settings. However, some
+          features of the website may not function properly if cookies are
+          disabled.
+        </p>
+
+        <h2>5. Analytics and Tracking</h2>
+        <p>
+          We may use analytics tools to understand how visitors interact with
+          our website. These tools collect anonymous data such as page views,
+          time spent on pages, and user interactions. This helps us improve our
+          content and website performance.
+        </p>
+
+        <h2>6. Third-Party Websites</h2>
+        <p>
+          BroTraders may contain links to third-party websites such as
+          proprietary trading firms or partner services. We are not responsible
+          for the privacy policies or practices of these external websites. We
+          recommend reviewing their policies before providing any personal
+          information.
+        </p>
+
+        <h2>7. Data Security</h2>
+        <p>
+          We take reasonable steps to protect the security of your personal
+          information. However, no method of transmission over the internet is
+          completely secure. While we strive to protect your data, we cannot
+          guarantee absolute security.
+        </p>
+
+        <h2>8. Children's Information</h2>
+        <p>
+          BroTraders does not knowingly collect any personal information from
+          children under the age of 13. If you believe that a child has provided
+          personal information on our website, please contact us and we will
+          promptly remove such information from our records.
+        </p>
+
+        <h2>9. Policy Updates</h2>
+        <p>
+          We may update this Privacy Policy from time to time. Any updates will
+          be posted on this page with a revised update date. Users are
+          encouraged to review this policy periodically.
+        </p>
+
+        <h2>10. Contact Us</h2>
+        <p>
+          If you have any questions regarding this Privacy Policy or how your
+          data is handled, please contact us.
+          <br />
+          <strong>Email:</strong> support@brotraders.com
+        </p>
       </div>
     </section>
 
     <style>
-      /* ===== SECTION ===== */
-
-      .comparison-hero {
+      /* ===== PAGE SECTION ===== */
+      .privacy-section {
+        width: 100%;
         background:
           radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
           linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
-        padding: 40px 8%;
-        color: white;
+        color: #e5e7eb;
+        font-family: "Inter", sans-serif;
       }
 
-      .comparison-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 60px;
-      }
-
-      /* ===== LEFT SIDE ===== */
-
-      .main-heading {
-        font-size: 90px;
-        font-weight: 800;
-        line-height: 1;
-        margin-bottom: 30px;
-      }
-
-      .line1,
-      .line2,
-      .line3 {
-        display: block;
-      }
-
-      .line2 {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .heading-logo {
-        height: 70px;
-        width: auto;
-      }
-
-      .highlight {
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .subtext {
-        font-size: 18px;
-        max-width: 520px;
-        color: #dcdcdc;
-        margin-bottom: 30px;
-        line-height: 1.6;
-        font-family: "Roboto", sans-serif;
-      }
-
-      .primary-btn {
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        padding: 14px 28px;
-        border-radius: 8px;
-        text-decoration: none;
-        color: white;
-        font-weight: 600;
-        transition: 0.3s ease;
-      }
-
-      .primary-btn:hover {
-        background: white;
-        color: #0b0f2a;
-      }
-
-      /* ===== RIGHT SIDE ===== */
-
-      .comparison-right {
-        display: flex;
-        gap: 20px;
-      }
-
-      .card {
-        border-radius: 16px;
+      /* ===== HERO ===== */
+      .privacy-hero {
+        position: relative;
+        width: 100%;
+        height: 320px;
         overflow: hidden;
-        backdrop-filter: blur(8px);
-        transition: 0.4s ease;
       }
 
-      .card img {
+      .privacy-hero img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
 
-      .large-card {
-        width: 280px;
-        height: 380px;
-        margin-top: 90px;
+      /* overlay */
+      .privacy-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .small-card {
-        width: 220px;
-        height: 380px;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 194, 255, 0.3);
-      }
-
-      /* ===== RESPONSIVE ===== */
-
-      @media (max-width: 1024px) {
-        .comparison-container {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .line2 {
-          justify-content: center;
-        }
-
-        .main-heading {
-          font-size: 60px;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .main-heading {
-          font-size: 42px;
-        }
-
-        .heading-logo {
-          height: 45px;
-        }
-
-        .comparison-right {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .large-card,
-        .small-card {
-          width: 100%;
-          max-width: 320px;
-          height: 300px;
-        }
-      }
-    </style>
-    <!-- ========== BEST DEALS HERO SECTION END ========== -->
-
-    <!-- ======= Today's Best Deals Section ========= -->
-    <section class="best-offers-section">
-      <div class="container">
-        <h2 class="section-title">🔥 THE BEST DEALS</h2>
-
-        <div class="deal-grid">
-          <!-- APEX -->
-          <div class="deal-card">
-            <div class="deal-badge">90% OFF</div>
-            <h3 class="deal-firm">Apex Trader Funding</h3>
-            <p class="deal-desc">
-              <!-- <span>✔</span> Industry Leading <br /> -->
-              <span>✔</span> Lowest Evaluation pricing<br />
-              <span>✔</span> One of the Fastest Pass Models<br />
-              <span>✔</span> Flexible Reset Options<br />
-              <span>✔</span> Popular among Futures Scalpers
-            </p>
-            <div class="deal-actions">
-              <button class="btn-copy" onclick="copyCode(this, 'BRO')">
-                BRO
-              </button>
-              <a
-                href="https://apextraderfunding.com/member/aff/go/buurtie"
-                target="_blank"
-                class="btn-deal"
-                >Get Deal</a
-              >
-            </div>
-          </div>
-
-          <!-- TRADEIFY -->
-          <div class="deal-card">
-            <div class="deal-badge">30% OFF</div>
-            <h3 class="deal-firm">Tradeify</h3>
-            <p class="deal-desc">
-              <span>✔</span> Static Drawdown Structure<br />
-              <span>✔</span> Early Payout Eligibility<br />
-              <span>✔</span> Simple Scaling System<br />
-              <span>✔</span> Transparent Trading Rules
-            </p>
-            <div class="deal-actions">
-              <button class="btn-copy" onclick="copyCode(this, 'BRO')">
-                BRO
-              </button>
-              <a
-                href="https://tradeify.co/?ref=BFYQ2HKM"
-                target="_blank"
-                class="btn-deal"
-                >Get Deal</a
-              >
-            </div>
-          </div>
-
-          <!-- MYFUNDEDFUTURES -->
-          <div class="deal-card">
-            <div class="deal-badge">Upto 50% OFF</div>
-            <h3 class="deal-firm">MyFundedFutures</h3>
-            <p class="deal-desc">
-              <span>✔</span> Fast Scaling Account Growth<br />
-              <span>✔</span> No Activation fees <br />
-              <span>✔</span> Trailing Drawdown Model<br />
-              <span>✔</span> Strong Trader Community
-            </p>
-            <div class="deal-actions">
-              <button class="btn-copy" onclick="copyCode(this, 'BRO')">
-                BRO
-              </button>
-              <a
-                href="https://myfundedfutures.com/challenge?ref=5117"
-                target="_blank"
-                class="btn-deal"
-                >Get Deal</a
-              >
-            </div>
-          </div>
-
-          <!-- LUCID -->
-          <div class="deal-card">
-            <div class="deal-badge">35-50% OFF</div>
-            <h3 class="deal-firm">LUCID TRADERS</h3>
-            <p class="deal-desc">
-              <span>✔</span> Quick Evaluation Process<br />
-              <span>✔</span> Clean Rule Structure<br />
-              <span>✔</span> Competitive profit splits<br />
-              <span>✔</span> Budget-friendly Account options
-            </p>
-            <div class="deal-actions">
-              <button class="btn-copy" onclick="copyCode(this, 'BROTRADING')">
-                BROTRADING
-              </button>
-              <a
-                href="https://lucidtrading.com/ref/brotrading/"
-                target="_blank"
-                class="btn-deal"
-                >Get Deal</a
-              >
-            </div>
-          </div>
-
-          <!-- DAYTRADERS -->
-          <div class="deal-card">
-            <div class="deal-badge">90% OFF</div>
-            <h3 class="deal-firm">DayTraders</h3>
-            <p class="deal-desc">
-              <span>✔</span> Limited Period Offer<br />
-              <!-- <span>✔</span> High Profit split Potential<br /> -->
-              <span>✔</span> Futures-focused Trading model<br />
-              <span>✔</span> Established Firm Reputation<br />
-              <span>✔</span> Consistent payout Structure
-            </p>
-            <div class="deal-actions">
-              <button class="btn-copy" onclick="copyCode(this, 'BROTRADING')">
-                BROTRADING
-              </button>
-              <a
-                href="https://daytraders.com/go/brotrading?c=TWCEMMNK"
-                target="_blank"
-                class="btn-deal"
-                >Get Deal</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <style>
-      .best-offers-section {
-        padding: 90px 8%;
-        background:
-          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
-          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
-        color: white;
-      }
-
-      .section-title {
+      .privacy-overlay h1 {
         font-size: 48px;
-        margin-bottom: 60px;
         font-weight: 700;
-        text-align: center;
+        color: #ffffff;
       }
 
-      /* GRID */
-      .deal-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 35px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      /* CARD */
-      .deal-card {
-        background: linear-gradient(145deg, #0f172a, #1e293b);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 18px;
-        padding: 30px;
-        backdrop-filter: blur(10px);
-        transition:
-          transform 0.25s ease,
-          box-shadow 0.25s ease;
-        text-align: center;
-      }
-
-      .deal-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 40px rgba(0, 194, 255, 0.25);
-      }
-
-      .deal-badge {
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #00c2ff;
-      }
-
-      .deal-firm {
-        font-size: 22px;
-        margin-bottom: 12px;
-        font-weight: 600;
-      }
-
-      .deal-desc {
-        font-size: 15px;
-        opacity: 0.85;
-        margin-bottom: 25px;
-        text-align: left;
-        padding: 5px 32px;
-        font-family: "Roboto", sans-serif;
+      /* ===== CONTENT ===== */
+      .privacy-content {
+        max-width: 900px;
+        margin: auto;
+        padding: 70px 20px;
         line-height: 1.7;
       }
-      .deal-desc span {
-        color: #00c2ff;
-        margin-right: 5px;
+
+      /* paragraphs */
+      .privacy-content p {
+        font-size: 17px;
+        margin-bottom: 22px;
+        color: #cbd5e1;
       }
 
-      /* BUTTONS */
-      .deal-actions {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin-top: 20px;
+      /* headings */
+      .privacy-content h2 {
+        margin-top: 35px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: 600;
+        color: #ffffff;
+        border-left: 4px solid #6c5ce7;
+        padding-left: 12px;
       }
 
-      /* BUTTONS */
-
-      .btn-deal {
-        padding: 10px 22px;
-        border-radius: 50px;
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        color: white;
+      /* links */
+      .privacy-content a {
+        color: #8b8fff;
         text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        transition: 0.3s;
-        border: 3px solid transparent; /* prevents layout shift */
       }
 
-      .btn-deal:hover {
-        background: white;
-        color: #0b1d3a;
-        border-color: #00c2ff;
+      .privacy-content a:hover {
+        text-decoration: underline;
       }
 
-      .btn-copy {
-        padding: 10px 18px;
-        border-radius: 50px;
-        background: #121924;
-        color: #00c2ff;
-        border: 3px solid transparent; /* prevents layout shift */
-        cursor: pointer;
-        font-size: 14px;
-        transition: 0.3s;
-        font-weight: 600;
-      }
-
-      .btn-copy:hover {
-        background: white;
-        color: #0b1d3a;
-        border-color: #00c2ff;
-      }
-
-      /* RESPONSIVE */
-      @media (max-width: 992px) {
-        .deal-grid {
-          grid-template-columns: repeat(2, 1fr);
+      /* ===== MOBILE ===== */
+      @media (max-width: 768px) {
+        .privacy-hero {
+          height: 220px;
         }
-      }
 
-      @media (max-width: 600px) {
-        .deal-grid {
-          grid-template-columns: 1fr;
+        .privacy-overlay h1 {
+          font-size: 32px;
+        }
+
+        .privacy-content {
+          padding: 50px 18px;
         }
       }
     </style>
+    <!-- terms privay Section END -->
 
-    <script>
-      function copyCode(btn, code) {
-        navigator.clipboard.writeText(code);
-        btn.innerText = "Copied!";
-        setTimeout(() => (btn.innerText = code), 1200);
-      }
-    </script>
-    <!-- ======= Today's Best Deals  End Section ========= -->
-
-    <!-- ===== Market Ticker Section ===== -->
-    <script
-      type="module"
-      src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"
-    ></script>
-
-    <section class="dark-ticker-section">
-      <tv-ticker-tape
-        color-theme="dark"
-        line-chart-type="line"
-        show-hover="true"
-        display-mode="regular"
-        symbols="FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,FOREXCOM:DJI,FX:EURUSD,BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,CMCMARKETS:GOLD,CME_MINI:ES1!,BINANCE:BTCUSDT,CME_MINI:NQ1!,OANDA:EURUSD,FX:GBPUSD,BINANCE:ETHUSDT,NASDAQ:AAPL"
-      >
-      </tv-ticker-tape>
-    </section>
-    <style>
-      .dark-ticker-section {
-        background: #000000;
-        padding: 0;
-      }
-
-      /* Force remove any white bleed */
-      tv-ticker-tape {
-        --tv-color-pane-background: #000000 !important;
-      }
-    </style>
-    <!-- ===== End Market Ticker Section ===== -->
-
-    <!-- ===================== Marketing Section ===================== -->
-    <section class="market-section">
-      <h1>Prepare to Enter the Market</h1>
-      <p class="subtitle">
-        Preparation is everything. Start your trading day informed with our
-        economic calendar, breaking news, market sentiment updates, and
-        real-time charts to guide every decision confidently.
-      </p>
-
-      <div class="market-dashboard">
-        <!-- SIDEBAR -->
-        <div class="market-sidebar">
-          <button class="tab-btn active" data-tab="calendar">
-            Economic Calendar >
-          </button>
-          <button class="tab-btn" data-tab="charts">Charts ></button>
-          <button class="tab-btn" data-tab="stories">Top Stories ></button>
-          <button class="tab-btn" data-tab="analysis">
-            Technical Analysis >
-          </button>
-        </div>
-
-        <!-- CONTENT AREA -->
-        <div class="market-content">
-          <div class="market-box">
-            <!-- ECONOMIC CALENDAR -->
-            <div class="tab-content active" id="calendar">
-              <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script
-                  type="text/javascript"
-                  src="https://s3.tradingview.com/external-embedding/embed-widget-events.js"
-                  async
-                >
-                  {
-                    "colorTheme": "dark",
-                    "isTransparent": true,
-                    "locale": "en",
-                    "countryFilter": "ar,au,br,ca,cn,fr,de,in,id,it,jp,kr,mx,ru,sa,za,tr,gb,us,eu",
-                    "importanceFilter": "-1,0,1",
-                    "width": "100%",
-                    "height": 550
-                  }
-                </script>
-              </div>
-            </div>
-
-            <!-- CHARTS -->
-            <div class="tab-content" id="charts">
-              <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script
-                  type="text/javascript"
-                  src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
-                  async
-                >
-                  {
-                    "lineWidth": 2,
-                    "chartType": "area",
-                    "backgroundColor": "#0b1120",
-                    "widgetFontColor": "#DBDBDB",
-                    "colorTheme": "dark",
-                    "autosize": true,
-                    "width": "100%",
-                    "height": 550,
-                    "symbols": [
-                      ["Apple","NASDAQ:AAPL|1D"],
-                      ["Google","NASDAQ:GOOGL|1D"],
-                      ["Microsoft","NASDAQ:MSFT|1D"]
-                    ]
-                  }
-                </script>
-              </div>
-            </div>
-
-            <!-- TOP STORIES -->
-            <div class="tab-content" id="stories">
-              <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script
-                  type="text/javascript"
-                  src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js"
-                  async
-                >
-                  {
-                    "displayMode": "regular",
-                    "feedMode": "all_symbols",
-                    "colorTheme": "dark",
-                    "isTransparent": true,
-                    "locale": "en",
-                    "width": "100%",
-                    "height": 550
-                  }
-                </script>
-              </div>
-            </div>
-
-            <!-- TECHNICAL ANALYSIS -->
-            <div class="tab-content" id="analysis">
-              <div class="mobile-analysis-toggle">
-                <button class="analysis-toggle-btn active" data-analysis="nq">
-                  NQ1
-                </button>
-                <button class="analysis-toggle-btn" data-analysis="es">
-                  ES1
-                </button>
-              </div>
-
-              <div class="analysis-grid">
-                <div class="analysis-card analysis-nq active-analysis">
-                  <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script
-                      type="text/javascript"
-                      src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
-                      async
-                    >
-                      {
-                        "interval": "1m",
-                        "width": "100%",
-                        "height": 450,
-                        "symbol": "CME_MINI:NQ1!",
-                        "showIntervalTabs": true,
-                        "locale": "en",
-                        "colorTheme": "dark",
-                        "isTransparent": true
-                      }
-                    </script>
-                  </div>
-                </div>
-
-                <div class="analysis-card analysis-es">
-                  <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script
-                      type="text/javascript"
-                      src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
-                      async
-                    >
-                      {
-                        "interval": "1m",
-                        "width": "100%",
-                        "height": 450,
-                        "symbol": "CME_MINI:ES1!",
-                        "showIntervalTabs": true,
-                        "locale": "en",
-                        "colorTheme": "dark",
-                        "isTransparent": true
-                      }
-                    </script>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <style>
-      .market-section {
-        background:
-          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
-          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
-        padding: 90px 20px;
-        text-align: center;
-        color: #fff;
-      }
-
-      .market-section h1 {
-        font-size: 48px;
-        /* font-family: "DM Mono", monospace; */
-      }
-
-      .subtitle {
-        max-width: 800px;
-        margin: 20px auto 60px;
-        color: #bbb;
-        font-family: "Roboto", sans-serif;
-      }
-
-      /* DASHBOARD */
-      .market-dashboard {
-        display: grid;
-        grid-template-columns: 260px 1fr;
-        gap: 40px;
-        max-width: 1350px;
-        margin: auto;
-      }
-
-      /* SIDEBAR */
-      .market-sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        margin-top: 55px;
-      }
-
-      .market-sidebar .tab-btn {
-        text-align: left;
-        padding: 14px 28px;
-        border-radius: 12px;
-        border: 1px solid #1e3a8a;
-        background: #0000005c;
-        color: #fff;
-        cursor: pointer;
-        font-size: 16px;
-        transition: 0.3s;
-        /* font-family: "DM Mono", monospace; */
-      }
-
-      .market-sidebar .tab-btn.active {
-        background: black;
-        border-color: #2563eb;
-      }
-
-      .market-sidebar .tab-btn:hover {
-        border-color: #00c2ff;
-      }
-      .mobile-analysis-toggle {
-        display: none;
-        margin-bottom: 20px;
-        justify-content: center;
-        gap: 15px;
-      }
-
-      /* CONTENT */
-      .market-box {
-        border-radius: 22px;
-        padding: 35px;
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(18px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .tab-content {
-        display: none;
-      }
-      .tab-content.active {
-        display: block;
-      }
-
-      .analysis-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
-      }
-
-      .analysis-card {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        padding: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      /* MOBILE */
-      @media (max-width: 1000px) {
-        .market-dashboard {
-          grid-template-columns: 1fr;
-        }
-
-        .market-sidebar {
-          flex-direction: row;
-          overflow-x: auto;
-        }
-
-        .market-sidebar .tab-btn {
-          white-space: nowrap;
-          flex: 0 0 auto;
-        }
-
-        .analysis-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const tabs = document.querySelectorAll(".tab-btn");
-        const contents = document.querySelectorAll(".tab-content");
-
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            tabs.forEach((btn) => btn.classList.remove("active"));
-            contents.forEach((c) => c.classList.remove("active"));
-
-            tab.classList.add("active");
-            document.getElementById(tab.dataset.tab).classList.add("active");
-          });
-        });
-
-        const toggleBtns = document.querySelectorAll(".analysis-toggle-btn");
-
-        toggleBtns.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            toggleBtns.forEach((b) => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            document
-              .querySelectorAll(".analysis-card")
-              .forEach((card) => card.classList.remove("active-analysis"));
-
-            if (btn.dataset.analysis === "nq") {
-              document
-                .querySelector(".analysis-nq")
-                .classList.add("active-analysis");
-            } else {
-              document
-                .querySelector(".analysis-es")
-                .classList.add("active-analysis");
-            }
-          });
-        });
-      });
-    </script>
-    <!-- ===================== Marketing Section END ===================== -->
     <!-- ================== CTF Compare Top Firm Section ================== -->
     <section class="ctf-compare-vault">
       <div class="ctf-compare-header">
@@ -1636,6 +1082,195 @@
     </script>
     <!-- ==================CTF Compare Top Firm Section END ================== -->
 
+    <!-- =========== Youtube Section ========= -->
+    <section class="yt-hero">
+      <div class="yt-container">
+        <!-- LEFT -->
+        <div class="yt-content">
+          <h2>
+            Trade Live With <br />
+            BroTrading
+          </h2>
+
+          <p>Live Futures Trading Sessions</p>
+          <p>Market Breakdown • Strategy Execution • Real-Time Entries</p>
+          <p>Join Our Community of Serious Traders</p>
+
+          <a
+            href="https://m.youtube.com/@Brotradingz"
+            target="_blank"
+            class="yt-btn"
+          >
+            Subscribe on YouTube
+          </a>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="yt-media">
+          <div class="yt-video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/KXO67YQ-ous"
+              title="BroTradingz Live Trading"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .yt-hero {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        padding: 70px 6%;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: #ffffff;
+      }
+
+      .yt-container {
+        max-width: 1400px;
+        width: 93%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+      }
+
+      /* LEFT SIDE */
+
+      .yt-content {
+        flex: 1;
+        max-width: 550px;
+      }
+
+      .yt-content h2 {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        /* font-family: "DM Mono", monospace; */
+      }
+
+      .yt-content p {
+        font-size: 18px;
+        color: #d1d5db;
+        margin-bottom: 12px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* BUTTON */
+
+      .yt-btn {
+        display: inline-block;
+        padding: 14px 36px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .yt-btn:hover {
+        background: #ffffff;
+        color: #0b0f2a;
+        border: 2px solid #00c2ff;
+      }
+
+      /* RIGHT SIDE (VIDEO) */
+
+      .yt-media {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .yt-video-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 650px;
+        padding-top: 56.25%;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .yt-video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      @media (max-width: 992px) {
+        .yt-hero {
+          min-height: auto;
+          padding: 60px 20px;
+        }
+
+        .yt-container {
+          flex-direction: column;
+          text-align: center;
+          gap: 35px;
+        }
+
+        .yt-media {
+          order: -1;
+        }
+
+        .yt-video-wrapper {
+          max-width: 100%;
+          border-radius: 16px;
+        }
+
+        .yt-content h2 {
+          font-size: 30px;
+          line-height: 1.25;
+        }
+
+        .yt-content p {
+          font-size: 15px;
+        }
+
+        .yt-btn {
+          padding: 12px 28px;
+          font-size: 14px;
+        }
+      }
+
+      /* SMALL PHONES */
+
+      @media (max-width: 480px) {
+        .yt-content h2 {
+          font-size: 24px;
+        }
+
+        .yt-content p {
+          font-size: 14px;
+        }
+      }
+    </style>
+    <!-- ============ Youtube section END=======  -->
+
     <!-- ================= BRO TRADING FOOTER ================= -->
     <footer class="bt-footer">
       <div class="bt-footer-container">
@@ -1665,12 +1300,12 @@
         <!-- Column 1 -->
         <div class="bt-footer-col">
           <h4>Bro Trading Finder</h4>
-          <a href="comparison.html">Top Frims Comparison</a>
-          <a href="TrueCost.html">True Cost to Funding</a>
-          <a href="StartCost.html">Starting Costs</a>
-          <a href="Drawdown.html">Largest Drawdown</a>
-          <a href="QuickFunding.html">Quickest Funding</a>
-          <a href="BestDeals.html">Best Deals</a>
+          <a href="../CompareTopFrims/comparison.html">Top Frims Comparison</a>
+          <a href="../CompareTopFrims/TrueCost.html">True Cost to Funding</a>
+          <a href="../CompareTopFrims/StartCost.html">Starting Costs</a>
+          <a href="../CompareTopFrims/Drawdown.html">Largest Drawdown</a>
+          <a href="../CompareTopFrims/QuickFunding.html">Quickest Funding</a>
+          <a href="../CompareTopFrims/BestDeals.html">Best Deals</a>
         </div>
 
         <!-- Column 2 -->
@@ -1678,10 +1313,10 @@
           <h4>Resources</h4>
           <a href="../Resourses/MarketAnalysis.html">Market Analysis</a>
           <a href="../Resourses/TradingTools.html">Trading Tools</a>
-          <a href="../More/About-us.html">About Us</a>
-          <a href="../More/Contact-Us.html">Contact Us</a>
-          <a href="../More/Privacy-Terms.html">Privacy Terms</a>
-          <a href="../More/Refund-policy.html">Refund Policy</a>
+          <a href="About-us.html">About Us</a>
+          <a href="Contact-Us.html">Contact Us</a>
+          <a href="Privacy-Terms.html">Privacy Terms</a>
+          <a href="Refund-policy.html">Refund Policy</a>
         </div>
 
         <!-- Column 3 -->
