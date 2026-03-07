@@ -238,10 +238,11 @@
       <div class="bt-container">
         <!-- Logo -->
         <div class="bt-logo">
-          <img
-            src="../Bro_Traders_logo-removebg-preview.png"
-            alt="Bro Trading"
-          />
+          <a href="https://myfundedfutures.com/challenge?ref=5117"
+            ><img
+              src="../Bro_Traders_logo-removebg-preview.png"
+              alt="Bro Trading"
+          /></a>
         </div>
 
         <!-- Navigation -->
@@ -655,7 +656,7 @@
               </div>
               <div>
                 <span>Country</span>
-                <strong><img src="https://flagcdn.com/w80/us.png" />US</strong>
+                <strong><img src="https://flagcdn.com/w80/us.png" /> US</strong>
               </div>
               <div>
                 <span>Trust Pilot</span>
@@ -714,7 +715,7 @@
       <!-- DISCOUNT CARD -->
       <div class="discount-card">
         <div class="discount-left">
-          <div class="discount-badge">🔥 32% OFF</div>
+          <div class="discount-badge">🔥 Upto 50% OFF</div>
         </div>
 
         <div class="discount-middle">
@@ -724,7 +725,7 @@
         </div>
 
         <div class="discount-right">
-          <button class="firm-btn">Code MATCH</button>
+          <button class="firm-btn" data-code="BRO">Code : BRO</button>
         </div>
       </div>
     </section>
@@ -897,15 +898,20 @@
       .firm-btn {
         padding: 14px 30px;
         border-radius: 40px;
+        font-weight: 600;
         /* font-family: "DM Mono", monospace; */
         background: linear-gradient(90deg, #00c2ff, #1e90ff);
         color: white;
         border: 3px solid transparent;
         cursor: pointer;
         transition: 0.3s;
+        min-width: 190px; /* prevents movement */
+        text-align: center;
+        font-size: 16px;
       }
 
       .firm-btn:hover {
+        transform: translateY(-3px);
         background: white;
         color: #0b0f2a;
         border: 3px solid #00c2ff;
@@ -927,6 +933,23 @@
         }
       }
     </style>
+    <script>
+      document.querySelectorAll(".firm-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const code =
+            this.dataset.code || this.innerText.replace("Code : ", "");
+          navigator.clipboard.writeText(code);
+
+          this.classList.add("copied");
+          this.innerText = "Copied ✓";
+
+          setTimeout(() => {
+            this.classList.remove("copied");
+            this.innerText = "Code : " + code;
+          }, 2000);
+        });
+      });
+    </script>
 
     <!-- =========About apex end=======  -->
     <!-- ========= More details ======  -->
@@ -940,12 +963,15 @@
           </div>
 
           <p class="fps-summary-text">
-            My Funded Future, established in January 2021 in the United States,
-            is a futures-focused prop firm offering a 1-Step evaluation program.
-            Account sizes range from $25,000 to $300,000. Supported platforms
-            include Tradovate, Rithmic, TradingView, NinjaTrader, Quantower,
-            Sierra Chart and more. Traders can access major futures like E-mini
-            S&P 500, NASDAQ 100, and Mini-DOW.
+            MyFundedFutures is a futures proprietary trading firm that provides
+            traders with simulated funded accounts after passing a one-step
+            evaluation challenge. Traders can access account sizes such as $50K,
+            $100K, and $150K while trading popular CME futures markets. The firm
+            is known for flexible rules, no strict daily loss limits on many
+            plans, and fast payouts through its Rapid plan. With the ability to
+            get funded in as little as two trading days and request payouts
+            frequently, MyFundedFutures has become one of the most popular
+            futures prop firms for active traders.
           </p>
         </div>
 
@@ -962,19 +988,32 @@
               <div class="fps-grid">
                 <div>
                   <strong>Brokers</strong>
-                  <p>Rithmic, Tradovate</p>
+                  <p>Rithmic</p>
                 </div>
+
                 <div>
-                  <strong>Instruments</strong>
-                  <p>Futures</p>
+                  <strong>Markets</strong>
+                  <p>Futures (CME Products)</p>
                 </div>
+
                 <div>
-                  <strong>Payment</strong>
+                  <strong>Platforms</strong>
+                  <p>NinjaTrader, Quantower, Tradovate</p>
+                </div>
+
+                <div>
+                  <strong>Payment Methods</strong>
                   <p>Credit / Debit Card</p>
                 </div>
+
                 <div>
-                  <strong>Payout</strong>
-                  <p>ACH</p>
+                  <strong>Payout Method</strong>
+                  <p>Bank Transfer / ACH</p>
+                </div>
+
+                <div>
+                  <strong>Account Sizes</strong>
+                  <p>$50K – $150K</p>
                 </div>
               </div>
             </div>
@@ -988,13 +1027,9 @@
 
             <div class="fps-content">
               <div class="fps-contract-grid">
-                <div>$25K <span>4 Contracts</span></div>
-                <div>$50K <span>10 Contracts</span></div>
-                <div>$75K <span>12 Contracts</span></div>
-                <div>$100K <span>14 Contracts</span></div>
-                <div>$150K <span>17 Contracts</span></div>
-                <div>$250K <span>27 Contracts</span></div>
-                <div>$300K <span>35 Contracts</span></div>
+                <div>$50K <span>3 E-Mini Contracts</span></div>
+                <div>$100K <span>6 E-Mini Contracts</span></div>
+                <div>$150K <span>9 E-Mini Contracts</span></div>
               </div>
             </div>
           </div>
@@ -1007,11 +1042,14 @@
 
             <div class="fps-content">
               <ul class="fps-list">
-                <li>Max 30% daily profit concentration rule</li>
-                <li>No hedging allowed</li>
-                <li>5:1 max risk-to-reward ratio</li>
-                <li>Consistent position sizing required</li>
-                <li>Trailing threshold cannot be used as stop-loss</li>
+                <li>One-step evaluation with profit target requirements.</li>
+                <li>End-of-day trailing drawdown risk model.</li>
+                <li>Consistency rule applied during evaluation.</li>
+                <li>
+                  Minimum trading activity required across multiple trading
+                  days.
+                </li>
+                <li>Traders must stay within drawdown and risk limits.</li>
               </ul>
             </div>
           </div>
@@ -1024,11 +1062,11 @@
 
             <div class="fps-content">
               <ul class="fps-list">
-                <li>100% of first $25K profit</li>
-                <li>90% after that</li>
-                <li>Minimum payout: $500</li>
-                <li>8 trading days required</li>
-                <li>No max payout after 5th payout</li>
+                <li>100% of first $10,000 profit for many plans.</li>
+                <li>Up to 90% profit split after initial threshold.</li>
+                <li>Daily payout requests available on Rapid plans.</li>
+                <li>Minimum payout usually starts around $250.</li>
+                <li>Payouts available after meeting trading requirements.</li>
               </ul>
             </div>
           </div>
@@ -1635,12 +1673,36 @@
           </p>
 
           <div class="apex-buttons">
-            <a href="#" class="apex-btn">Get Evaluation</a>
-            <!-- <a href="#" class="apex-btn">Copy Code</a> -->
+            <a
+              href="https://myfundedfutures.com/challenge?ref=5117"
+              class="apex-btn"
+              >Get Evaluation</a
+            >
+            <a href="#" class="apex-btn copy-code" data-code="BRO"
+              >Code : BRO</a
+            >
           </div>
         </div>
       </div>
     </section>
+    <script>
+      document.querySelectorAll(".copy-code").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const code = this.dataset.code;
+
+          navigator.clipboard.writeText(code);
+
+          const original = this.innerText;
+          this.innerText = "Copied ✓";
+
+          setTimeout(() => {
+            this.innerText = original;
+          }, 2000);
+        });
+      });
+    </script>
 
     <style>
       .apex-section {
@@ -1718,12 +1780,18 @@
         padding: 14px 28px;
         border-radius: 40px;
         /* font-family: "DM Mono", monospace; */
-        font-size: 15px;
+        font-size: 16px;
         text-decoration: none;
         background: linear-gradient(90deg, #00c2ff, #1e90ff);
         color: white;
         transition: all 0.3s ease;
         border: 3px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        text-align: center;
+        font-weight: 600;
       }
 
       .apex-btn:hover {

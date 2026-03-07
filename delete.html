@@ -1,0 +1,295 @@
+<!-- ---GiveAway Form------  -->
+<section class="giveaway-section">
+  <div class="giveaway-container">
+    <!-- LEFT SIDE -->
+
+    <div class="winner-side">
+      <span class="winner-badge">🏆 Latest Winner</span>
+
+      <h1>Congratulations,<br /><span id="winnerName">Daniel</span>!</h1>
+
+      <p class="winner-text">
+        Daniel joined our giveaway and secured premium access to exclusive
+        trading tools, advanced insights, and smarter market opportunities.
+      </p>
+
+      <p class="winner-highlight">
+        The next winner could be YOU. <br />
+        Enter now — it takes only a few seconds.
+      </p>
+
+      <div class="giveaway-info">
+        <div class="info-item">
+          <span class="info-icon">📜</span>
+          <span
+            >Terms & Conditions apply •
+            <a href="More/Term&Conditions.html">View Terms</a></span
+          >
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon">🎯</span>
+          <span>Winners are selected through a transparent random draw.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE FORM -->
+
+    <div class="form-side">
+      <h2>Enter The Giveaway</h2>
+
+      <form id="giveawayForm">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" name="name" placeholder=" " required />
+            <label>Name</label>
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="username" placeholder=" " required />
+            <label>Username</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" placeholder=" " required />
+          <label>Email Address</label>
+        </div>
+
+        <div class="form-group">
+          <textarea name="message" rows="4" placeholder=" "></textarea>
+          <label>Your Thoughts (Optional)</label>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" required />
+          I agree to the <a href="#">Terms & Conditions</a>
+        </label>
+
+        <button type="submit">Secure My Entry →</button>
+      </form>
+
+      <p id="formMessage"></p>
+    </div>
+  </div>
+</section>
+<style>
+  .giveaway-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #06142e, #010914);
+    color: #fff;
+    font-family: Inter, sans-serif;
+  }
+
+  .giveaway-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    gap: 70px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* LEFT SIDE */
+
+  .winner-side {
+    flex: 1;
+    min-width: 320px;
+  }
+
+  .winner-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(0, 194, 255, 0.15);
+    border: 1px solid rgba(0, 194, 255, 0.4);
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .winner-side h1 {
+    font-size: 58px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .winner-side span {
+    /* color: #28c8ff; */
+  }
+
+  .winner-text {
+    color: #b7c3db;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 20px;
+  }
+
+  .winner-highlight {
+    color: #22d1ff;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .giveaway-info {
+    margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    font-style: italic;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #a9bbd9;
+  }
+
+  .info-icon {
+    font-size: 16px;
+  }
+
+  .info-item a {
+    color: #29c5ff;
+    text-decoration: none;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .info-item a:hover {
+    text-decoration: none;
+  }
+
+  /* FORM */
+
+  .form-side {
+    flex: 1;
+    max-width: 500px;
+    background: #0c1628;
+    padding: 45px 73px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .form-side h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 26px;
+  }
+
+  /* INPUTS */
+
+  .form-row {
+    display: flex;
+    gap: 14px;
+    /* margin: 0 21px; */
+  }
+
+  .form-group {
+    position: relative;
+    margin-bottom: 20px; */
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 16px 14px;
+    border-radius: 8px;
+    border: 1px solid #1c2a46;
+    background: #111c33;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .form-group label {
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    font-size: 13px;
+    color: #8896b5;
+    transition: 0.2s;
+    background: #0c1628;
+    padding: 0 6px;
+    pointer-events: none;
+  }
+
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group textarea:focus + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: 11px;
+    color: #27c6ff;
+  }
+
+  /* CHECKBOX */
+
+  .checkbox {
+    font-size: 13px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: #a9b7d3;
+  }
+
+  .checkbox a {
+    color: #22d1ff;
+    text-decoration: none;
+  }
+
+  /* BUTTON */
+
+  form button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #2bbcff, #1e6bff);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 140, 255, 0.4);
+  }
+
+  #formMessage {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+  }
+</style>
+<script>
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbyVCB4BA9JA_9OWXKGhUx-KAe7QsnaCGOuzv-ACK5jMPtA8qV3WUVYL5aVByEi2ILKYlg/exec";
+
+  const form = document.getElementById("giveawayForm");
+  const msg = document.getElementById("formMessage");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then((res) => {
+        msg.innerHTML = "✅ Entry Submitted Successfully!";
+        form.reset();
+      })
+      .catch((err) => {
+        msg.innerHTML = "❌ Something went wrong";
+      });
+  });
+</script>
+<!-- ---GiveAway Form End------  -->

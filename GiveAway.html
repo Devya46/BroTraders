@@ -34,25 +34,25 @@
         <div class="bt-ticker">
           <div class="bt-ticker-track">
             <a href="https://lucidtrading.com/ref/brotrading/" target="_blank">
-              Lucid Trading is 50% Off All Accounts! Use Code: BROTRADING
+              Lucid Trading is upto 50% Off All Accounts! Use Code: BROTRADING
             </a>
 
             <a
               href="https://apextraderfunding.com/?keyword=&c=&gclid=&gad_source="
               target="_blank"
             >
-              ✅ Apex Trader Funding is 40% Off & No Fee! Use Code: BRO
+              ✅ Apex Trader Funding is 90% Off! Use Code: BRO
             </a>
 
             <a
               href="https://myfundedfutures.com/challenge?ref=5117"
               target="_blank"
             >
-              💀 20% Off At MyFundedFutures!
+              💀 Upto 50% Off At MyFundedFutures & No Activation fees!
             </a>
 
             <a href="https://tradeify.co/?ref=BFYQ2HKM" target="_blank">
-              🚨 90% Off Tradeify! 1 Day To Pass Use Code: BRO
+              🚨 30% Off Tradeify! MAX 2 Day To Pass Use Code: BRO
             </a>
 
             <!-- duplicate for smooth loop -->
@@ -60,7 +60,8 @@
               href="https://daytraders.com/?keyword=&c=TWCEMMNK&gclid=&gad_source="
               target="_blank"
             >
-              DayTraders.com is 50% Off All Accounts! Use Code: BROTRADING
+              DayTraders.com is 90% Off(Limited Time Offer) All Accounts! Use
+              Code: BROTRADING
             </a>
           </div>
         </div>
@@ -239,12 +240,15 @@
       }
     </style>
     <!-- ================= TOP ANNOUNCEMENT BAR END================= -->
+
     <!-- ================= BRO TRADING HEADER ================= -->
     <header class="bt-header">
       <div class="bt-container">
         <!-- Logo -->
         <div class="bt-logo">
-          <img src="Bro_Traders_logo-removebg-preview.png" alt="Bro Trading" />
+          <a href="index.html"
+            ><img src="Bro_Traders_logo-removebg-preview.png" alt="Bro Trading"
+          /></a>
         </div>
 
         <!-- Navigation -->
@@ -252,6 +256,7 @@
           <!-- Mobile Close Button -->
           <div class="bt-mobile-close" onclick="closeMobileMenu()">✕</div>
 
+          <a href="index.html" class="bt-link">Home</a>
           <!-- Funding Plans -->
           <div class="bt-dropdown">
             <button class="bt-drop-btn" onclick="toggleDropdown('funding')">
@@ -275,13 +280,13 @@
                   <a href="CompareTopFrims/QuickFunding.html"
                     >Quickest Funding</a
                   >
-                  <a href="CompareTopFrims/bestDeals.html">Best Deals</a>
+                  <a href="CompareTopFrims/BestDeals.html">Best Deals</a>
                 </div>
                 <div>
                   <a href="#"><strong>Top Firms :</strong></a>
                   <a href="Frims/ApexFunding.html">Apex Trader Funding</a>
                   <a href="Frims/TradeifyTrader.html">Tradeify</a>
-                  <a href="Frims/Lucid Trading.html">Lucid Trading</a>
+                  <a href="Frims/BluSky Trading.html">Lucid Trading</a>
                   <a href="Frims/MyFundedFuture.html"> My Funded Future</a>
                   <a href="Frims/DayTraders.html">Day Traders.com</a>
                 </div>
@@ -290,16 +295,16 @@
           </div>
 
           <!-- Learn -->
-          <div class="bt-dropdown">
-            <button class="bt-drop-btn" onclick="toggleDropdown('learn')">
-              Learn ▾
-            </button>
-            <div class="bt-drop-menu small" id="learn">
-              <a href="#">Lessons</a>
-              <a href="#">Articles</a>
-              <a href="#">The 2-Hour Trading Day</a>
-            </div>
-          </div>
+          <!-- <div class="bt-dropdown">
+        <button class="bt-drop-btn" onclick="toggleDropdown('learn')">
+          Learn ▾
+        </button>
+        <div class="bt-drop-menu small" id="learn">
+          <a href="#">Lessons</a>
+          <a href="#">Articles</a>
+          <a href="#">The 2-Hour Trading Day</a>
+        </div>
+      </div> -->
 
           <!-- Resources -->
           <div class="bt-dropdown">
@@ -335,15 +340,17 @@
       /* ================= HEADER ================= */
 
       .bt-header {
-        position: sticky;
-        top: 0;
+        position: fixed;
+        top: 40px; /* same as ticker height */
+        left: 0;
         width: 100%;
         z-index: 1000;
-        background: #000; /* Normal state */
+        background: #000;
         transition: all 0.35s ease;
       }
 
       .bt-header.bt-scrolled {
+        top: 0;
         background: rgba(10, 15, 30, 0.75);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
@@ -443,6 +450,12 @@
       .bt-drop-menu a:hover {
         color: #00c2ff;
         padding-left: 5px;
+      }
+      /* ================= HOVER DROPDOWN (DESKTOP ONLY) ================= */
+      @media (min-width: 1025px) {
+        .bt-dropdown:hover .bt-drop-menu {
+          display: block;
+        }
       }
 
       /* ================= CTA ================= */
@@ -578,15 +591,16 @@
     <script>
       function toggleDropdown(id) {
         const menu = document.getElementById(id);
-        const isActive = menu.classList.contains("active");
 
+        // Close ALL dropdowns first
         document.querySelectorAll(".bt-drop-menu").forEach((m) => {
-          m.classList.remove("active");
+          if (m.id !== id) {
+            m.classList.remove("active");
+          }
         });
 
-        if (!isActive) {
-          menu.classList.add("active");
-        }
+        // Toggle clicked one
+        menu.classList.toggle("active");
       }
 
       function toggleMobileMenu() {
@@ -607,8 +621,20 @@
       window.addEventListener("scroll", () => {
         header.classList.toggle("bt-scrolled", window.scrollY > 50);
       });
+      // Close other dropdowns on hover (desktop only)
+      if (window.innerWidth > 1024) {
+        document.querySelectorAll(".bt-dropdown").forEach((dropdown) => {
+          dropdown.addEventListener("mouseenter", function () {
+            const activeMenu = document.querySelector(".bt-drop-menu.active");
+            if (activeMenu && !this.contains(activeMenu)) {
+              activeMenu.classList.remove("active");
+            }
+          });
+        });
+      }
     </script>
     <!-- ================= HEADER END ================= -->
+
     <!-- ========== BEST DEALS HERO SECTION ========== -->
     <section class="comparison-hero">
       <div class="comparison-container">
@@ -656,7 +682,7 @@
         background:
           radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
           linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
-        padding: 40px 8%;
+        padding: 120px 8%;
         color: white;
       }
 
@@ -809,90 +835,103 @@
     </style>
     <!-- ========== BEST DEALS HERO SECTION END ========== -->
 
-    <!-- ========== Premium Giveaway Section ========== -->
-    <section class="best-deals-hero premium-combined">
-      <div class="best-deals-content">
-        <!-- LEFT SIDE - WINNER ANNOUNCEMENT -->
-        <div class="winner-side">
-          <div class="winner-badge">🏆 Latest Winner</div>
+    <!-- ---GiveAway Form------  -->
+    <section class="giveaway-section">
+      <div class="giveaway-container">
+        <!-- LEFT SIDE -->
 
-          <h1>Congratulations, Daniel!</h1>
+        <div class="winner-side">
+          <span class="winner-badge">🏆 Latest Winner</span>
+
+          <h1>Congratulations,<br /><span id="winnerName">Daniel</span>!</h1>
 
           <p class="winner-text">
-            Last time, <strong>Daniel</strong> won our premium access and is now
-            enjoying exclusive tools, deeper insights, and smarter decisions.
+            Daniel joined our giveaway and secured premium access to exclusive
+            trading tools, advanced insights, and smarter market opportunities.
           </p>
 
           <p class="winner-highlight">
-            The next winner could be <strong>YOU</strong>. Try your luck — it
-            takes just a few seconds.
+            The next winner could be YOU. <br />
+            Enter now — it takes only a few seconds.
           </p>
 
-          <a href="https://wheelofnames.com/" target="_blank" class="spin-btn">
-            See How We Pick Winners →
-          </a>
+          <div class="giveaway-info">
+            <div class="info-item">
+              <span class="info-icon">📜</span>
+              <span
+                >Terms & Conditions apply •
+                <a href="More/Term&Conditions.html">View Terms</a></span
+              >
+            </div>
 
-          <div class="trust-note">
-            🎯 Winners are selected transparently using a random draw.
+            <div class="info-item">
+              <span class="info-icon">🎯</span>
+              <span
+                >Winners are selected through a transparent random draw.</span
+              >
+            </div>
           </div>
         </div>
 
-        <!-- RIGHT SIDE - FORM (UNCHANGED) -->
-        <div class="giveaway-card">
+        <!-- RIGHT SIDE FORM -->
+
+        <div class="form-side">
           <h2>Enter The Giveaway</h2>
 
           <form id="giveawayForm">
             <div class="form-row">
-              <input type="text" placeholder="First Name" required />
-              <input type="text" placeholder="Last Name" required />
+              <div class="form-group">
+                <input type="text" name="name" placeholder=" " required />
+                <label>Name</label>
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="username" placeholder=" " required />
+                <label>Username</label>
+              </div>
             </div>
 
-            <input type="email" placeholder="Email Address" required />
+            <div class="form-group">
+              <input type="email" name="email" placeholder=" " required />
+              <label>Email Address</label>
+            </div>
 
-            <label class="checkbox-container">
-              <input type="checkbox" id="marketingCheck" />
-              <span>
-                I agree to receive recurring automated marketing messages.
-              </span>
+            <div class="form-group">
+              <textarea name="message" rows="4" placeholder=" "></textarea>
+              <label>Your Thoughts (Optional)</label>
+            </div>
+
+            <label class="checkbox">
+              <input type="checkbox" required />
+              I agree to the <a href="#">Terms & Conditions</a>
             </label>
 
-            <label class="checkbox-container">
-              <input type="checkbox" id="rulesCheck" />
-              <span>
-                By checking this box, you acknowledge and consent to all rules.
-              </span>
-            </label>
-
-            <button type="submit" id="submitBtn" disabled>
-              Secure My Entry →
-            </button>
+            <button type="submit">Secure My Entry →</button>
           </form>
+
+          <p id="formMessage"></p>
         </div>
       </div>
     </section>
-
     <style>
-      /* ===== Section Layout ===== */
-      .premium-combined {
+      .giveaway-section {
         padding: 100px 20px;
-        background:
-          radial-gradient(circle at top left, #1e40af 0%, transparent 50%),
-          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
-        color: #ffffff;
-        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #06142e, #010914);
+        color: #fff;
+        font-family: Inter, sans-serif;
       }
 
-      .best-deals-content {
-        max-width: 1300px;
+      .giveaway-container {
+        max-width: 1200px;
         margin: auto;
         display: flex;
+        gap: 70px;
         align-items: center;
-        justify-content: space-between;
-        gap: 60px;
         flex-wrap: wrap;
       }
 
-      /* ===== LEFT WINNER SIDE ===== */
+      /* LEFT SIDE */
+
       .winner-side {
         flex: 1;
         min-width: 320px;
@@ -910,179 +949,1006 @@
       }
 
       .winner-side h1 {
-        font-size: clamp(36px, 5vw, 60px);
-        font-weight: 800;
+        font-size: 58px;
+        line-height: 1.2;
         margin-bottom: 20px;
+      }
+
+      .winner-side span {
+        /* color: #28c8ff; */
       }
 
       .winner-text {
-        font-size: 18px;
-        line-height: 1.6;
+        color: #b7c3db;
         margin-bottom: 20px;
-        opacity: 0.9;
+        line-height: 1.6;
+        font-size: 20px;
       }
 
       .winner-highlight {
-        font-size: 20px;
+        color: #22d1ff;
         font-weight: 600;
-        margin-bottom: 30px;
-        color: #00c2ff;
+        margin-bottom: 20px;
+        font-size: 20px;
       }
 
-      .trust-note {
-        margin-top: 20px;
-        font-size: 14px;
-        opacity: 0.7;
-      }
-
-      /* ===== RIGHT FORM CARD ===== */
-      .giveaway-card {
-        flex: 1;
-        min-width: 350px;
-        padding: 40px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 0 40px rgba(0, 150, 255, 0.2);
-      }
-
-      .giveaway-card h2 {
-        text-align: center;
-        margin-bottom: 25px;
-      }
-
-      #giveawayForm {
+      .giveaway-info {
+        margin-top: 34px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 0px;
+        font-style: italic;
       }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #a9bbd9;
+      }
+
+      .info-icon {
+        font-size: 16px;
+      }
+
+      .info-item a {
+        color: #29c5ff;
+        text-decoration: none;
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      .info-item a:hover {
+        text-decoration: none;
+      }
+
+      /* FORM */
+
+      .form-side {
+        flex: 1;
+        max-width: 500px;
+        background: #0c1628;
+        padding: 45px 73px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .form-side h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 26px;
+      }
+
+      /* INPUTS */
 
       .form-row {
         display: flex;
-        gap: 15px;
+        gap: 14px;
+        /* margin: 0 21px; */
       }
 
-      .form-row input {
-        flex: 1;
+      .form-group {
+        position: relative;
+        margin-bottom: 20px; */
+        width: 100%;
       }
 
-      #giveawayForm input {
-        padding: 14px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        background: rgba(255, 255, 255, 0.08);
-        color: #ffffff;
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 16px 14px;
+        border-radius: 8px;
+        border: 1px solid #1c2a46;
+        background: #111c33;
+        color: #fff;
+        font-size: 14px;
         outline: none;
       }
 
-      #giveawayForm input:focus {
-        border-color: #00c2ff;
-        box-shadow: 0 0 12px rgba(0, 194, 255, 0.6);
-      }
-
-      .checkbox-container {
-        display: flex;
-        gap: 10px;
+      .form-group label {
+        position: absolute;
+        left: 12px;
+        top: 14px;
         font-size: 13px;
+        color: #8896b5;
+        transition: 0.2s;
+        background: #0c1628;
+        padding: 0 6px;
+        pointer-events: none;
       }
 
-      #submitBtn {
-        padding: 15px;
+      .form-group input:focus + label,
+      .form-group input:not(:placeholder-shown) + label,
+      .form-group textarea:focus + label,
+      .form-group textarea:not(:placeholder-shown) + label {
+        top: -8px;
+        font-size: 11px;
+        color: #27c6ff;
+      }
+
+      /* CHECKBOX */
+
+      .checkbox {
+        font-size: 13px;
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+        color: #a9b7d3;
+      }
+
+      .checkbox a {
+        color: #22d1ff;
+        text-decoration: none;
+      }
+
+      /* BUTTON */
+
+      form button {
+        width: 100%;
+        padding: 16px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #2bbcff, #1e6bff);
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 140, 255, 0.4);
+      }
+
+      #formMessage {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbyVCB4BA9JA_9OWXKGhUx-KAe7QsnaCGOuzv-ACK5jMPtA8qV3WUVYL5aVByEi2ILKYlg/exec";
+
+      const form = document.getElementById("giveawayForm");
+      const msg = document.getElementById("formMessage");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        fetch(scriptURL, {
+          method: "POST",
+          body: new FormData(form),
+        })
+          .then((res) => {
+            msg.innerHTML = "✅ Entry Submitted Successfully!";
+            form.reset();
+          })
+          .catch((err) => {
+            msg.innerHTML = "❌ Something went wrong";
+          });
+      });
+    </script>
+    <!-- ---GiveAway Form End------  -->
+    <!-- =====GiveAway wheel Section=====  -->
+    <section class="giveaway-wheel-demo">
+      <div class="wheel-grid">
+        <!-- LEFT SIDE WHEEL -->
+
+        <div class="wheel-area">
+          <h3 class="wheel-title">Spin The Giveaway Wheel</h3>
+
+          <p class="wheel-sub">
+            See how winners are randomly selected — try your luck!
+          </p>
+
+          <div class="wheel-wrapper">
+            <div class="pointer"></div>
+
+            <canvas id="wheelCanvas" width="420" height="420"></canvas>
+
+            <button id="spinBtn">TRY YOUR LUCK</button>
+          </div>
+
+          <p class="wheel-note">
+            Demo wheel for showcase purposes. Official winners are selected from
+            all valid entries.
+          </p>
+        </div>
+
+        <!-- RIGHT SIDE CONTENT -->
+
+        <div class="wheel-content">
+          <h2>🎁 Try Your Luck In Our Giveaway</h2>
+
+          <p class="wheel-lead">
+            Join hundreds of traders already entered in our giveaway. Every
+            valid entry gets a chance to win exclusive trading perks.
+          </p>
+
+          <ul class="wheel-benefits">
+            <li>🎯 Winners selected through a transparent random draw</li>
+
+            <li>🚀 Open to all registered traders</li>
+
+            <li>🏆 Win exclusive trading tools & resources</li>
+
+            <li>⚡ Takes less than 30 seconds to enter</li>
+          </ul>
+
+          <p class="wheel-note2">
+            While we prepare the next winner draw, you can explore and compare
+            the best prop trading firms available right now.
+          </p>
+
+          <a href="#Compare-Top-frims-Section" class="compare-btn">
+            Compare Top Trading Firms ↓
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* SECTION BACKGROUND */
+
+      .giveaway-wheel-demo {
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #020617, #000814);
+        color: white;
+        font-family: Inter, sans-serif;
+      }
+
+      /* GRID LAYOUT */
+
+      .wheel-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        max-width: 1200px;
+        margin: auto;
+        align-items: center;
+      }
+
+      /* WHEEL SIDE */
+
+      .wheel-area {
+        text-align: center;
+      }
+
+      .wheel-title {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      .wheel-sub {
+        color: #9fb2d9;
+        margin-bottom: 55px;
+        font-size: 15px;
+      }
+
+      /* WHEEL WRAPPER */
+
+      .wheel-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+      }
+
+      /* WHEEL */
+
+      #wheelCanvas {
+        display: block;
+        border-radius: 50%;
+
+        box-shadow:
+          0 0 0 10px #071b38,
+          0 0 50px rgba(0, 0, 0, 0.7),
+          0 0 70px rgba(0, 140, 255, 0.25);
+      }
+
+      /* POINTER */
+
+      .pointer {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 0;
+        height: 0;
+
+        border-left: 18px solid transparent;
+        border-right: 18px solid transparent;
+        border-top: 28px solid #00caff;
+
+        z-index: 10;
+
+        /* filter: drop-shadow(0 0 10px #22d1ff); */
+      }
+
+      /* SPIN BUTTON */
+
+      #spinBtn {
+        padding: 14px 42px;
+        border: none;
         border-radius: 12px;
+        background: linear-gradient(90deg, #2bbcff, #1e6bff);
+        color: white;
         font-size: 16px;
         font-weight: 600;
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        color: white;
-        border: none;
-        cursor: not-allowed;
-        opacity: 0.6;
-        transition: all 0.25s ease;
-        box-shadow:
-          0 6px 0 #0b5ed7,
-          0 12px 20px rgba(0, 194, 255, 0.4);
-      }
-
-      #submitBtn.active {
         cursor: pointer;
-        opacity: 1;
+        transition: 0.25s;
+        /* box-shadow: 0 12px 30px rgba(0, 140, 255, 0.35); */
+        margin-top: 20px;
       }
 
-      #submitBtn.active:hover {
-        background: white;
-        color: #0b0f2a;
-        border: 3px solid #00c2ff;
-        transform: translateY(2px);
+      #spinBtn:hover {
+        transform: translateY(-3px);
+        /* box-shadow: 0 16px 40px rgba(0, 140, 255, 0.45); */
       }
 
-      /* ===== CTA BUTTON ===== */
-      .spin-btn {
+      /* WHEEL NOTE */
+
+      .wheel-note {
+        margin-top: 45px;
+        font-size: 13px;
+        color: #7f93bd;
+      }
+
+      /* TEXT SIDE */
+
+      .wheel-content h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      /* DESCRIPTION */
+
+      .wheel-lead {
+        color: #9fb2d9;
+        margin-bottom: 25px;
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      /* BENEFITS */
+
+      .wheel-benefits {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0;
+      }
+
+      .wheel-benefits li {
+        margin-bottom: 14px;
+        font-size: 16px;
+        color: #c3d4f5;
+      }
+
+      /* EXTRA TEXT */
+
+      .wheel-note2 {
+        margin-top: 20px;
+        color: #c3d4f5;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* COMPARE BUTTON */
+
+      .compare-btn {
         display: inline-block;
-        padding: 15px 28px;
+        margin-top: 25px;
+        padding: 16px 34px;
+
+        background: linear-gradient(90deg, #2bbcff, #1e6bff);
+
         border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+
         color: white;
-        transition: all 0.25s ease;
-        box-shadow:
-          0 6px 0 #0b5ed7,
-          0 12px 20px rgba(0, 194, 255, 0.4);
+        text-decoration: none;
+
+        font-weight: 600;
+        font-size: 16px;
+
+        /* box-shadow: 0 12px 30px rgba(0, 140, 255, 0.35); */
+
+        transition: 0.25s;
       }
 
-      .spin-btn:hover {
-        background: white;
-        color: #0b0f2a;
-        border: 3px solid #00c2ff;
-        transform: translateY(2px);
+      .compare-btn:hover {
+        transform: translateY(-3px);
+        /* box-shadow: 0 16px 40px rgba(0, 140, 255, 0.45); */
       }
 
-      /* ===== MOBILE ===== */
-      @media (max-width: 992px) {
-        .best-deals-content {
-          flex-direction: column;
+      /* RESPONSIVE */
+
+      @media (max-width: 900px) {
+        .wheel-grid {
+          grid-template-columns: 1fr;
+          gap: 60px;
           text-align: center;
         }
+      }
+    </style>
+    <script>
+      const sheetURL =
+        "https://script.google.com/macros/s/AKfycbyVCB4BA9JA_9OWXKGhUx-KAe7QsnaCGOuzv-ACK5jMPtA8qV3WUVYL5aVByEi2ILKYlg/exec";
 
-        .form-row {
-          flex-direction: column;
+      /* DEMO NAMES (SOCIAL PROOF) */
+
+      const demoNames = [
+        "Alex",
+        "Jordan",
+        "Mike",
+        "Sophia",
+        "Ethan",
+        "Olivia",
+        "Daniel",
+        "Devya",
+      ];
+
+      let names = [...demoNames];
+
+      let startAngle = 0;
+      let arc;
+
+      let spinTimeout = null;
+      let spinAngleStart;
+      let spinTime = 0;
+      let spinTimeTotal = 0;
+
+      const canvas = document.getElementById("wheelCanvas");
+      const ctx = canvas.getContext("2d");
+
+      /* LOAD NAMES FROM GOOGLE SHEET */
+
+      async function loadSheetNames() {
+        try {
+          const res = await fetch(sheetURL);
+          const sheetNames = await res.json();
+
+          /* merge demo + sheet names */
+
+          let combined = [...demoNames, ...sheetNames];
+
+          /* limit wheel size for readability */
+
+          combined = combined.slice(-15);
+
+          if (combined.length !== names.length) {
+            names = combined;
+
+            arc = Math.PI / (names.length / 2);
+
+            ctx.clearRect(0, 0, 420, 420);
+
+            drawWheel();
+          }
+        } catch (e) {
+          console.log("Sheet fetch error");
+        }
+      }
+
+      /* DRAW WHEEL */
+
+      function drawWheel() {
+        for (let i = 0; i < names.length; i++) {
+          const angle = startAngle + i * arc;
+
+          ctx.fillStyle = i % 2 ? "#2bbcff" : "#1e6bff";
+
+          ctx.beginPath();
+
+          ctx.arc(210, 210, 200, angle, angle + arc, false);
+          ctx.arc(210, 210, 0, angle + arc, angle, true);
+
+          ctx.fill();
+
+          ctx.save();
+
+          ctx.fillStyle = "#fff";
+
+          ctx.translate(210, 210);
+
+          ctx.rotate(angle + arc / 2);
+
+          ctx.font = "bold 16px Arial";
+
+          ctx.textAlign = "right";
+          ctx.fillText(names[i], 180, 5);
+
+          ctx.restore();
+        }
+      }
+
+      /* SPIN BUTTON */
+
+      document.getElementById("spinBtn").onclick = function () {
+        spinAngleStart = Math.random() * 10 + 10;
+
+        spinTime = 0;
+
+        spinTimeTotal = Math.random() * 3000 + 4000;
+
+        rotateWheel();
+      };
+
+      /* ROTATE */
+
+      function rotateWheel() {
+        spinTime += 30;
+
+        if (spinTime >= spinTimeTotal) {
+          stopRotateWheel();
+
+          return;
+        }
+
+        const spinAngle =
+          spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+
+        startAngle += (spinAngle * Math.PI) / 180;
+
+        ctx.clearRect(0, 0, 420, 420);
+
+        drawWheel();
+
+        spinTimeout = setTimeout(rotateWheel, 30);
+      }
+
+      /* STOP */
+
+      function stopRotateWheel() {
+        const degrees = (startAngle * 180) / Math.PI + 90;
+
+        const arcd = (arc * 180) / Math.PI;
+
+        const index = Math.floor((360 - (degrees % 360)) / arcd);
+
+        alert("🎉 Winner: " + names[index]);
+      }
+
+      /* EASING */
+
+      function easeOut(t, b, c, d) {
+        const ts = (t /= d) * t;
+
+        const tc = ts * t;
+
+        return b + c * (tc + -3 * ts + 3 * t);
+      }
+
+      /* INITIAL DRAW */
+
+      arc = Math.PI / (names.length / 2);
+
+      drawWheel();
+
+      /* LOAD SHEET NAMES */
+
+      loadSheetNames();
+
+      /* AUTO UPDATE WHEEL */
+
+      setInterval(loadSheetNames, 5000);
+    </script>
+    <!-- =====GiveAway wheel Section END=====  -->
+
+    <!-- ================== CTF Compare Top Firm Section ================== -->
+    <section class="ctf-compare-vault" id="Compare-Top-frims-Section">
+      <div class="ctf-compare-header">
+        <h2>Compare Top Firms</h2>
+
+        <div class="ctf-compare-nav">
+          <button class="ctf-nav-btn ctf-prev" id="ctfPrev">&#10094;</button>
+          <button class="ctf-nav-btn ctf-next" id="ctfNext">&#10095;</button>
+        </div>
+      </div>
+
+      <div class="ctf-slider-shell" id="ctfSlider">
+        <div class="ctf-slider-track">
+          <!-- KEEP ALL YOUR CARDS SAME -->
+
+          <!-- Card 1 -->
+          <a href="CompareTopFrims/comparison.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/?size=100&id=110187&format=png&color=000000"
+              />
+            </div>
+            <h3>Firm Comparison</h3>
+            <p>
+              Compare top prop firms instantly — discover rules, pricing, and
+              payouts.
+            </p>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="CompareTopFrims/bestDeals.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/?size=100&id=117333&format=png&color=000000"
+              />
+            </div>
+            <h3>Best Deals</h3>
+            <p>
+              Unlock the best prop firm deals — exclusive discounts and offers.
+            </p>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="CompareTopFrims/StartCost.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img src="https://img.icons8.com/fluency/96/00c2ff/play.png" />
+            </div>
+            <h3>Starting Costs</h3>
+            <p>Find the lowest starting costs fast.</p>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="CompareTopFrims/TrueCost.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/fluency/96/00c2ff/bank-card-back-side.png"
+              />
+            </div>
+            <h3>True Cost</h3>
+            <p>See the real price of getting funded.</p>
+          </a>
+
+          <!-- Card 5 -->
+          <a href="CompareTopFrims/Drawdown.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img
+                src="https://img.icons8.com/fluency/96/00c2ff/combo-chart--v1.png"
+              />
+            </div>
+            <h3>Largest Drawdown</h3>
+            <p>Compare firms by drawdown limits.</p>
+          </a>
+
+          <!-- Card 6 -->
+          <a href="CompareTopFrims/QuickFunding.html" class="ctf-compare-card">
+            <div class="ctf-card-icon">
+              <img src="https://img.icons8.com/fluency/96/00c2ff/rocket.png" />
+            </div>
+            <h3>Quickest Funding</h3>
+            <p>Discover the quickest funding paths.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ===== DESKTOP (UNCHANGED) ===== */
+      .ctf-compare-vault {
+        padding: 80px 7%;
+        color: white;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        overflow: hidden;
+      }
+
+      .ctf-compare-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+      }
+
+      .ctf-compare-header h2 {
+        font-size: 42px;
+        /* font-family: "DM Mono", monospace; */
+      }
+
+      .ctf-compare-nav {
+        display: flex;
+        gap: 12px;
+      }
+      .ctf-compare-card h3 {
+        padding: 10px;
+      }
+
+      .ctf-nav-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: #fff;
+        transition: 0.3s;
+      }
+
+      .ctf-nav-btn.disabled {
+        background: #111;
+        color: #555;
+        cursor: not-allowed;
+      }
+
+      /* ===== SLIDER ===== */
+      .ctf-slider-shell {
+        overflow: hidden;
+      }
+
+      .ctf-slider-track {
+        display: flex;
+        gap: 30px;
+      }
+
+      .ctf-compare-card {
+        min-width: 298px;
+        padding: 41px 28px 30px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        background: #0000005c;
+        text-align: center;
+      }
+
+      /* ================= MOBILE ONLY ================= */
+      @media (max-width: 900px) {
+        .ctf-compare-header {
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .ctf-compare-header h2 {
+          font-size: 26px;
+        }
+
+        /* Enable normal horizontal scroll */
+        .ctf-slider-shell {
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .ctf-slider-shell::-webkit-scrollbar {
+          display: none;
+        }
+
+        .ctf-slider-track {
+          gap: 10px;
+        }
+
+        .ctf-compare-card {
+          min-width: 100%;
+          scroll-snap-align: start;
         }
       }
     </style>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const marketingCheck = document.getElementById("marketingCheck");
-        const rulesCheck = document.getElementById("rulesCheck");
-        const submitBtn = document.getElementById("submitBtn");
-        const form = document.getElementById("giveawayForm");
+      const shell = document.getElementById("ctfSlider");
+      const prevBtn = document.getElementById("ctfPrev");
+      const nextBtn = document.getElementById("ctfNext");
 
-        function validateCheckboxes() {
-          if (marketingCheck.checked && rulesCheck.checked) {
-            submitBtn.disabled = false;
-            submitBtn.classList.add("active");
-          } else {
-            submitBtn.disabled = true;
-            submitBtn.classList.remove("active");
-          }
+      function updateButtons() {
+        const maxScroll = shell.scrollWidth - shell.clientWidth;
+
+        prevBtn.classList.toggle("disabled", shell.scrollLeft <= 5);
+        nextBtn.classList.toggle("disabled", shell.scrollLeft >= maxScroll - 5);
+      }
+
+      nextBtn.addEventListener("click", () => {
+        shell.scrollBy({ left: shell.clientWidth, behavior: "smooth" });
+      });
+
+      prevBtn.addEventListener("click", () => {
+        shell.scrollBy({ left: -shell.clientWidth, behavior: "smooth" });
+      });
+
+      shell.addEventListener("scroll", updateButtons);
+      window.addEventListener("resize", updateButtons);
+
+      updateButtons();
+    </script>
+    <!-- ==================CTF Compare Top Firm Section END ================== -->
+
+    <!-- =========== Youtube Section ========= -->
+    <section class="yt-hero">
+      <div class="yt-container">
+        <!-- LEFT -->
+        <div class="yt-content">
+          <h2>
+            Trade Live With <br />
+            BroTrading
+          </h2>
+
+          <p>Live Futures Trading Sessions</p>
+          <p>Market Breakdown • Strategy Execution • Real-Time Entries</p>
+          <p>Join Our Community of Serious Traders</p>
+
+          <a
+            href="https://m.youtube.com/@Brotradingz"
+            target="_blank"
+            class="yt-btn"
+          >
+            Subscribe on YouTube
+          </a>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="yt-media">
+          <div class="yt-video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/KXO67YQ-ous"
+              title="BroTradingz Live Trading"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .yt-hero {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        padding: 70px 6%;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: #ffffff;
+      }
+
+      .yt-container {
+        max-width: 1400px;
+        width: 93%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+      }
+
+      /* LEFT SIDE */
+
+      .yt-content {
+        flex: 1;
+        max-width: 550px;
+      }
+
+      .yt-content h2 {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        /* font-family: "DM Mono", monospace; */
+      }
+
+      .yt-content p {
+        font-size: 18px;
+        color: #d1d5db;
+        margin-bottom: 12px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* BUTTON */
+
+      .yt-btn {
+        display: inline-block;
+        padding: 14px 36px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .yt-btn:hover {
+        background: #ffffff;
+        color: #0b0f2a;
+        border: 2px solid #00c2ff;
+      }
+
+      /* RIGHT SIDE (VIDEO) */
+
+      .yt-media {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .yt-video-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 650px;
+        padding-top: 56.25%;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .yt-video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      @media (max-width: 992px) {
+        .yt-hero {
+          min-height: auto;
+          padding: 60px 20px;
         }
 
-        marketingCheck.addEventListener("change", validateCheckboxes);
-        rulesCheck.addEventListener("change", validateCheckboxes);
+        .yt-container {
+          flex-direction: column;
+          text-align: center;
+          gap: 35px;
+        }
 
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Form Submitted Successfully!");
-        });
-      });
-    </script>
-    <!-- ========== Premium Giveaway Section END ========== -->
+        .yt-media {
+          order: -1;
+        }
+
+        .yt-video-wrapper {
+          max-width: 100%;
+          border-radius: 16px;
+        }
+
+        .yt-content h2 {
+          font-size: 30px;
+          line-height: 1.25;
+        }
+
+        .yt-content p {
+          font-size: 15px;
+        }
+
+        .yt-btn {
+          padding: 12px 28px;
+          font-size: 14px;
+        }
+      }
+
+      /* SMALL PHONES */
+
+      @media (max-width: 480px) {
+        .yt-content h2 {
+          font-size: 24px;
+        }
+
+        .yt-content p {
+          font-size: 14px;
+        }
+      }
+    </style>
+    <!-- ============ Youtube section END=======  -->
 
     <!-- ================= BRO TRADING FOOTER ================= -->
     <footer class="bt-footer">
       <div class="bt-footer-container">
-        <!-- Column 1 : Brand -->
-        <div class="bt-footer-col bt-footer-brand">
+        <!-- Brand -->
+        <div class="bt-footer-brand">
           <img
             src="Bro_Traders_logo-removebg-preview.png"
             alt="Bro Trading"
@@ -1092,64 +1958,47 @@
             Bro Trading is a premium trading resource platform helping traders
             compare Bro Tradings, improve skills, and scale profitably.
           </p>
-        </div>
 
-        <!-- Column Group 2 & 3 -->
-        <div class="bt-footer-stack">
-          <div class="bt-footer-col">
-            <h4>Bro Trading Finder</h4>
-            <a href="CompareTopFrims/comparison.html">Bro Trading Comparison</a>
-            <a href="CompareTopFrims/TrueCost.html">True Cost to Funding</a>
-            <a href="CompareTopFrims/StartCost.html"
-              >Bro Trading Starting Costs</a
-            >
-            <a href="CompareTopFrims/Drawdown.html">Largest Drawdown</a>
-            <a href="CompareTopFrims/QuickFunding.html">Quickest Funding</a>
-            <a href="CompareTopFrims/BestDeals.html">Best Deals</a>
-          </div>
-
-          <div class="bt-footer-col bt-mt">
-            <h4>Learn</h4>
-            <a href="#">Lessons</a>
-            <a href="#">Articles</a>
-            <a href="#">The 2-Hour Trading Day</a>
+          <!-- Social Icons -->
+          <div class="bt-social-icons">
+            <a href="https://m.youtube.com/@Brotradingz" target="_blank">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
 
-        <!-- Column Group 4 & 5 -->
-        <div class="bt-footer-stack">
-          <div class="bt-footer-col">
-            <h4>Bro Tradings</h4>
-            <a href="Frims/ApexFunding.html">Apex Trader Funding</a>
-            <a href="Frims/TradeifyTrader.html">Tradeify</a>
-            <a href="Frims/Lucid Trading.html">Lucid Trading</a>
-            <a href="Frims/MyFundedFuture.html">My Funded Futures</a>
-            <a href="Frims/DayTrader.html">Day Trader</a>
-          </div>
-
-          <div class="bt-footer-col bt-mt">
-            <h4>Resources</h4>
-            <a href="Resourses/MarketAnalysis.html">Market Analysis</a>
-            <a href="Resourses/TradingTools.html">Trading Tools</a>
-          </div>
+        <!-- Column 1 -->
+        <div class="bt-footer-col">
+          <h4>Bro Trading Finder</h4>
+          <a href="CompareTopFrims/comparison.html">Top Frims Comparison</a>
+          <a href="CompareTopFrims/TrueCost.html">True Cost to Funding</a>
+          <a href="CompareTopFrims/StartCost.html">Starting Costs</a>
+          <a href="CompareTopFrims/Drawdown.html">Largest Drawdown</a>
+          <a href="CompareTopFrims/QuickFunding.html">Quickest Funding</a>
+          <a href="CompareTopFrims/BestDeals.html">Best Deals</a>
         </div>
 
-        <!-- Column Group 6 & 7 -->
-        <div class="bt-footer-stack">
-          <div class="bt-footer-col">
-            <h4>Follow Us</h4>
-            <a href="https://m.youtube.com/@Brotradingz">YouTube</a>
-            <a href="#">X</a>
-            <a href="#">Instagram</a>
-          </div>
+        <!-- Column 2 -->
+        <div class="bt-footer-col">
+          <h4>Resources</h4>
+          <a href="Resourses/MarketAnalysis.html">Market Analysis</a>
+          <a href="Resourses/TradingTools.html">Trading Tools</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy / Terms</a>
+          <a href="#">Refund Policy</a>
+        </div>
 
-          <div class="bt-footer-col bt-mt">
-            <h4>More</h4>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-            <a href="#">Privacy / Terms</a>
-            <a href="#">Refund Policy</a>
-          </div>
+        <!-- Column 3 -->
+        <div class="bt-footer-col bt-resources">
+          <h4>Bro Tradings Frims</h4>
+          <a href="Frims/ApexFunding.html">Apex Trader Funding</a>
+          <a href="Frims/TradeifyTrader.html">Tradeify</a>
+          <a href="Frims/Lucid Trading.html">Lucid Trading</a>
+          <a href="Frims/MyFundedFuture.html">My Funded Futures</a>
+          <a href="Frims/DayTrader.html">Day Trader</a>
         </div>
       </div>
 
@@ -1158,56 +2007,76 @@
       </div>
     </footer>
 
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <style>
       .bt-footer {
         background: #000;
         color: #fff;
-        padding: 100px 20px 40px;
+        padding: 52px 20px 40px;
       }
 
       .bt-footer-container {
         max-width: 1250px;
         margin: auto;
         display: grid;
-        grid-template-columns: 1.6fr 1fr 1fr 1fr;
-        gap: 70px;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 80px;
       }
 
-      /* Brand Column */
-      .bt-footer-brand {
-        max-width: 320px;
-      }
-
+      /* Brand */
       .bt-footer-logo {
-        width: 160px;
-        margin-bottom: 20px;
+        width: 170px;
+        margin-bottom: 25px;
       }
 
       .bt-footer-text {
         color: #9ca3af;
         font-size: 14px;
-        line-height: 1.7;
+        line-height: 1.8;
+        margin-bottom: 25px;
       }
 
-      /* Stack Groups */
-      .bt-footer-stack {
+      /* Social Icons */
+      .bt-social-icons {
         display: flex;
-        flex-direction: column;
+        gap: 18px;
       }
 
-      .bt-mt {
-        margin-top: 45px;
+      .bt-social-icons a {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #111;
+        border-radius: 50%;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-size: 16px;
       }
 
-      /* Headings */
+      .bt-social-icons a:hover {
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        transform: translateY(-4px);
+      }
+
+      /* Columns */
       .bt-footer-col h4 {
         font-size: 16px;
         margin-bottom: 22px;
         font-weight: 600;
-        color: #fff;
+      }
+      .bt-footer-col {
+        margin-top: 37px;
+        padding: 0;
+        margin-left: -1px;
       }
 
-      /* Links */
       .bt-footer-col a {
         display: block;
         color: #9ca3af;
@@ -1233,7 +2102,6 @@
       }
 
       /* ================= TABLET ================= */
-
       @media (max-width: 1024px) {
         .bt-footer-container {
           grid-template-columns: repeat(2, 1fr);
@@ -1243,12 +2111,15 @@
         .bt-footer-brand {
           grid-column: span 2;
           text-align: center;
-          max-width: 100%;
         }
 
-        .bt-footer-text {
-          margin: auto;
-          max-width: 500px;
+        .bt-social-icons {
+          justify-content: center;
+        }
+        .bt-resources {
+          grid-column: span 2;
+          text-align: center;
+          margin-top: -15px;
         }
       }
 
@@ -1260,47 +2131,31 @@
 
         .bt-footer-container {
           grid-template-columns: repeat(2, 1fr);
-          gap: 31px 0px;
+          gap: 35px;
           text-align: center;
-          margin-bottom: -65px;
         }
 
-        /* Brand full width */
         .bt-footer-brand {
           grid-column: span 2;
-          text-align: center;
         }
 
         .bt-footer-logo {
-          width: 140px;
           margin: 0 auto 20px;
           display: block;
         }
 
         .bt-footer-text {
-          margin: 0 auto;
+          margin: auto;
           max-width: 320px;
         }
 
-        /* Remove stacking wrapper */
-        .bt-footer-stack {
-          display: contents;
+        .bt-social-icons {
+          justify-content: center;
         }
-
-        .bt-mt {
-          margin-top: 0;
-        }
-
-        /* Center headings */
-        .bt-footer-col h4 {
-          font-size: 15px;
-          margin-bottom: 18px;
-        }
-
-        /* Center links */
-        .bt-footer-col a {
-          font-size: 13px;
-          margin-bottom: 10px;
+        .bt-resources {
+          grid-column: span 2;
+          text-align: center;
+          margin-top: -15px;
         }
       }
     </style>

@@ -461,6 +461,7 @@
         font-weight: 600;
         letter-spacing: 0.5px;
         transition: 0.3s ease;
+
         /* box-shadow: 0 0 15px rgba(0, 194, 255, 0.5); */
       }
 
@@ -468,6 +469,7 @@
         transform: translateY(-3px);
         background: white;
         color: #0b0f2a;
+        border: 3px solid #00c2ff;
       }
 
       /* ================= HAMBURGER ================= */
@@ -638,10 +640,13 @@
         <!-- LEFT INFO -->
         <div class="firm-left">
           <div class="firm-logo">
-            <img
-              src="https://onlypropfirms.com/wp-content/uploads/2025/07/dt_logo3.svg"
-              alt="Day Traders Logo"
-            />
+            <a
+              href="https://daytraders.com/?keyword=&c=TWCEMMNK&gclid=&gad_source="
+              target="_blank"
+              ><img
+                src="https://onlypropfirms.com/wp-content/uploads/2025/07/dt_logo3.svg"
+                alt="Day Traders Logo"
+            /></a>
           </div>
 
           <div class="firm-details">
@@ -651,11 +656,11 @@
             <div class="firm-meta">
               <div>
                 <span>CEO</span>
-                <strong>Brett Simberkoff</strong>
+                <strong>Leo Riot</strong>
               </div>
               <div>
                 <span>Country</span>
-                <strong><img src="https://flagcdn.com/w80/us.png" />US</strong>
+                <strong><img src="https://flagcdn.com/w80/us.png" /> US</strong>
               </div>
               <div>
                 <span>Trust Pilot</span>
@@ -663,11 +668,11 @@
               </div>
               <div>
                 <span>Date Created</span>
-                <strong>Jun 2024</strong>
+                <strong>Jun 2023</strong>
               </div>
               <div>
                 <span>Years in Operation</span>
-                <strong>1</strong>
+                <strong>3</strong>
               </div>
             </div>
           </div>
@@ -678,7 +683,7 @@
           <div class="rating-score">
             <h2>4.6</h2>
             <div class="stars">★★★★★</div>
-            <p>92 total reviews</p>
+            <p>192 total reviews</p>
           </div>
 
           <div class="rating-bars">
@@ -714,17 +719,19 @@
       <!-- DISCOUNT CARD -->
       <div class="discount-card">
         <div class="discount-left">
-          <div class="discount-badge">🔥 50% OFF</div>
+          <div class="discount-badge">🔥 90% OFF</div>
         </div>
 
         <div class="discount-middle">
           <h3>Day Traders</h3>
           <div class="mini-rating">4.6 ★★★★★ (192)</div>
-          <p>50% off first month and 50% off recurring - on all evaluations</p>
+          <p>90% off (Limited Period Offer) - on all evaluations & Account</p>
         </div>
 
         <div class="discount-right">
-          <button class="firm-btn">Code MATCH</button>
+          <button class="firm-btn" data-code="BROTRADING">
+            Code : BROTRADING
+          </button>
         </div>
       </div>
     </section>
@@ -897,15 +904,20 @@
       .firm-btn {
         padding: 14px 30px;
         border-radius: 40px;
+        font-weight: 600;
         /* font-family: "DM Mono", monospace; */
         background: linear-gradient(90deg, #00c2ff, #1e90ff);
         color: white;
         border: 3px solid transparent;
         cursor: pointer;
         transition: 0.3s;
+        min-width: 190px; /* prevents movement */
+        text-align: center;
+        font-size: 16px;
       }
 
       .firm-btn:hover {
+        transform: translateY(-3px);
         background: white;
         color: #0b0f2a;
         border: 3px solid #00c2ff;
@@ -927,8 +939,26 @@
         }
       }
     </style>
+    <script>
+      document.querySelectorAll(".firm-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const code =
+            this.dataset.code || this.innerText.replace("Code : ", "");
+          navigator.clipboard.writeText(code);
 
-    <!-- =========About apex end=======  -->
+          this.classList.add("copied");
+          this.innerText = "Copied ✓";
+
+          setTimeout(() => {
+            this.classList.remove("copied");
+            this.innerText = "Code : " + code;
+          }, 2000);
+        });
+      });
+    </script>
+
+    <!-- =========About DAYtraders end=======  -->
+
     <!-- ========= More details ======  -->
     <section class="firm-pro-section">
       <div class="fps-container">
@@ -940,12 +970,15 @@
           </div>
 
           <p class="fps-summary-text">
-            Day Traders, established in January 2021 in the United States, is a
-            futures-focused prop firm offering a 1-Step evaluation program.
-            Account sizes range from $25,000 to $300,000. Supported platforms
-            include Tradovate, Rithmic, TradingView, NinjaTrader, Quantower,
-            Sierra Chart and more. Traders can access major futures like E-mini
-            S&P 500, NASDAQ 100, and Mini-DOW.
+            DayTraders is a futures prop trading firm offering a simple
+            evaluation model for traders who want access to funded futures
+            accounts. Traders can qualify for accounts ranging from $25,000 to
+            $300,000 while trading popular CME futures markets such as the
+            E-mini S&P 500, NASDAQ, and Crude Oil. The firm supports
+            professional trading platforms including Tradovate and Rithmic. With
+            flexible scaling, structured risk rules, and competitive profit
+            splits, DayTraders provides an accessible pathway for traders
+            looking to trade funded capital in the futures market.
           </p>
         </div>
 
@@ -962,19 +995,32 @@
               <div class="fps-grid">
                 <div>
                   <strong>Brokers</strong>
-                  <p>Rithmic, Tradovate</p>
+                  <p>Tradovate, Rithmic</p>
                 </div>
+
                 <div>
-                  <strong>Instruments</strong>
-                  <p>Futures</p>
+                  <strong>Markets</strong>
+                  <p>Futures (CME Products)</p>
                 </div>
+
                 <div>
-                  <strong>Payment</strong>
-                  <p>Credit / Debit Card</p>
+                  <strong>Platforms</strong>
+                  <p>Tradovate, NinjaTrader, TradingView</p>
                 </div>
+
                 <div>
-                  <strong>Payout</strong>
-                  <p>ACH</p>
+                  <strong>Payment Methods</strong>
+                  <p>Credit Card, Debit Card</p>
+                </div>
+
+                <div>
+                  <strong>Payout Method</strong>
+                  <p>Bank Transfer / ACH</p>
+                </div>
+
+                <div>
+                  <strong>Account Sizes</strong>
+                  <p>$25K – $300K</p>
                 </div>
               </div>
             </div>
@@ -1007,11 +1053,13 @@
 
             <div class="fps-content">
               <ul class="fps-list">
-                <li>Max 30% daily profit concentration rule</li>
-                <li>No hedging allowed</li>
-                <li>5:1 max risk-to-reward ratio</li>
-                <li>Consistent position sizing required</li>
-                <li>Trailing threshold cannot be used as stop-loss</li>
+                <li>Traders must follow the maximum trailing drawdown rule.</li>
+                <li>Consistency rule limits large single-day profits.</li>
+                <li>No account hedging across multiple accounts.</li>
+                <li>All trades must be closed before market close.</li>
+                <li>
+                  Risk management and position sizing consistency required.
+                </li>
               </ul>
             </div>
           </div>
@@ -1024,11 +1072,15 @@
 
             <div class="fps-content">
               <ul class="fps-list">
-                <li>100% of first $25K profit</li>
-                <li>90% after that</li>
-                <li>Minimum payout: $500</li>
-                <li>8 trading days required</li>
-                <li>No max payout after 5th payout</li>
+                <li>Up to 90% profit split for funded traders.</li>
+                <li>
+                  First payouts available after meeting minimum trading days.
+                </li>
+                <li>Minimum payout request typically starts from $500.</li>
+                <li>
+                  Traders must follow consistency and risk rules to qualify.
+                </li>
+                <li>Regular payout cycles once requirements are met.</li>
               </ul>
             </div>
           </div>
@@ -1636,11 +1688,31 @@
             <a href="https://tradeify.co/?ref=11241" class="apex-btn"
               >Get Evaluation</a
             >
-            <a href="#" class="apex-btn">Copy Code</a>
+            <a href="#" class="apex-btn copy-code" data-code="BROTRADING"
+              >Code : BROTRADING</a
+            >
           </div>
         </div>
       </div>
     </section>
+    <script>
+      document.querySelectorAll(".copy-code").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const code = this.dataset.code;
+
+          navigator.clipboard.writeText(code);
+
+          const original = this.innerText;
+          this.innerText = "Copied ✓";
+
+          setTimeout(() => {
+            this.innerText = original;
+          }, 2000);
+        });
+      });
+    </script>
 
     <style>
       .apex-section {
@@ -1718,12 +1790,18 @@
         padding: 14px 28px;
         border-radius: 40px;
         /* font-family: "DM Mono", monospace; */
-        font-size: 15px;
+        font-size: 16px;
         text-decoration: none;
         background: linear-gradient(90deg, #00c2ff, #1e90ff);
         color: white;
         transition: all 0.3s ease;
         border: 3px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        text-align: center;
+        font-weight: 600;
       }
 
       .apex-btn:hover {

@@ -240,12 +240,15 @@
       }
     </style>
     <!-- ================= TOP ANNOUNCEMENT BAR END================= -->
+
     <!-- ================= BRO TRADING HEADER ================= -->
     <header class="bt-header">
       <div class="bt-container">
         <!-- Logo -->
         <div class="bt-logo">
-          <img src="Bro_Traders_logo-removebg-preview.png" alt="Bro Trading" />
+          <a href="index.html"
+            ><img src="Bro_Traders_logo-removebg-preview.png" alt="Bro Trading"
+          /></a>
         </div>
 
         <!-- Navigation -->
@@ -253,6 +256,7 @@
           <!-- Mobile Close Button -->
           <div class="bt-mobile-close" onclick="closeMobileMenu()">✕</div>
 
+          <a href="index.html" class="bt-link">Home</a>
           <!-- Funding Plans -->
           <div class="bt-dropdown">
             <button class="bt-drop-btn" onclick="toggleDropdown('funding')">
@@ -276,13 +280,13 @@
                   <a href="CompareTopFrims/QuickFunding.html"
                     >Quickest Funding</a
                   >
-                  <a href="CompareTopFrims/bestDeals.html">Best Deals</a>
+                  <a href="CompareTopFrims/BestDeals.html">Best Deals</a>
                 </div>
                 <div>
                   <a href="#"><strong>Top Firms :</strong></a>
                   <a href="Frims/ApexFunding.html">Apex Trader Funding</a>
                   <a href="Frims/TradeifyTrader.html">Tradeify</a>
-                  <a href="Frims/Lucid Trading.html">Lucid Trading</a>
+                  <a href="Frims/BluSky Trading.html">Lucid Trading</a>
                   <a href="Frims/MyFundedFuture.html"> My Funded Future</a>
                   <a href="Frims/DayTraders.html">Day Traders.com</a>
                 </div>
@@ -292,15 +296,15 @@
 
           <!-- Learn -->
           <!-- <div class="bt-dropdown">
-            <button class="bt-drop-btn" onclick="toggleDropdown('learn')">
-              Learn ▾
-            </button>
-            <div class="bt-drop-menu small" id="learn">
-              <a href="#">Lessons</a>
-              <a href="#">Articles</a>
-              <a href="#">The 2-Hour Trading Day</a>
-            </div>
-          </div> -->
+        <button class="bt-drop-btn" onclick="toggleDropdown('learn')">
+          Learn ▾
+        </button>
+        <div class="bt-drop-menu small" id="learn">
+          <a href="#">Lessons</a>
+          <a href="#">Articles</a>
+          <a href="#">The 2-Hour Trading Day</a>
+        </div>
+      </div> -->
 
           <!-- Resources -->
           <div class="bt-dropdown">
@@ -336,15 +340,17 @@
       /* ================= HEADER ================= */
 
       .bt-header {
-        position: sticky;
-        top: 0;
+        position: fixed;
+        top: 40px; /* same as ticker height */
+        left: 0;
         width: 100%;
         z-index: 1000;
-        background: #000; /* Normal state */
+        background: #000;
         transition: all 0.35s ease;
       }
 
       .bt-header.bt-scrolled {
+        top: 0;
         background: rgba(10, 15, 30, 0.75);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
@@ -444,6 +450,12 @@
       .bt-drop-menu a:hover {
         color: #00c2ff;
         padding-left: 5px;
+      }
+      /* ================= HOVER DROPDOWN (DESKTOP ONLY) ================= */
+      @media (min-width: 1025px) {
+        .bt-dropdown:hover .bt-drop-menu {
+          display: block;
+        }
       }
 
       /* ================= CTA ================= */
@@ -579,15 +591,16 @@
     <script>
       function toggleDropdown(id) {
         const menu = document.getElementById(id);
-        const isActive = menu.classList.contains("active");
 
+        // Close ALL dropdowns first
         document.querySelectorAll(".bt-drop-menu").forEach((m) => {
-          m.classList.remove("active");
+          if (m.id !== id) {
+            m.classList.remove("active");
+          }
         });
 
-        if (!isActive) {
-          menu.classList.add("active");
-        }
+        // Toggle clicked one
+        menu.classList.toggle("active");
       }
 
       function toggleMobileMenu() {
@@ -608,244 +621,234 @@
       window.addEventListener("scroll", () => {
         header.classList.toggle("bt-scrolled", window.scrollY > 50);
       });
+      // Close other dropdowns on hover (desktop only)
+      if (window.innerWidth > 1024) {
+        document.querySelectorAll(".bt-dropdown").forEach((dropdown) => {
+          dropdown.addEventListener("mouseenter", function () {
+            const activeMenu = document.querySelector(".bt-drop-menu.active");
+            if (activeMenu && !this.contains(activeMenu)) {
+              activeMenu.classList.remove("active");
+            }
+          });
+        });
+      }
     </script>
     <!-- ================= HEADER END ================= -->
+
     <!-- ========== PREMIUM DISCORD HERO SECTION ========== -->
-    <section class="premium-discord-hero">
-      <div class="premium-container">
-        <!-- LEFT CONTENT -->
-        <div class="premium-left">
-          <div class="top-badge">🔥 50% OFF – First 2 Months Only</div>
+    <section class="premium-hero">
+      <div class="hero-container">
+        <!-- LEFT SIDE -->
 
-          <h1>Trade Live With <span>Bro Trading</span></h1>
+        <div class="hero-left">
+          <div class="hero-badge">🔥 50% OFF LAUNCH OFFER</div>
 
-          <p class="hero-subtext">
-            Join our free Discord community — or unlock exclusive
-            <strong>Live Trading Sessions</strong> inside Premium.
+          <h1>
+            Watch Real Trades <span>Live</span><br />
+            Inside Our Premium Discord
+          </h1>
+
+          <p class="hero-sub">
+            Our free Discord gives you the community. Premium unlocks the real
+            edge with <strong>Live Trading Sessions</strong>, real trade setups
+            and exclusive strategy channels.
           </p>
 
-          <div class="live-members">
-            <span id="memberCount">1287</span> traders joined this month 📈
+          <!-- VALUE CARDS -->
+
+          <div class="value-cards">
+            <div class="value-card highlight">
+              🟢 Live Trading Sessions
+              <span>Watch real trades happening live</span>
+            </div>
+
+            <div class="value-card effect">
+              💬 Premium Channels
+              <span>Strategies, breakdowns & analysis</span>
+            </div>
+
+            <div class="value-card effect">
+              📈 Real Trade Setups
+              <span>See how trades are executed</span>
+            </div>
           </div>
+
+          <!-- PRICE -->
 
           <div class="price-box">
-            <div class="price-line">
-              <span class="old-price">€20</span>
-              <span class="new-price">€10</span>
-              <span class="per-month">/ month</span>
-            </div>
-            <p>After 2 months → €20/month</p>
+            <span class="old">€20</span>
+            <span class="new">€10</span>
+            <span>/ month</span>
+
+            <p>50% OFF first 2 months</p>
           </div>
 
-          <div class="countdown-box">
-            <p>Discount Ends In:</p>
-            <div class="countdown">
-              <div><span id="days">00</span><small>Days</small></div>
-              <div><span id="hours">00</span><small>Hours</small></div>
-              <div><span id="minutes">00</span><small>Min</small></div>
-              <div><span id="seconds">00</span><small>Sec</small></div>
-            </div>
+          <!-- TIMER -->
+
+          <div class="countdown">
+            <div><span id="days">00</span><small>Days</small></div>
+            <div><span id="hours">00</span><small>Hours</small></div>
+            <div><span id="minutes">00</span><small>Min</small></div>
+            <div><span id="seconds">00</span><small>Sec</small></div>
           </div>
+
+          <!-- BUTTONS -->
 
           <div class="hero-buttons">
-            <a
-              href="https://discord.gg/brotrading"
-              target="_blank"
-              class="btn-glow"
-            >
-              Join Free Discord
-            </a>
-            <a href="#" class="btn-outline"> Get Premium Access </a>
+            <a href="#" class="btn-primary"> Join Free Discord </a>
+
+            <a href="#" class="btn-outline"> Unlock Premium Trading Room </a>
           </div>
         </div>
 
-        <!-- RIGHT IMAGE -->
-        <div class="premium-right">
-          <div class="image-wrapper">
-            <img
-              src="https://images.unsplash.com/photo-1527264935190-1401c51b5bbc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8b2ZmZXJ8ZW58MHx8MHx8fDA%3D"
-              alt="Live Trading Setup"
-            />
+        <!-- RIGHT SIDE -->
+
+        <div class="hero-right">
+          <!-- LIVE TRADING IMAGE -->
+
+          <img
+            class="trading-image"
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          />
+
+          <!-- YOUTUBE LIVE PREVIEW -->
+
+          <div class="youtube-preview">
+            <iframe
+              width="100%"
+              height="220"
+              src="https://www.youtube.com/embed/poLTzNhpfb8"
+              title="Live Trading"
+              frameborder="0"
+              allowfullscreen
+            >
+            </iframe>
           </div>
+
+          <!-- MEMBERS CARD -->
+
+          <div class="members-card">👥 1312 traders joined this month</div>
         </div>
       </div>
     </section>
+
     <style>
-      /* ========== PREMIUM DISCORD HERO ========== */
-
-      .premium-discord-hero {
-        padding: 110px 8%;
-        background: radial-gradient(circle at top left, #0b0f2a, #0a102f 60%);
+      .premium-hero {
+        padding: 120px 8%;
+        background: linear-gradient(180deg, #020b25, #030f33);
         color: white;
-        position: relative;
-        overflow: hidden;
       }
 
-      /* Glow background effect */
-      .premium-discord-hero::before {
-        content: "";
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        background: #00c2ff;
-        filter: blur(180px);
-        opacity: 0.15;
-        top: -100px;
-        left: -100px;
-      }
-
-      .premium-container {
+      .hero-container {
         display: flex;
-        align-items: center; /* vertically center */
+        align-items: center;
         justify-content: space-between;
-        gap: 80px;
+        gap: 70px;
         max-width: 1300px;
         margin: auto;
       }
 
-      .premium-left {
-        flex: 1;
-        max-width: 600px;
-      }
+      /* LEFT */
 
-      .premium-right {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end; /* push image to right */
-      }
-
-      .image-wrapper {
-        position: relative;
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow:
-          0 0 80px rgba(0, 194, 255, 0.25),
-          0 0 120px rgba(30, 144, 255, 0.15);
-      }
-
-      /* Glow border effect */
-      .image-wrapper::before {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(45deg, #00c2ff, #1e90ff);
-        border-radius: 26px;
-        z-index: -1;
-        filter: blur(25px);
-        opacity: 0.6;
-      }
-
-      .image-wrapper img {
-        width: 520px;
-        max-width: 100%;
-        display: block;
-        border-radius: 24px;
-      }
-
-      /* Responsive */
-      @media (max-width: 992px) {
-        .premium-container {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .premium-right {
-          justify-content: center;
-          margin-top: 40px;
-        }
-
-        .image-wrapper img {
-          width: 100%;
-        }
-      }
-
-      .premium-left {
-        flex: 1;
-        min-width: 320px;
-      }
-
-      .top-badge {
-        display: inline-block;
-        padding: 8px 18px;
-        border-radius: 50px;
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        font-weight: 600;
-        margin-bottom: 20px;
-        /* box-shadow: 0 0 20px rgba(0, 194, 255, 0.6); */
-      }
-
-      .premium-left h1 {
-        font-size: 52px;
-        margin-bottom: 20px;
-      }
-
-      .premium-left h1 span {
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero-subtext {
-        font-size: 18px;
-        opacity: 0.85;
-        margin-bottom: 25px;
+      .hero-left {
         max-width: 520px;
       }
 
-      .live-members {
-        font-size: 16px;
+      .hero-badge {
+        display: inline-block;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        padding: 8px 20px;
+        border-radius: 30px;
         margin-bottom: 20px;
+      }
+
+      .hero-left h1 {
+        font-size: 50px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+
+      .hero-left span {
         color: #00c2ff;
       }
 
-      /* Glass Price Box */
-      .price-box {
-        background: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(12px);
-        padding: 20px;
-        border-radius: 16px;
-        margin-bottom: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .price-line {
-        font-size: 32px;
-        font-weight: bold;
-      }
-
-      .old-price {
-        text-decoration: line-through;
-        opacity: 0.4;
-        margin-right: 10px;
-      }
-
-      .new-price {
-        color: #00c2ff;
-      }
-
-      .per-month {
-        font-size: 16px;
-        opacity: 0.7;
-      }
-
-      /* Countdown */
-      .countdown-box {
+      .hero-sub {
+        opacity: 0.9;
         margin-bottom: 30px;
       }
 
+      /* VALUE CARDS */
+
+      .value-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .value-card {
+        background: rgba(255, 255, 255, 0.07);
+        padding: 14px 16px;
+        border-radius: 10px;
+        font-size: 16px;
+        letter-spacing: 1.2px;
+      }
+
+      .value-card span {
+        display: block;
+        opacity: 0.7;
+        font-size: 14px;
+        margin-top: 4px;
+        letter-spacing: normal;
+        margin-left: 26px;
+      }
+
+      .highlight {
+        border-left: 4px solid red;
+        background: rgba(255, 0, 0, 0.08);
+      }
+      .effect {
+        border-left: 4px solid rgb(0, 217, 255);
+        /* background: rgba(255, 0, 0, 0.08); */
+      }
+
+      /* PRICE */
+
+      .price-box {
+        font-size: 22px;
+        /* margin-bottom: 20px; */
+        background: #2c2c2e;
+        padding: 10px 10px;
+        margin: 0px 92px 21px 0px;
+        border-radius: 14px;
+        text-align: center;
+        border: 3px solid #ffffff26;
+      }
+
+      .price-box .old {
+        text-decoration: line-through;
+        opacity: 0.5;
+        margin-right: 8px;
+      }
+
+      .price-box .new {
+        color: #00c2ff;
+        font-weight: bold;
+      }
+
+      /* TIMER */
+
       .countdown {
         display: flex;
-        gap: 15px;
-        margin-top: 10px;
+        gap: 14px;
+        margin-bottom: 30px;
       }
 
       .countdown div {
         background: rgba(255, 255, 255, 0.08);
-        padding: 15px;
-        border-radius: 12px;
+        padding: 12px 16px;
+        border-radius: 10px;
         text-align: center;
-        min-width: 70px;
-        backdrop-filter: blur(10px);
       }
 
       .countdown span {
@@ -854,79 +857,98 @@
         display: block;
       }
 
-      /* Buttons */
+      /* BUTTONS */
+
       .hero-buttons {
         display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
+        gap: 14px;
       }
 
-      .btn-glow {
+      .btn-primary {
         background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        padding: 14px 30px;
+        padding: 14px 26px;
         border-radius: 10px;
-        font-weight: 600;
         text-decoration: none;
         color: white;
-        /* box-shadow: 0 0 25px rgba(0, 194, 255, 0.6); */
-        transition: 0.3s;
-      }
-
-      .btn-glow:hover {
-        transform: translateY(-3px);
-        /* box-shadow: 0 0 40px rgba(0, 194, 255, 1); */
       }
 
       .btn-outline {
         border: 2px solid #00c2ff;
-        padding: 14px 30px;
+        padding: 14px 26px;
         border-radius: 10px;
-        text-decoration: none;
         color: #00c2ff;
-        transition: 0.3s;
+        text-decoration: none;
       }
 
-      .btn-outline:hover {
-        background: #00c2ff;
-        color: #0b0f2a;
+      /* RIGHT */
+
+      .hero-right {
+        position: relative;
       }
 
-      /* Image Glass Card */
-      .image-card {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 15px;
-        border-radius: 20px;
-        backdrop-filter: blur(15px);
-        box-shadow: 0 0 40px rgba(0, 194, 255, 0.2);
+      .trading-image {
+        width: 520px;
+        border-radius: 18px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        margin-top: -84px;
       }
 
-      .image-card img {
-        width: 100%;
-        border-radius: 15px;
+      /* YOUTUBE */
+
+      .youtube-preview {
+        position: absolute;
+        bottom: -140px;
+        right: -43px;
+        width: 356px;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
       }
 
-      /* Responsive */
+      /* MEMBERS */
+
+      .members-card {
+        position: absolute;
+        top: -79px;
+        left: -30px;
+        background: rgb(0 0 0 / 74%);
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 14px;
+        color: #00c2ff;
+      }
+
+      /* MOBILE */
+
       @media (max-width: 900px) {
-        .premium-container {
+        .hero-container {
           flex-direction: column;
           text-align: center;
         }
 
-        .premium-left h1 {
-          font-size: 36px;
+        .hero-buttons {
+          justify-content: center;
         }
 
         .countdown {
           justify-content: center;
         }
 
-        .hero-buttons {
-          justify-content: center;
+        .trading-image {
+          width: 100%;
+        }
+
+        .youtube-preview {
+          position: relative;
+          bottom: auto;
+          right: auto;
+          margin-top: 20px;
+          width: 100%;
         }
       }
     </style>
+
     <script>
-      // ===== Countdown Timer (7 Day Reset) =====
       const endDate = new Date();
       endDate.setDate(endDate.getDate() + 7);
 
@@ -946,446 +968,668 @@
       }
 
       setInterval(updateCountdown, 1000);
-
-      // ===== Fake Live Counter =====
-      let count = 1287;
-      setInterval(() => {
-        count += Math.floor(Math.random() * 3);
-        document.getElementById("memberCount").innerText = count;
-      }, 4000);
     </script>
-    <!-- ==================== END===========  -->
 
-    <!-- ==================SubScrition Form=============  -->
-    <section class="subscription-wrapper">
-      <div class="subscription-card">
-        <!-- LEFT IMAGE PANEL -->
-        <div class="left-panel">
-          <div class="image-overlay">
-            <div class="left-content">
-              <h2>Become a Funded Trader</h2>
-              <p>Trade Futures. Prove Your Skill. Get Funded.</p>
+    <!-- ========== END  ========== -->
 
-              <div class="left-info">
-                <p>✔ 30-Day Billing</p>
-                <p>✔ No Refund Policy</p>
-                <p>✔ 18+ Required</p>
-                <p>✔ Professional Risk Model</p>
-              </div>
-            </div>
+    <!-- =======Right Choicse Section ======  -->
+    <section class="bt-choice-section">
+      <div class="bt-choice-container">
+        <div class="bt-choice-image">
+          <img
+            src="https://images.pexels.com/photos/7567434/pexels-photo-7567434.jpeg"
+            alt="Trader analyzing charts"
+          />
+
+          <div class="bt-floating-card card1">
+            <h4>Live Trading</h4>
+            <p>Real Trades Explained Live</p>
+          </div>
+
+          <div class="bt-floating-card card2">
+            <h4>Real Setups</h4>
+            <p>High-Probability Trade Ideas</p>
+          </div>
+
+          <div class="bt-floating-card card3">
+            <h4>Risk Control</h4>
+            <p>Professional Trade Management</p>
           </div>
         </div>
-        <!-- RIGHT PANEL -->
-        <div class="right-panel">
-          <h3 class="form-title">Subscribe Now</h3>
-          <p class="login-text">
-            Already have an account? <a href="#">Log in</a>
+
+        <div class="bt-choice-content">
+          <h2>What You’ll Learn In Our Live Trading Sessions</h2>
+
+          <p class="bt-choice-intro">
+            Our live sessions focus on real market opportunities as they happen.
+            Instead of theory, you’ll watch real trades being analyzed,
+            executed, and managed step-by-step while learning the strategy
+            behind every decision.
           </p>
 
-          <!-- SECTION TABS -->
-          <div class="form-tabs">
-            <button type="button" class="tab-btn active" data-tab="1">
-              Personal Details
-            </button>
-            <button type="button" class="tab-btn" data-tab="2">Address</button>
-            <button type="button" class="tab-btn" data-tab="3">Terms</button>
+          <div class="bt-steps">
+            <div class="bt-step">
+              <span>01</span>
+              <div>
+                <h3>How We Identify Real Trade Setups In The Market</h3>
+              </div>
+            </div>
+
+            <div class="bt-step">
+              <span>02</span>
+              <div>
+                <h3>Live Market Analysis & Understanding Market Structure</h3>
+              </div>
+            </div>
+
+            <div class="bt-step">
+              <span>03</span>
+              <div>
+                <h3>
+                  Precise Entry Points, Stop Loss Placement & Risk Control
+                </h3>
+              </div>
+            </div>
+
+            <div class="bt-step">
+              <span>04</span>
+              <div>
+                <h3>Managing Trades Live & Scaling Out Profits Effectively</h3>
+              </div>
+            </div>
           </div>
 
-          <form id="subscriptionForm">
-            <!-- PERSONAL DETAILS -->
-            <div class="form-section active-section" data-tab="1">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>First Name *</label>
-                  <input type="text" required />
-                </div>
+          <p class="bt-choice-end">
+            By watching real trades unfold during live sessions, members learn
+            the full trading process — from identifying the opportunity to
+            managing the trade. This helps traders build confidence, improve
+            decision-making, and develop a consistent trading strategy.
+          </p>
+        </div>
+      </div>
+    </section>
 
-                <div class="form-group">
-                  <label>Last Name *</label>
-                  <input type="text" required />
-                </div>
+    <style>
+      .bt-choice-section {
+        padding: 66px 20px 85px;
+        background: #030712;
+        font-family: "Roboto", sans-serif;
+      }
 
-                <div class="form-group">
-                  <label>Date Of Birth *</label>
-                  <input type="date" id="dob" required />
-                </div>
+      .bt-choice-container {
+        display: flex;
+        align-items: center;
+        gap: 95px;
+        max-width: 1074px;
+        margin: auto;
+      }
 
-                <div class="form-group">
-                  <label>Your E-Mail *</label>
-                  <input type="email" required />
-                </div>
+      /* IMAGE */
+      .bt-choice-image {
+        position: relative;
+        flex: 0 0 420px;
+      }
 
-                <div class="form-group">
-                  <label>Confirm E-Mail *</label>
-                  <input type="email" required />
-                </div>
+      .bt-choice-image img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+      }
 
-                <div class="form-group">
-                  <label>Company Name (Optional)</label>
-                  <input type="text" />
-                </div>
+      /* FLOATING CARDS */
 
-                <div class="form-group">
-                  <label>Identification Number</label>
-                  <input type="text" />
-                </div>
+      .bt-floating-card {
+        position: absolute;
+        background: #0f172a;
+        padding: 14px 18px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        font-family: "Roboto", sans-serif;
+      }
 
-                <div class="form-group">
-                  <label>VAT Number</label>
-                  <input type="text" />
-                </div>
+      .bt-floating-card h4 {
+        color: white;
+        font-size: 18px;
+        margin-bottom: 2px;
+      }
 
-                <div class="form-group">
-                  <label>Choose Username *</label>
-                  <input
-                    type="text"
-                    minlength="6"
-                    pattern="^[A-Za-z0-9_]+$"
-                    required
-                  />
-                </div>
+      .bt-floating-card p {
+        font-size: 12px;
+        color: #94a3b8;
+      }
 
-                <div class="form-group">
-                  <label>Password *</label>
-                  <input type="password" minlength="6" required />
-                </div>
+      /* CARD POSITIONS */
 
-                <div class="form-group">
-                  <label>Confirm Password *</label>
-                  <input type="password" minlength="6" required />
-                </div>
-              </div>
-            </div>
+      .card1 {
+        top: 40px;
+        left: -40px;
+      }
 
-            <!-- ADDRESS -->
-            <div class="form-section" data-tab="2">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>Street *</label>
-                  <input type="text" required />
-                </div>
+      .card2 {
+        top: 200px;
+        right: -40px;
+      }
 
-                <div class="form-group">
-                  <label>City *</label>
-                  <input type="text" required />
-                </div>
+      .card3 {
+        bottom: 40px;
+        left: 40px;
+      }
 
-                <div class="form-group">
-                  <label>Country *</label>
-                  <select required>
-                    <option value="">Select Country</option>
-                    <option>India</option>
-                    <option>United States</option>
-                    <option>United Kingdom</option>
-                  </select>
-                </div>
+      /* MOBILE */
 
-                <div class="form-group">
-                  <label>State *</label>
-                  <input type="text" required />
-                </div>
+      @media (max-width: 900px) {
+        .bt-floating-card {
+          display: none;
+        }
+      }
 
-                <div class="form-group">
-                  <label>ZIP Code *</label>
-                  <input type="text" required />
-                </div>
+      /* MOBILE */
 
-                <div class="form-group">
-                  <label>EU VAT Id (Optional)</label>
-                  <input type="text" />
-                </div>
-              </div>
-            </div>
+      @media (max-width: 900px) {
+        .bt-image-secondary {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          margin-top: 20px;
+          width: 100%;
+        }
 
-            <!-- TERMS -->
-            <div class="form-section" data-tab="3">
-              <div class="terms-box">
-                <p>
-                  As the owner of this proprietary trading firm, we operate
-                  under strict professional risk management standards. By
-                  continuing, you confirm that you are at least 18 years of age
-                  and legally eligible to participate in our evaluation
-                  programs.
-                </p>
+        .bt-image-secondary img {
+          height: 200px;
+        }
+      }
 
-                <p>
-                  All subscriptions renew automatically every 30 days unless
-                  cancelled prior to renewal. We maintain a strict NO REFUND
-                  policy under all circumstances. Traders are fully responsible
-                  for understanding our risk model, drawdown rules, and
-                  evaluation structure before subscribing.
-                </p>
+      /* CONTENT */
 
-                <p>
-                  Any attempt to abuse system rules, manipulate trading
-                  conditions, or violate platform guidelines may result in
-                  immediate account termination without payout eligibility.
-                </p>
+      .bt-choice-content {
+        color: white;
+      }
 
-                <p>
-                  Trading futures involves substantial risk. Past performance
-                  does not guarantee future results. By agreeing below, you
-                  acknowledge full responsibility for your trading decisions.
-                </p>
-                <p>
-                  By subscribing, you confirm you are 18 years or older,
-                  understand that billing renews every 30 days, acknowledge
-                  there are NO REFUNDS, and accept all Risk Disclosures.
-                </p>
+      .bt-choice-content h2 {
+        font-size: 38px;
+        margin-bottom: 18px;
+        font-weight: 700;
+      }
 
-                <div class="checkbox-group">
-                  <input type="checkbox" id="agreeTerms" required />
-                  <label for="agreeTerms">
-                    I am 18+ and agree to the Terms & Conditions *
-                  </label>
-                </div>
-              </div>
+      .bt-choice-intro {
+        color: #94a3b8;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 35px;
+        max-width: 520px;
+      }
 
-              <button type="submit" class="submit-btn">
-                Complete Subscription
-              </button>
-            </div>
-          </form>
+      /* STEPS */
+
+      .bt-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .bt-step {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        padding: 20px;
+        background: #0f172a;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: 0.3s;
+        max-width: 520px;
+      }
+
+      .bt-step:hover {
+        transform: translateX(6px);
+        border-color: #38bdf8;
+        background: linear-gradient(145deg, #0f172a, #020617);
+      }
+
+      /* NUMBER */
+
+      .bt-step span {
+        font-size: 20px;
+        font-weight: 700;
+        color: #38bdf8;
+        background: #020617;
+        padding: 10px 14px;
+        border-radius: 8px;
+      }
+
+      /* TEXT */
+
+      .bt-step h3 {
+        font-size: 17px;
+        margin-bottom: 5px;
+      }
+
+      .bt-step p {
+        font-size: 14px;
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+
+      /* END TEXT */
+
+      .bt-choice-end {
+        margin-top: 28px;
+        color: #94a3b8;
+        line-height: 1.7;
+        max-width: 520px;
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 900px) {
+        .bt-choice-container {
+          flex-direction: column;
+        }
+
+        .bt-choice-image img {
+          height: 420px;
+        }
+      }
+      .bt-floating-card {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <!-- =======Right Choicse Section END ======  -->
+
+    <!-- ====== Key Considerations Section ======  -->
+    <section class="bt-key-section">
+      <h2 class="bt-title">What Matters the Most :</h2>
+
+      <div class="bt-key-grid">
+        <div class="bt-key-card">
+          <div class="bt-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1612178991541-b48cc8e92a4d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <span class="bt-icon">📊</span>
+          </div>
+
+          <div class="bt-card-content">
+            <h3>⇝ Market Access</h3>
+            <p>
+              Choose prop firms offering access to futures, commodities, and
+              major trading markets.
+            </p>
+          </div>
+        </div>
+
+        <div class="bt-key-card">
+          <div class="bt-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <span class="bt-icon">💰</span>
+          </div>
+
+          <div class="bt-card-content">
+            <h3>⇝ Account Size</h3>
+            <p>
+              Most firms start traders with a 50k funded account after passing
+              evaluation.
+            </p>
+          </div>
+        </div>
+
+        <div class="bt-key-card">
+          <div class="bt-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1311&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <span class="bt-icon">🎯</span>
+          </div>
+
+          <div class="bt-card-content">
+            <h3>⇝ Profit Targets</h3>
+            <p>
+              Understand profit targets, drawdown limits, and overall risk
+              rules.
+            </p>
+          </div>
+        </div>
+
+        <div class="bt-key-card">
+          <div class="bt-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=900&auto=format&fit=crop"
+            />
+            <span class="bt-icon">💳</span>
+          </div>
+
+          <div class="bt-card-content">
+            <h3>⇝ Fee Structure</h3>
+            <p>Compare evaluation fees, monthly costs, and hidden charges.</p>
+          </div>
+        </div>
+
+        <div class="bt-key-card">
+          <div class="bt-card-image">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1661443781814-333019eaad2d?q=80&w=2151&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <span class="bt-icon">📈</span>
+          </div>
+
+          <div class="bt-card-content">
+            <h3>⇝ Trading Tools</h3>
+            <p>
+              Some firms provide TradingView integration and additional trader
+              tools.
+            </p>
+          </div>
+        </div>
+
+        <div class="bt-key-card">
+          <div class="bt-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=900&auto=format&fit=crop"
+            />
+            <span class="bt-icon">🏆</span>
+          </div>
+
+          <div class="bt-card-content">
+            <h3>⇝ Payout Speed</h3>
+            <p>
+              Check payout frequency and how quickly profits are distributed.
+            </p>
+          </div>
         </div>
       </div>
     </section>
     <style>
-      body {
-        margin: 0;
-        background: #0b0f2a;
-        font-family: "Segoe UI", sans-serif;
+      .bt-key-section {
+        padding: 120px 20px;
+        background:
+          radial-gradient(circle at top, #1e3a8a 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        font-family: "Roboto", sans-serif;
       }
 
-      .subscription-wrapper {
-        padding: 80px 20px;
-      }
-
-      .subscription-card {
-        max-width: 1200px;
-        margin: auto;
-        display: flex;
-        background: #12163a;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-        height: 750px;
-      }
-
-      .subscription-card {
-        max-width: 1200px;
-        margin: auto;
-        display: flex;
-        background: #12163a;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-        height: 750px;
-      }
-
-      /* LEFT IMAGE PANEL */
-      .left-panel {
-        width: 40%;
-        background: url("https://plus.unsplash.com/premium_photo-1661371394983-42485fed3a58?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8d2VsY29tZXxlbnwwfHwwfHx8MA%3D%3D")
-          center/cover no-repeat;
-        position: relative;
-      }
-
-      .image-overlay {
-        background: linear-gradient(
-          180deg,
-          rgba(11, 15, 42, 0.6),
-          rgba(11, 15, 42, 0.9)
-        );
-        height: 100%;
-        width: 100%;
-        padding: 60px 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
+      .bt-title {
+        text-align: center;
+        font-size: 38px;
+        margin-bottom: 70px;
         color: white;
+        font-weight: 700;
       }
 
-      .left-content h2 {
-        font-size: 32px;
-        margin-bottom: 15px;
-      }
-
-      .left-content p {
-        opacity: 0.9;
-        margin-bottom: 25px;
-      }
-
-      .left-info p {
-        margin: 12px 0;
-        font-size: 14px;
-        opacity: 0.85;
-      }
-
-      /* RIGHT SCROLLABLE */
-      .right-panel {
-        width: 60%;
-        padding: 40px;
-        overflow-y: auto;
-      }
-
-      .form-title {
-        margin-top: 0px;
-        color: white;
-        font-size: 31px;
-        font-weight: 500;
-      }
-
-      .login-text {
-        margin-bottom: 20px;
-        font-size: 14px;
-        color: #aaa;
-      }
-
-      .login-text a {
-        color: #00c2ff;
-        text-decoration: none;
-      }
-
-      /* TABS */
-      .form-tabs {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 30px;
-      }
-
-      .tab-btn {
-        background: transparent;
-        border: 1px solid #00c2ff;
-        color: #00c2ff;
-        padding: 8px 18px;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-        font-size: 17px;
-      }
-
-      .tab-btn.active {
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        color: white;
-      }
-
-      /* GRID */
-      .form-grid {
+      .bt-key-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        max-width: 1150px;
+        margin: auto;
       }
 
-      .form-group {
-        display: flex;
-        flex-direction: column;
+      .bt-key-card {
+        background: #0f172a;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: 0.35s;
       }
 
-      .form-group input,
-      .form-group select {
-        padding: 12px;
-        border-radius: 10px;
-        border: 1px solid #1f255f;
-        background: #0f1335;
-        color: white;
+      .bt-key-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        border-color: #38bdf8;
       }
 
-      .form-group label {
-        font-size: 14.5px;
-        margin-bottom: 6px;
-        color: #bbb;
+      /* IMAGE HEADER */
+
+      .bt-card-image {
+        position: relative;
+        height: 150px;
+        overflow: hidden;
       }
 
-      /* SECTIONS */
-      .form-section {
-        display: none;
-      }
-
-      .active-section {
-        display: block;
-      }
-
-      .terms-box {
-        background: #0f1335;
-        color: white;
-        padding: 20px;
-        border-radius: 12px;
-        margin-bottom: 20px;
-      }
-      .terms-box p {
-        font-style: oblique;
-        font-size: 15px;
-      }
-
-      .checkbox-group {
-        margin-top: 45px;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .submit-btn {
+      .bt-card-image img {
         width: 100%;
-        padding: 14px;
-        border-radius: 10px;
-        border: none;
-        background: linear-gradient(90deg, #00c2ff, #1e90ff);
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.3s;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.7);
+      }
+      .bt-card-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(2, 6, 23, 0.9)
+        );
       }
 
-      .submit-btn:hover {
-        background: white;
-        color: #0b0f2a;
+      /* ICON */
+
+      .bt-icon {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: #000000;
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-size: 18px;
+        /* box-shadow: 0 0 14px rgba(56, 189, 248, 0.6); */
+      }
+
+      /* TEXT */
+
+      .bt-card-content {
+        padding: 22px;
+      }
+
+      .bt-card-content h3 {
+        color: #38bdf8;
+        font-size: 19px;
+        margin-bottom: 8px;
+      }
+
+      .bt-card-content p {
+        color: #cbd5e1;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 900px) {
+        .bt-key-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .bt-key-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
-    <script>
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      const sections = document.querySelectorAll(".form-section");
+    <!-- ====== Key Considerations Section END ======  -->
 
-      tabBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const tab = btn.getAttribute("data-tab");
+    <!-- =========== Youtube Section ========= -->
+    <section class="yt-hero">
+      <div class="yt-container">
+        <!-- LEFT -->
+        <div class="yt-content">
+          <h2>
+            Trade Live With <br />
+            BroTradingz
+          </h2>
 
-          tabBtns.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
+          <p>Live Futures Trading Sessions</p>
+          <p>Market Breakdown • Strategy Execution • Real-Time Entries</p>
+          <p>Join Our Community of Serious Traders</p>
 
-          sections.forEach((sec) => {
-            sec.classList.remove("active-section");
-            if (sec.getAttribute("data-tab") === tab) {
-              sec.classList.add("active-section");
-            }
-          });
-        });
-      });
+          <a
+            href="https://m.youtube.com/@Brotradingz"
+            target="_blank"
+            class="yt-btn"
+          >
+            Subscribe on YouTube
+          </a>
+        </div>
 
-      /* 18+ Validation */
-      document
-        .getElementById("subscriptionForm")
-        .addEventListener("submit", function (e) {
-          const dob = new Date(document.getElementById("dob").value);
-          const today = new Date();
-          let age = today.getFullYear() - dob.getFullYear();
-          const m = today.getMonth() - dob.getMonth();
-          if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-            age--;
-          }
+        <!-- RIGHT -->
+        <div class="yt-media">
+          <div class="yt-video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/KXO67YQ-ous"
+              title="BroTradingz Live Trading"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          if (age < 18) {
-            alert("You must be at least 18 years old to register.");
-            e.preventDefault();
-            return;
-          }
+    <style>
+      /* ================= YOUTUBE HERO SECTION ================= */
 
-          if (!document.getElementById("agreeTerms").checked) {
-            alert("You must agree to the Terms & Conditions.");
-            e.preventDefault();
-          }
-        });
-    </script>
-    <!-- ====================Subscrition Form END===========  -->
+      .yt-hero {
+        min-height: 75vh;
+        display: flex;
+        align-items: center;
+        padding: 60px 6%;
+        background:
+          radial-gradient(circle at top center, #1e40af 0%, transparent 60%),
+          linear-gradient(180deg, #0b1d3a 0%, #030712 100%);
+        color: #ffffff;
+      }
+
+      .yt-container {
+        max-width: 1400px;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+      }
+
+      /* LEFT SIDE */
+
+      .yt-content {
+        flex: 1;
+        max-width: 550px;
+      }
+
+      .yt-content h2 {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        font-family: "DM Mono", monospace;
+      }
+
+      .yt-content p {
+        font-size: 18px;
+        color: #d1d5db;
+        margin-bottom: 12px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* BUTTON */
+
+      .yt-btn {
+        display: inline-block;
+        padding: 16px 42px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #00c2ff, #1e90ff);
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+        /* box-shadow: 0 10px 25px rgba(0, 194, 255, 0.4); */
+      }
+
+      .yt-btn:hover {
+        /* transform: translateY(-4px); */
+        background: #ffffff;
+        color: #0b0f2a;
+        border: 3px solid #00c2ff;
+      }
+
+      /* RIGHT SIDE (VIDEO) */
+
+      .yt-media {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .yt-video-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 650px;
+        padding-top: 56.25%; /* 16:9 Ratio */
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .yt-video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      @media (max-width: 992px) {
+        .yt-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .yt-media {
+          order: -1;
+          margin-bottom: 30px;
+        }
+
+        .yt-content h2 {
+          font-size: 34px;
+        }
+
+        .yt-content p {
+          font-size: 16px;
+        }
+      }
+    </style>
+    <!-- ============ Youtube section END=======  -->
 
     <!-- ================= BRO TRADING FOOTER ================= -->
     <footer class="bt-footer">
