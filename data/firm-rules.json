@@ -1121,6 +1121,7 @@
     },
     "phidias": {
       "name": "Phidias Prop Firm",
+      "country": "France",
       "code_default": "BROTRADING",
       "affiliate_url": "https://member.phidiaspropfirm.com/aff/go/brotrading",
       "platforms": [
@@ -1489,6 +1490,7 @@
     },
     "nexgen_pro_trader": {
       "name": "NexGen Funding",
+      "country": "Cyprus",
       "code_default": "BRO",
       "affiliate_url": "https://thenextgenfunding.com/",
       "platforms": [],
@@ -1686,6 +1688,7 @@
     },
     "yrm_prop": {
       "name": "YRM Prop",
+      "country": "USA",
       "code_default": "BRO",
       "affiliate_url": "https://yrmprop.com/ref/Bro/",
       "platforms": [],
