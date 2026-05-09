@@ -1,0 +1,98 @@
+name: Nightly Prop Firm Scrape
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # 23:00 CET / 00:00 CEST
+  workflow_dispatch:       # allows manual trigger from GitHub UI
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout BroTraders
+        uses: actions/checkout@v4
+
+      - name: Checkout propfirm-scraper
+        uses: actions/checkout@v4
+        with:
+          repository: Brotrading/propfirm-scraper
+          token: ${{ secrets.SCRAPER_REPO_PAT }}
+          path: propfirm-scraper
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r propfirm-scraper/requirements.txt
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Run scraper
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BROTRADERS_PATH: ${{ github.workspace }}
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd propfirm-scraper
+          python scripts/scrape_propfirms.py
+
+      - name: Run merge
+        env:
+          BROTRADERS_PATH: ${{ github.workspace }}
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd propfirm-scraper
+          python scripts/merge_to_firm_rules.py
+
+      - name: Apply merged file
+        run: cp propfirm-scraper/data/firm-rules.merged.json data/firm-rules.json
+
+      - name: Generate PR body
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd propfirm-scraper
+          python scripts/scrape_report.py > /tmp/pr_body.md
+          cat /tmp/pr_body.md
+
+      - name: Commit and push
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B auto/daily-scrape
+          git add data/firm-rules.json
+          if git diff --cached --quiet; then
+            echo "No changes detected."
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+          else
+            git commit -m "chore: nightly scrape $(date -u +%Y-%m-%d)"
+            git push -f origin auto/daily-scrape
+            echo "no_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create or update PR
+        if: steps.commit.outputs.no_changes != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING=$(gh pr list --base dev --head auto/daily-scrape --json number -q '.[0].number' 2>/dev/null || echo "")
+          if [ -n "$EXISTING" ]; then
+            gh pr edit "$EXISTING" \
+              --title "chore: nightly scrape $(date -u +%Y-%m-%d)" \
+              --body "$(cat /tmp/pr_body.md)"
+            echo "Updated PR #$EXISTING"
+          else
+            gh pr create \
+              --base dev \
+              --head auto/daily-scrape \
+              --title "chore: nightly scrape $(date -u +%Y-%m-%d)" \
+              --body "$(cat /tmp/pr_body.md)"
+          fi
