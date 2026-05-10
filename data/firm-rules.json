@@ -1796,6 +1796,134 @@
       },
       "_status": "Auto-extracted from https://yrmprop.com/ on 2026-05-03. Verify before publishing.",
       "_extraction_notes": "Platforms section in HTML is empty (logos rendered via CSS/images). Starter plan shows a 'reset price' separate from initial purchase price; reset prices: $49/$69/$125/$139 for 25K/50K/100K/150K respectively. Starter activation fee shown as $0 (was $99 struck-through). Instant Prime daily loss limits labeled 'Soft Breach' for 50K+; 25K shows 'None'. Min payout amount not stated. Profit split shown as 90% (90/10). Drawdown labeled 'Trailing Max Drawdown' but mode is 'End of Day' \u2014 represented as EOD. Discount code YRM40 explicitly visible on Instant Prime cards; Starter cards show promotional pricing without explicit code."
+    },
+    "fundedseat": {
+      "name": "FundedSeat",
+      "code_default": "BRO",
+      "affiliate_url": "https://fundedseat.link/bro",
+      "platforms": [
+        "Rithmic",
+        "Quantower"
+      ],
+      "discount_text": "60% OFF with affiliate code BRO",
+      "rules_global": {
+        "consistency": "1 Step Daily: 35% on funded; Instant Funding Bolt: 20% for first payout; Instant Funding Direct: 15% biggest trade rule",
+        "min_trading_days": null,
+        "payout_split": "90/10",
+        "min_payout": null
+      },
+      "plans": {
+        "1 Step - Daily": {
+          "type": "1-Step Evaluation",
+          "drawdown_type": "EOD",
+          "sizes": {
+            "25K": {
+              "profit_target": 1500,
+              "max_drawdown": 1000,
+              "daily_drawdown": null,
+              "eval_price_msrp": 140,
+              "eval_price_discounted": 56,
+              "activation_fee": 0,
+              "min_trading_days": null
+            },
+            "50K": {
+              "profit_target": 3000,
+              "max_drawdown": 2000,
+              "daily_drawdown": null,
+              "eval_price_msrp": 200,
+              "eval_price_discounted": 80,
+              "activation_fee": 0,
+              "min_trading_days": null
+            },
+            "100K": {
+              "profit_target": 6000,
+              "max_drawdown": 3000,
+              "daily_drawdown": null,
+              "eval_price_msrp": 340,
+              "eval_price_discounted": 136,
+              "activation_fee": 0,
+              "min_trading_days": null
+            },
+            "150K": {
+              "profit_target": 9000,
+              "max_drawdown": 4500,
+              "daily_drawdown": null,
+              "eval_price_msrp": 480,
+              "eval_price_discounted": 192,
+              "activation_fee": 0,
+              "min_trading_days": null
+            }
+          }
+        },
+        "Instant Funding - Direct": {
+          "type": "Instant Funded",
+          "drawdown_type": "EOD",
+          "sizes": {
+            "25K": {
+              "profit_target": null,
+              "max_drawdown": 1000,
+              "daily_drawdown": null,
+              "eval_price_msrp": 400,
+              "eval_price_discounted": 160,
+              "activation_fee": null,
+              "min_trading_days": null
+            },
+            "50K": {
+              "profit_target": null,
+              "max_drawdown": 2000,
+              "daily_drawdown": 1500,
+              "eval_price_msrp": 600,
+              "eval_price_discounted": 240,
+              "activation_fee": null,
+              "min_trading_days": null
+            },
+            "100K": {
+              "profit_target": null,
+              "max_drawdown": 3000,
+              "daily_drawdown": 2500,
+              "eval_price_msrp": 900,
+              "eval_price_discounted": 360,
+              "activation_fee": null,
+              "min_trading_days": null
+            }
+          }
+        },
+        "Instant Funding - Bolt": {
+          "type": "Instant Funded",
+          "drawdown_type": "EOD",
+          "sizes": {
+            "25K": {
+              "profit_target": null,
+              "max_drawdown": 1000,
+              "daily_drawdown": null,
+              "eval_price_msrp": 350,
+              "eval_price_discounted": 140,
+              "activation_fee": null,
+              "min_trading_days": null
+            },
+            "50K": {
+              "profit_target": null,
+              "max_drawdown": 2000,
+              "daily_drawdown": 1500,
+              "eval_price_msrp": 520,
+              "eval_price_discounted": 208,
+              "activation_fee": null,
+              "min_trading_days": null
+            },
+            "100K": {
+              "profit_target": null,
+              "max_drawdown": 3000,
+              "daily_drawdown": 2500,
+              "eval_price_msrp": 750,
+              "eval_price_discounted": 300,
+              "activation_fee": null,
+              "min_trading_days": null
+            }
+          }
+        }
+      },
+      "_status": "Auto-extracted from https://fundedseat.com/ on 2026-05-10. Verify before publishing.",
+      "_extraction_notes": "BRO unlocks 60% off (per Mike). Site shows 50% off site-wide and FIRST60 for 60% off first purchase; BRO discount taken from MSRP \u00d7 0.40. Two sub-tabs missed by scraper: 'Daily Pro (Beta)' and 'Sprint' under 1 Step. Marketing mentions scaling up to $750K but only sizes \u2264$150K (Eval) / \u2264$100K (Instant) captured. 25K sizes show no daily drawdown limit (none on those plans, or scraper missed). Min payout amount not disclosed. Country/jurisdiction not extracted."
     }
   }
 }

@@ -2013,6 +2013,10 @@
             const RESTRICTED_YRM = [
               "Iran","North Korea","Syria","Cuba","Russia","Belarus","Venezuela","Crimea (Region of Ukraine)","Donetsk","Luhansk","Palestinian Territory"
             ];
+            // FundedSeat: official restricted list not yet published — using OFAC minimum.
+            const RESTRICTED_FUNDEDSEAT = [
+              "Iran","North Korea","Syria","Cuba","Russia","Belarus","Venezuela","Crimea (Region of Ukraine)","Donetsk","Luhansk","Palestinian Territory"
+            ];
 
             // ----- Apex Trader Funding -----
             // Verified from apextraderfunding.com — 90% off sale active (code BRO).
@@ -2432,6 +2436,48 @@
                 firmpage: "../Firms/YRM.html",
                 website: "https://yrmprop.com/ref/Bro/",
                 restrictedCountries: RESTRICTED_YRM,
+              });
+
+            // ----- FundedSeat — added May 2026 from official site scrape -----
+            // 3 plans: 1 Step Daily (Evaluation), Instant Funding Direct, Instant Funding Bolt.
+            // 60% off ALL accounts with affiliate code BRO. Activation FREE on Evaluation.
+            // No dedicated firm page yet — firmpage points to affiliate URL.
+            const fundedseatVariants = [
+              // 1 Step Daily (Evaluation, EOD drawdown)
+              { size: "25K Daily",          goal: 1500,  dd: 1000, ddt: "EOD", evalReg: 140,  evalSale: 56,   activation: 0, truecost: 56,   mindays: 0 },
+              { size: "50K Daily",          goal: 3000,  dd: 2000, ddt: "EOD", evalReg: 200,  evalSale: 80,   activation: 0, truecost: 80,   mindays: 0 },
+              { size: "100K Daily",         goal: 6000,  dd: 3000, ddt: "EOD", evalReg: 340,  evalSale: 136,  activation: 0, truecost: 136,  mindays: 0 },
+              { size: "150K Daily",         goal: 9000,  dd: 4500, ddt: "EOD", evalReg: 480,  evalSale: 192,  activation: 0, truecost: 192,  mindays: 0 },
+              // Instant Funding Direct (no profit target — already funded)
+              { size: "25K Direct",         goal: null,  dd: 1000, ddt: "EOD", evalReg: 400,  evalSale: 160,  activation: 0, truecost: 160,  mindays: 0 },
+              { size: "50K Direct",         goal: null,  dd: 2000, ddt: "EOD", evalReg: 600,  evalSale: 240,  activation: 0, truecost: 240,  mindays: 0 },
+              { size: "100K Direct",        goal: null,  dd: 3000, ddt: "EOD", evalReg: 900,  evalSale: 360,  activation: 0, truecost: 360,  mindays: 0 },
+              // Instant Funding Bolt (no profit target — already funded)
+              { size: "25K Bolt",           goal: null,  dd: 1000, ddt: "EOD", evalReg: 350,  evalSale: 140,  activation: 0, truecost: 140,  mindays: 0 },
+              { size: "50K Bolt",           goal: null,  dd: 2000, ddt: "EOD", evalReg: 520,  evalSale: 208,  activation: 0, truecost: 208,  mindays: 0 },
+              { size: "100K Bolt",          goal: null,  dd: 3000, ddt: "EOD", evalReg: 750,  evalSale: 300,  activation: 0, truecost: 300,  mindays: 0 },
+            ];
+            for (let v of fundedseatVariants)
+              allRows.push({
+                firm: "FundedSeat",
+                logo: "../Photos/firms/fundedseat.png",
+                account: v.size,
+                goal: v.goal,
+                profitTarget: v.goal,
+                ddt: v.ddt,
+                dd: v.dd,
+                mindays: v.mindays,
+                eval: v.evalSale,
+                activation: v.activation,
+                truecost: v.truecost,
+                discount: "60%",
+                code: "BRO",
+                platform: "Rithmic, Quantower",
+                country: "Unknown",
+                maxaccounts: 3,
+                firmpage: "https://fundedseat.link/bro",
+                website: "https://fundedseat.link/bro",
+                restrictedCountries: RESTRICTED_FUNDEDSEAT,
               });
 
             const firms = allRows.slice();
