@@ -2499,9 +2499,34 @@
                 restrictedCountries: RESTRICTED_FUNDEDSEAT,
               });
 
+            // Showcase 50K — one comparable 50K Eval per firm for the default view.
+            // When users sort by any column the showcase grouping disappears.
+            const SHOWCASE_50K = [
+              ["Apex Trader Funding", "50K Trail"],
+              ["Tradeify",            "50K Growth"],
+              ["Lucid Trading",       "50K Flex"],
+              ["MyFundedFutures",     "50K Rapid"],
+              ["Daytraders.com",      "50K Trail"],
+              ["Phidias",             "50K Fundamental OTP"],
+              ["Top One Futures",     "50K S2F Sim Pro"],
+              ["Alpha Futures",       "50K Standard"],
+              ["NexGen Funding",      "50K Ace"],
+              ["YRM Prop",            "50K Starter"],
+              ["FundedSeat",          "50K Daily 35%"],
+            ];
+            const _showcaseSet = new Set(SHOWCASE_50K.map(([f, a]) => `${f}|${a}`));
+            allRows.forEach(r => { r.showcase = _showcaseSet.has(`${r.firm}|${r.account}`); });
+
             const firms = allRows.slice();
-            let sortState = { key: "truecost", dir: "asc" };
+            let sortState = { key: "truecost", dir: "asc", initial: true };
             function sortRows(rows) {
+              // Default/initial view: showcase 50K rows first, then everything else.
+              if (sortState.initial) {
+                return rows.slice().sort((a, b) => {
+                  if (a.showcase !== b.showcase) return a.showcase ? -1 : 1;
+                  return (a.truecost ?? 0) - (b.truecost ?? 0);
+                });
+              }
               const { key, dir } = sortState;
               if (!key) return rows;
               const mult = dir === "asc" ? 1 : -1;
