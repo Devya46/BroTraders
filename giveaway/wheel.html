@@ -1200,42 +1200,67 @@ window.addEventListener('message', (event) => {
 // Mike: replace APPS_SCRIPT_URL below with the URL from your Apps Script deployment.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyr_YsQAWv7r1618c3YMkob3J7QZrSR1yjJ4G7n8_iAMCPBsDby9nAqEc5Qxqkv0sVD5A/exec';
 
+// Visible debug indicator — top-right corner shows live API sync status
+function ensureDebugBanner() {
+  let el = document.getElementById('apiSyncStatus');
+  if (el) return el;
+  el = document.createElement('div');
+  el.id = 'apiSyncStatus';
+  el.style.cssText = 'position:fixed;top:8px;right:8px;z-index:9999;background:#1a1f2e;color:#fff;padding:6px 12px;border-radius:6px;font:12px/1.4 system-ui,sans-serif;border:1px solid #2c9eff;box-shadow:0 2px 8px rgba(0,0,0,0.4)';
+  el.textContent = 'API: connecting…';
+  document.body.appendChild(el);
+  return el;
+}
+function setDebugStatus(text, color) {
+  const el = ensureDebugBanner();
+  el.textContent = text;
+  el.style.borderColor = color || '#2c9eff';
+}
+
 async function fetchEntries() {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.startsWith('PASTE_')) return;
-  // Don't mutate state.names during a spin — animation would desync from
-  // the chosen winner. Skip this poll cycle; next one runs in 8s.
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.startsWith('PASTE_')) {
+    setDebugStatus('API: ⚠ URL not configured', '#ef4444');
+    return;
+  }
   if (spinning) return;
   try {
-    const res = await fetch(APPS_SCRIPT_URL, { method: 'GET' });
+    // Cache-bust each request so browser/CDN never serves stale data
+    const url = APPS_SCRIPT_URL + (APPS_SCRIPT_URL.includes('?') ? '&' : '?') + '_=' + Date.now();
+    const res = await fetch(url, { method: 'GET', cache: 'no-store' });
+    if (!res.ok) {
+      setDebugStatus('API: ⚠ HTTP ' + res.status, '#ef4444');
+      return;
+    }
     const data = await res.json();
-    if (!data || !Array.isArray(data.entries)) return;
+    if (!data || !Array.isArray(data.entries)) {
+      setDebugStatus('API: ⚠ bad response', '#ef4444');
+      return;
+    }
     if (spinning) return;
-    // REPLACE state.names with the API response — API is the source of truth.
-    // Each entry (discord, tier) becomes one row in the wheel. Pro-Bros who
-    // submitted BOTH /all and /pro forms naturally appear twice → 2× chance.
     const newNames = [];
     data.entries.forEach(entry => {
       const name = (entry.discord || '').trim();
       if (!name) return;
       newNames.push(name);
     });
-    // Only update + re-render if the list actually changed (avoid pointless redraws).
     const changed = newNames.length !== state.names.length ||
                     newNames.some((n, i) => n !== state.names[i]);
     if (changed) {
       state.names = newNames;
       saveState();
       renderAll();
-      console.log('[wheel] synced from API — total', state.names.length, 'entries');
     }
+    const time = new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    setDebugStatus('API: ' + newNames.length + ' entries · ' + time, '#22c55e');
   } catch (e) {
+    setDebugStatus('API: ⚠ ' + (e.message || 'fetch failed'), '#ef4444');
     console.warn('[wheel] fetch failed', e);
   }
 }
 
-// Initial fetch + poll every 8 seconds
+// Initial fetch + poll every 5 seconds (was 8)
 fetchEntries();
-setInterval(fetchEntries, 8000);
+setInterval(fetchEntries, 5000);
 </script>
 </body>
 </html>
