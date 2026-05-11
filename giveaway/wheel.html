@@ -1200,22 +1200,26 @@ window.addEventListener('message', (event) => {
 // Mike: replace APPS_SCRIPT_URL below with the URL from your Apps Script deployment.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyr_YsQAWv7r1618c3YMkob3J7QZrSR1yjJ4G7n8_iAMCPBsDby9nAqEc5Qxqkv0sVD5A/exec';
 
-// Visible debug indicator — top-right corner shows live API sync status
+// Visible debug indicator — BIG bar at top of screen, shows live API sync status
 function ensureDebugBanner() {
   let el = document.getElementById('apiSyncStatus');
   if (el) return el;
   el = document.createElement('div');
   el.id = 'apiSyncStatus';
-  el.style.cssText = 'position:fixed;top:8px;right:8px;z-index:9999;background:#1a1f2e;color:#fff;padding:6px 12px;border-radius:6px;font:12px/1.4 system-ui,sans-serif;border:1px solid #2c9eff;box-shadow:0 2px 8px rgba(0,0,0,0.4)';
-  el.textContent = 'API: connecting…';
-  document.body.appendChild(el);
+  el.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#1a1f2e;color:#fff;padding:10px 16px;font:14px/1.4 system-ui,sans-serif;border-bottom:3px solid #2c9eff;text-align:center;font-weight:600';
+  el.textContent = '⏳ API: connecting…';
+  if (document.body) document.body.appendChild(el);
+  else document.addEventListener('DOMContentLoaded', () => document.body.appendChild(el));
   return el;
 }
 function setDebugStatus(text, color) {
   const el = ensureDebugBanner();
   el.textContent = text;
-  el.style.borderColor = color || '#2c9eff';
+  el.style.borderBottomColor = color || '#2c9eff';
+  el.style.background = (color === '#ef4444') ? '#3a1414' : (color === '#22c55e') ? '#0d2818' : '#1a1f2e';
 }
+// Show pill IMMEDIATELY so we know the script started
+ensureDebugBanner();
 
 async function fetchEntries() {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.startsWith('PASTE_')) {
