@@ -612,7 +612,7 @@
           }
 
           .premium-hero {
-            padding: 75px 8% 80px;
+            padding: 130px 8% 80px;
             background: linear-gradient(180deg, #020b25, #030f33);
             color: white;
             width: 100%;
@@ -1233,7 +1233,7 @@
                 </div>
               </div>
 
-              <div class="members-card">👥 <span id="membersCount">1312</span> traders joined this month</div>
+              <div class="members-card">👥 Be part of <span id="membersCount">2,400+</span> traders growing together</div>
             </div>
           </div>
         </section>
@@ -1282,14 +1282,21 @@
           updateCountdown();
           setInterval(updateCountdown, 1000);
 
-          // Fake urgency: consistent per-day number in range 1100–1550
-          // Changes daily so it feels organic, stays stable within a session
-          (function () {
-            const today = new Date();
-            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-            const count = 1100 + (dayOfYear * 13) % 450;
+          // Fetch live member count from Discord invite API
+          (async function () {
             const el = document.getElementById("membersCount");
-            if (el) el.innerText = count.toLocaleString();
+            if (!el) return;
+            try {
+              const data = await fetch(
+                "https://discord.com/api/v9/invites/brotrading?with_counts=true"
+              ).then((r) => r.json());
+              const count = data?.approximate_member_count;
+              if (count && count > 0) {
+                el.innerText = count.toLocaleString();
+              }
+            } catch {
+              // fallback: keep the static placeholder value
+            }
           })();
         </script>
       </body>
