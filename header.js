@@ -4,9 +4,12 @@
   const depth = window.location.pathname.split("/").filter(Boolean).length - 1;
   const prefix = depth > 0 ? "../".repeat(depth) : "";
 
-  let html;
+  let html, firms;
   try {
-    html = await fetch(`${prefix}header.html`).then((r) => r.text());
+    [html, firms] = await Promise.all([
+      fetch(`${prefix}header.html`).then((r) => r.text()),
+      fetch(`${prefix}data/firms-nav.json`).then((r) => r.json()),
+    ]);
   } catch {
     return;
   }
@@ -28,6 +31,12 @@
 
   // Inject the header markup where the placeholder was
   placeholder.outerHTML = tmp.innerHTML;
+
+  // Populate dynamic firm links from firms-nav.json
+  const firmsNav = document.getElementById("bt-firms-nav");
+  if (firmsNav && firms) {
+    firmsNav.innerHTML = firms.map((f) => `<a href="${f.path}">${f.name}</a>`).join("\n");
+  }
 
   // --- Dropdown toggle (sets .open on parent .bt-dropdown) ---
   const closeAllDropdowns = () => {
