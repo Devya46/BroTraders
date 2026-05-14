@@ -1683,49 +1683,8 @@
             setTimeout(() => (btn.innerText = code), 1200);
           };
 
-          function applyFilters() {
-            const search = document
-              .getElementById("zx-search")
-              .value.toLowerCase();
-            const account = document.getElementById("zx-account-filter").value;
-            const ddt = document.getElementById("zx-dd-filter").value;
-
-            filteredData = firms.filter((f) => {
-              const matchSearch = f.firm.toLowerCase().includes(search);
-              let matchAccount = true;
-              if (account) {
-                const accNum = parseInt(account, 10);
-                matchAccount = f.account === accNum;
-              }
-              let matchDDT = true;
-              if (ddt) matchDDT = f.ddt === ddt;
-              return matchSearch && matchAccount && matchDDT;
-            });
-            if (sortState.key) {
-              filteredData.sort((a, b) => {
-                let aVal = a[sortState.key],
-                  bVal = b[sortState.key];
-                if (typeof aVal === "string" && isNaN(aVal))
-                  aVal = aVal.toString();
-                if (typeof bVal === "string" && isNaN(bVal))
-                  bVal = bVal.toString();
-                if (aVal > bVal) return sortState.direction;
-                if (aVal < bVal) return -sortState.direction;
-                return 0;
-              });
-            }
-            render(filteredData);
-          }
-
-          document
-            .getElementById("zx-search")
-            .addEventListener("input", applyFilters);
-          document
-            .getElementById("zx-account-filter")
-            .addEventListener("change", applyFilters);
-          document
-            .getElementById("zx-dd-filter")
-            .addEventListener("change", applyFilters);
+          // Filter bar removed — applyFilters and its event listeners are no
+          // longer wired up. filteredData stays as the full firms list.
 
           // Sorting with icons
           document.querySelectorAll("#zx-table th[data-key]").forEach((th) => {
