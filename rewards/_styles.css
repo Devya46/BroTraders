@@ -1,0 +1,153 @@
+/* Shared rewards UI — designed to drop into propfirmbro.com's existing dark theme.
+   Lives alongside the page-level styles; nothing here is page-specific. */
+
+:root {
+  --rw-bg: #0a0b12;
+  --rw-panel: #131626;
+  --rw-panel-2: #1a1f2e;
+  --rw-border: #232a3d;
+  --rw-text: #ffffff;
+  --rw-text-2: #94a3b8;
+  --rw-accent: #ff6b00;            /* Bro Trading orange */
+  --rw-accent-2: #00c2ff;
+  --rw-green: #22c55e;
+  --rw-red: #ef4444;
+}
+
+body.rw-body {
+  margin: 0;
+  font: 15px/1.5 "DM Sans", -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  background: var(--rw-bg);
+  color: var(--rw-text);
+  min-height: 100vh;
+}
+
+.rw-main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 110px 24px 80px;
+}
+
+.rw-panel {
+  background: var(--rw-panel);
+  border: 1px solid var(--rw-border);
+  border-radius: 14px;
+  padding: 28px;
+}
+
+.rw-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.rw-stat {
+  background: var(--rw-panel);
+  border: 1px solid var(--rw-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.rw-stat .label { color: var(--rw-text-2); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+.rw-stat .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+.rw-stat .sub { color: var(--rw-text-2); font-size: 12px; margin-top: 4px; }
+
+.rw-h1 { margin: 0 0 8px; font-size: 28px; font-weight: 700; }
+.rw-h2 { margin: 24px 0 12px; font-size: 18px; font-weight: 700; }
+.rw-muted { color: var(--rw-text-2); }
+.rw-small { font-size: 13px; }
+
+.rw-input,
+.rw-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--rw-panel-2);
+  border: 1px solid var(--rw-border);
+  color: var(--rw-text);
+  font: inherit;
+}
+.rw-textarea { min-height: 120px; resize: vertical; }
+.rw-label { display: block; margin: 10px 0 6px; font-size: 13px; color: var(--rw-text-2); }
+
+.rw-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; border-radius: 10px; border: 0;
+  background: var(--rw-accent); color: white; font: inherit; font-weight: 700;
+  cursor: pointer; transition: filter 0.15s ease;
+}
+.rw-btn:hover { filter: brightness(1.1); }
+.rw-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.rw-btn.ghost { background: var(--rw-panel-2); border: 1px solid var(--rw-border); }
+.rw-btn.danger { background: var(--rw-red); }
+.rw-btn.full { width: 100%; }
+
+.rw-google-btn {
+  width: 100%;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 12px 16px; border-radius: 10px;
+  background: #ffffff; color: #1f2937;
+  font: inherit; font-weight: 600; border: 0;
+  cursor: pointer;
+}
+.rw-google-btn img { width: 18px; height: 18px; }
+
+.rw-divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: var(--rw-text-2); font-size: 12px; }
+.rw-divider::before, .rw-divider::after { content: ""; flex: 1; height: 1px; background: var(--rw-border); }
+
+.rw-err { color: var(--rw-red); font-size: 13px; margin-top: 10px; min-height: 18px; }
+.rw-ok  { color: var(--rw-green); font-size: 13px; margin-top: 10px; min-height: 18px; }
+
+.rw-pill {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  background: var(--rw-panel-2); color: var(--rw-text-2);
+  border: 1px solid var(--rw-border);
+}
+.rw-pill.pro { background: rgba(255,107,0,0.12); color: var(--rw-accent); border-color: rgba(255,107,0,0.4); }
+.rw-pill.pending { background: rgba(255,193,7,0.12); color: #ffc107; border-color: rgba(255,193,7,0.4); }
+.rw-pill.fulfilled { background: rgba(34,197,94,0.12); color: var(--rw-green); border-color: rgba(34,197,94,0.4); }
+.rw-pill.cancelled { background: rgba(239,68,68,0.12); color: var(--rw-red); border-color: rgba(239,68,68,0.4); }
+
+.rw-pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.rw-pkg {
+  background: var(--rw-panel);
+  border: 1px solid var(--rw-border);
+  border-radius: 14px;
+  padding: 22px;
+  display: flex; flex-direction: column;
+}
+.rw-pkg h3 { margin: 0 0 8px; font-size: 18px; }
+.rw-pkg p { color: var(--rw-text-2); font-size: 14px; flex: 1; }
+.rw-pkg .cost { font-size: 22px; font-weight: 700; color: var(--rw-accent); margin: 12px 0 16px; }
+.rw-pkg .cost small { font-size: 13px; color: var(--rw-text-2); font-weight: 500; margin-left: 4px; }
+
+.rw-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.rw-table th, .rw-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rw-border); }
+.rw-table th { color: var(--rw-text-2); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+.rw-table tr:last-child td { border-bottom: 0; }
+.rw-table td.amount { font-variant-numeric: tabular-nums; font-weight: 600; }
+.rw-table td.amount.pos { color: var(--rw-green); }
+.rw-table td.amount.neg { color: var(--rw-red); }
+
+.rw-auth-shell {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 24px;
+}
+.rw-auth-card {
+  width: 100%; max-width: 420px;
+  background: var(--rw-panel); border: 1px solid var(--rw-border);
+  border-radius: 16px; padding: 32px;
+}
+.rw-auth-card .logo {
+  display: block; margin: 0 auto 20px;
+  height: 48px;
+}
+.rw-auth-card h1 { font-size: 24px; margin: 0 0 6px; text-align: center; }
+.rw-auth-card .sub { color: var(--rw-text-2); font-size: 14px; text-align: center; margin-bottom: 20px; }
+.rw-auth-card .switch { text-align: center; margin-top: 16px; color: var(--rw-text-2); font-size: 13px; }
+.rw-auth-card .switch a { color: var(--rw-accent-2); text-decoration: none; }

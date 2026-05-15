@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign up · BroTrading Rewards</title>
+<script src="../head.js"></script>
+<link rel="stylesheet" href="./_styles.css" />
+</head>
+<body class="rw-body">
+
+<div class="rw-auth-shell">
+  <div class="rw-auth-card">
+    <a href="../index.html"><img src="../bro-trading-logo.jpeg" class="logo" alt="BroTrading" /></a>
+    <h1>Create your Bro Rewards account</h1>
+    <p class="sub">Earn points on every prop firm purchase. Redeem for funded accounts and Pro Bro memberships.</p>
+
+    <button id="googleBtn" class="rw-google-btn" type="button">
+      <img src="https://www.google.com/favicon.ico" alt="" />
+      Continue with Google
+    </button>
+
+    <div class="rw-divider">or with email</div>
+
+    <form id="signupForm" autocomplete="on">
+      <label class="rw-label" for="displayName">Display name</label>
+      <input class="rw-input" type="text" id="displayName" name="displayName" required maxlength="60" />
+      <label class="rw-label" for="email">Email</label>
+      <input class="rw-input" type="email" id="email" name="email" required autocomplete="email" />
+      <label class="rw-label" for="password">Password (min 8)</label>
+      <input class="rw-input" type="password" id="password" name="password" required minlength="8" autocomplete="new-password" />
+      <div id="refRow" style="display:none;">
+        <label class="rw-label">Referral code</label>
+        <input class="rw-input" id="refField" disabled />
+      </div>
+      <button class="rw-btn full" type="submit" style="margin-top:16px;">Create account</button>
+      <div id="err" class="rw-err"></div>
+      <div id="ok" class="rw-ok"></div>
+    </form>
+
+    <p class="switch">
+      Already have an account? <a href="./login.html">Log in</a>
+    </p>
+  </div>
+</div>
+
+<script src="../js/supabase-config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  const form = document.getElementById("signupForm");
+  const err = document.getElementById("err");
+  const ok = document.getElementById("ok");
+  const googleBtn = document.getElementById("googleBtn");
+
+  // Show pending referral code if present.
+  const pendingRef = localStorage.getItem("bro_pending_referral");
+  if (pendingRef) {
+    document.getElementById("refRow").style.display = "block";
+    document.getElementById("refField").value = pendingRef;
+  }
+
+  BroAuth.ready.then(() => {
+    if (BroAuth.getSession()) {
+      window.location.href = "./account.html";
+    }
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    err.textContent = "";
+    ok.textContent = "";
+    const email = form.email.value.trim();
+    const password = form.password.value;
+    const displayName = form.displayName.value.trim();
+
+    const { data, error } = await BroAuth.signUp({ email, password, displayName });
+    if (error) {
+      err.textContent = error.message || "Sign-up failed.";
+      return;
+    }
+    // If Supabase requires email confirmation, session will be null.
+    if (data?.session) {
+      window.location.href = "./account.html";
+    } else {
+      ok.textContent = "Check your email to confirm your account, then log in.";
+    }
+  });
+
+  googleBtn.addEventListener("click", async () => {
+    err.textContent = "";
+    const { error } = await BroAuth.signInWithGoogle();
+    if (error) err.textContent = error.message || "Google sign-in failed.";
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BroTrading · Rewards Admin</title>
+<link rel="stylesheet" href="../rewards/_styles.css" />
+<style>
+  body { background: var(--rw-bg); }
+  .topbar { padding: 22px 28px; border-bottom: 1px solid var(--rw-border); display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap: wrap; }
+  .topbar h1 { margin: 0; font-size: 18px; }
+  .topbar .links a { color: var(--rw-text-2); text-decoration: none; margin-left: 14px; font-size: 13px; }
+  .gate { position: fixed; inset: 0; display:flex; align-items:center; justify-content:center; background: var(--rw-bg); z-index: 100; }
+  .gate-card { background: var(--rw-panel); border:1px solid var(--rw-border); border-radius:14px; padding:28px; max-width:380px; width:100%; }
+  .grid-two { display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:24px; }
+  @media (max-width: 900px) { .grid-two { grid-template-columns: 1fr; } }
+  details { background: var(--rw-panel-2); border:1px solid var(--rw-border); border-radius:10px; padding: 12px 14px; margin-top:8px; }
+  details summary { cursor:pointer; color: var(--rw-text-2); font-size: 13px; }
+  pre { background: #0a0b12; border: 1px solid var(--rw-border); border-radius:8px; padding: 10px; overflow:auto; font-size:12px; }
+</style>
+</head>
+<body class="rw-body">
+
+<div id="gate" class="gate">
+  <div class="gate-card">
+    <h1 style="margin:0 0 4px;">Admin access</h1>
+    <p class="rw-muted rw-small" style="margin:0 0 14px;">Enter the stats token.</p>
+    <input id="gateToken" class="rw-input" type="password" placeholder="Token" />
+    <button id="gateBtn" class="rw-btn full" style="margin-top:10px;">Enter</button>
+    <div id="gateErr" class="rw-err"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none;">
+
+<div class="topbar">
+  <div>
+    <h1>Rewards Admin</h1>
+    <div class="rw-muted rw-small">Manage users, points, redemptions, and reviews</div>
+  </div>
+  <div class="links">
+    <a href="./clicks.html">Click analytics</a>
+    <a href="../index.html">Back to site</a>
+    <a href="#" id="signOutLink">Sign out</a>
+  </div>
+</div>
+
+<main style="padding: 24px 28px 80px;">
+
+  <div class="rw-card-row">
+    <div class="rw-stat"><div class="label">Total users</div><div class="value" id="totUsers">—</div></div>
+    <div class="rw-stat"><div class="label">Pro Bros</div><div class="value" id="totPro">—</div></div>
+    <div class="rw-stat"><div class="label">Points outstanding</div><div class="value" id="totOut">—</div></div>
+    <div class="rw-stat"><div class="label">Lifetime earned</div><div class="value" id="totEarned">—</div></div>
+  </div>
+
+  <div class="grid-two">
+    <section>
+      <h2 class="rw-h2" style="margin-top:0;">Pending redemptions</h2>
+      <div id="pendingRedemptions"></div>
+    </section>
+    <section>
+      <h2 class="rw-h2" style="margin-top:0;">Pending reviews</h2>
+      <div id="pendingReviews"></div>
+    </section>
+  </div>
+
+  <section style="margin-top:32px;">
+    <h2 class="rw-h2">Lookup user</h2>
+    <div class="rw-panel">
+      <form id="lookupForm" style="display:flex; gap:10px; flex-wrap: wrap;">
+        <input class="rw-input" id="lookupEmail" type="email" placeholder="user@example.com" style="flex:1; min-width:240px;" required />
+        <button class="rw-btn" type="submit">Lookup</button>
+      </form>
+      <div id="lookupResult" style="margin-top:16px;"></div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+  const TOKEN_KEY = "bro_admin_token";
+  let token = localStorage.getItem(TOKEN_KEY) || "";
+
+  async function api(method, body) {
+    const opts = {
+      method,
+      headers: { "X-Admin-Token": token, "Content-Type": "application/json" },
+    };
+    if (body) opts.body = JSON.stringify(body);
+    const r = await fetch("/api/rewards/admin", opts);
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}));
+      throw new Error(err.error || `HTTP ${r.status}`);
+    }
+    return r.json();
+  }
+
+  function fmt(n) { return Number(n || 0).toLocaleString("en-US"); }
+  function fmtDate(iso) {
+    if (!iso) return "—";
+    return new Date(iso).toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short" });
+  }
+
+  async function loadOverview() {
+    const data = await api("GET");
+    document.getElementById("totUsers").textContent = fmt(data.totals.users_count);
+    document.getElementById("totPro").textContent = fmt(data.totals.pro_count);
+    document.getElementById("totOut").textContent = fmt(data.totals.points_outstanding);
+    document.getElementById("totEarned").textContent = fmt(data.totals.lifetime_earned);
+
+    renderPendingRedemptions(data.pending_redemptions);
+    renderPendingReviews(data.pending_reviews);
+  }
+
+  function renderPendingRedemptions(rows) {
+    const root = document.getElementById("pendingRedemptions");
+    if (!rows.length) {
+      root.innerHTML = `<p class="rw-muted">No pending redemptions.</p>`;
+      return;
+    }
+    root.innerHTML = rows.map((r) => `
+      <div class="rw-panel" style="margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <strong>${r.title}</strong> — <span class="rw-muted">−${fmt(r.points_cost)} pts</span>
+            <div class="rw-muted rw-small">${r.display_name || ""} · ${r.email} · ${fmtDate(r.created_at)}</div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="rw-btn" data-action="fulfill" data-id="${r.id}">Mark fulfilled</button>
+            <button class="rw-btn ghost" data-action="cancel" data-id="${r.id}">Cancel + refund</button>
+          </div>
+        </div>
+        ${r.fulfillment_data ? `<details><summary>Fulfillment data</summary><pre>${JSON.stringify(JSON.parse(r.fulfillment_data), null, 2)}</pre></details>` : ""}
+      </div>
+    `).join("");
+
+    root.querySelectorAll("button[data-action]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = parseInt(btn.dataset.id, 10);
+        const action = btn.dataset.action;
+        if (action === "fulfill") {
+          const notes = prompt("Optional fulfillment notes:") || "";
+          await api("POST", { action: "fulfill_redemption", redemption_id: id, fulfillment_notes: notes });
+        } else {
+          const reason = prompt("Cancellation reason (will refund points):") || "";
+          await api("POST", { action: "cancel_redemption", redemption_id: id, reason });
+        }
+        loadOverview();
+      });
+    });
+  }
+
+  function renderPendingReviews(rows) {
+    const root = document.getElementById("pendingReviews");
+    if (!rows.length) {
+      root.innerHTML = `<p class="rw-muted">No pending reviews.</p>`;
+      return;
+    }
+    root.innerHTML = rows.map((r) => `
+      <div class="rw-panel" style="margin-bottom:10px;">
+        <div><strong>${r.firm_slug}</strong> · ${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}
+          <span class="rw-muted rw-small">— ${r.email} · ${fmtDate(r.created_at)}</span>
+        </div>
+        ${r.title ? `<div style="margin-top:4px; font-weight:600;">${r.title}</div>` : ""}
+        <p style="margin:8px 0; color: var(--rw-text);">${r.body.replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}</p>
+        <div style="display:flex; gap:8px;">
+          <button class="rw-btn" data-rev-action="approve" data-id="${r.id}">Approve + award pts</button>
+          <button class="rw-btn danger" data-rev-action="reject" data-id="${r.id}">Reject</button>
+        </div>
+      </div>
+    `).join("");
+
+    root.querySelectorAll("button[data-rev-action]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = parseInt(btn.dataset.id, 10);
+        const action = btn.dataset.revAction;
+        if (action === "approve") {
+          await api("POST", { action: "approve_review", review_id: id });
+        } else {
+          const reason = prompt("Rejection reason (optional, internal only):") || "";
+          await api("POST", { action: "reject_review", review_id: id, reason });
+        }
+        loadOverview();
+      });
+    });
+  }
+
+  document.getElementById("lookupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("lookupEmail").value.trim();
+    try {
+      const data = await api("POST", { action: "lookup_user", email });
+      renderLookup(data);
+    } catch (e) {
+      document.getElementById("lookupResult").innerHTML = `<p class="rw-err">${e.message}</p>`;
+    }
+  });
+
+  function renderLookup({ user, ledger, redemptions }) {
+    const root = document.getElementById("lookupResult");
+    root.innerHTML = `
+      <div class="rw-stat" style="margin-bottom:12px;">
+        <div class="label">${user.email} · ${user.display_name || "(no name)"} ${user.is_pro_bro ? '<span class="rw-pill pro">Pro Bro</span>' : '<span class="rw-pill">Free</span>'}</div>
+        <div class="value" style="font-size:22px;">${fmt(user.points_balance)} pts</div>
+        <div class="sub">Lifetime earned: ${fmt(user.points_earned)} · Member since ${fmtDate(user.created_at)} · Referral: ${user.referral_code}</div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap: wrap; margin-bottom: 16px;">
+        <button class="rw-btn" id="awardBtn">Award points</button>
+        <button class="rw-btn ghost" id="adjustBtn">Adjust (subtract)</button>
+        <button class="rw-btn ghost" id="proBtn">${user.is_pro_bro ? "Remove Pro Bro" : "Make Pro Bro"}</button>
+      </div>
+
+      <h3 class="rw-h2" style="margin-top:18px;">Recent ledger</h3>
+      <div class="rw-panel" style="padding:0; overflow:hidden;">
+        <table class="rw-table">
+          <thead><tr><th>When</th><th>Reason</th><th>Note</th><th style="text-align:right;">Points</th></tr></thead>
+          <tbody>
+            ${ledger.map((r) => `
+              <tr>
+                <td>${fmtDate(r.created_at)}</td>
+                <td>${r.reason}</td>
+                <td class="rw-muted">${r.note || ""}</td>
+                <td class="amount ${r.amount >= 0 ? "pos" : "neg"}" style="text-align:right;">
+                  ${r.amount >= 0 ? "+" : ""}${fmt(r.amount)}
+                </td>
+              </tr>
+            `).join("") || `<tr><td colspan="4" class="rw-muted" style="text-align:center; padding:18px;">No activity</td></tr>`}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="rw-h2">Redemptions</h3>
+      <div class="rw-panel" style="padding:0; overflow:hidden;">
+        <table class="rw-table">
+          <thead><tr><th>Package</th><th>Cost</th><th>Status</th><th>Requested</th><th>Fulfilled</th></tr></thead>
+          <tbody>
+            ${redemptions.map((r) => `
+              <tr>
+                <td>${r.package_slug}</td>
+                <td class="amount neg">−${fmt(r.points_cost)}</td>
+                <td><span class="rw-pill ${r.status}">${r.status}</span></td>
+                <td>${fmtDate(r.created_at)}</td>
+                <td>${fmtDate(r.fulfilled_at)}</td>
+              </tr>
+            `).join("") || `<tr><td colspan="5" class="rw-muted" style="text-align:center; padding:18px;">None</td></tr>`}
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    document.getElementById("awardBtn").addEventListener("click", async () => {
+      const amt = parseInt(prompt("How many points to award?") || "0", 10);
+      if (!amt) return;
+      const note = prompt("Note (visible to user):") || "";
+      await api("POST", { action: "award_points", user_id: user.id, amount: amt, note });
+      const refresh = await api("POST", { action: "lookup_user", email: user.email });
+      renderLookup(refresh);
+      loadOverview();
+    });
+    document.getElementById("adjustBtn").addEventListener("click", async () => {
+      const amt = parseInt(prompt("How many points to subtract? (positive number)") || "0", 10);
+      if (!amt) return;
+      const note = prompt("Reason (visible to user):") || "";
+      await api("POST", { action: "award_points", user_id: user.id, amount: -Math.abs(amt), note });
+      const refresh = await api("POST", { action: "lookup_user", email: user.email });
+      renderLookup(refresh);
+      loadOverview();
+    });
+    document.getElementById("proBtn").addEventListener("click", async () => {
+      if (!confirm(`${user.is_pro_bro ? "Remove Pro Bro from" : "Make Pro Bro:"} ${user.email}?`)) return;
+      await api("POST", { action: "set_pro_bro", user_id: user.id, is_pro_bro: user.is_pro_bro ? 0 : 1 });
+      const refresh = await api("POST", { action: "lookup_user", email: user.email });
+      renderLookup(refresh);
+      loadOverview();
+    });
+  }
+
+  document.getElementById("signOutLink").addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.removeItem(TOKEN_KEY);
+    location.reload();
+  });
+
+  function enter() {
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    loadOverview().catch((err) => {
+      document.getElementById("gateErr").textContent = err.message;
+      localStorage.removeItem(TOKEN_KEY);
+      document.getElementById("gate").style.display = "flex";
+      document.getElementById("app").style.display = "none";
+    });
+  }
+
+  document.getElementById("gateBtn").addEventListener("click", () => {
+    token = document.getElementById("gateToken").value.trim();
+    if (!token) return;
+    localStorage.setItem(TOKEN_KEY, token);
+    enter();
+  });
+
+  if (token) enter();
+</script>
+
+</body>
+</html>

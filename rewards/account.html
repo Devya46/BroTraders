@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Bro Rewards · BroTrading</title>
+<script src="../head.js"></script>
+<link rel="stylesheet" href="./_styles.css" />
+</head>
+<body class="rw-body">
+
+<div id="header"></div>
+
+<main class="rw-main" id="main" style="display:none;">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+    <div>
+      <h1 class="rw-h1">Your Bro Rewards</h1>
+      <p class="rw-muted">Signed in as <span id="email"></span> · <span id="proPill" class="rw-pill">Free Bro</span></p>
+    </div>
+    <button id="signOutBtn" class="rw-btn ghost">Sign out</button>
+  </div>
+
+  <div class="rw-card-row" style="margin-top: 22px;">
+    <div class="rw-stat">
+      <div class="label">Points balance</div>
+      <div class="value" id="balance">—</div>
+      <div class="sub">1000 pts ≈ €1</div>
+    </div>
+    <div class="rw-stat">
+      <div class="label">Lifetime earned</div>
+      <div class="value" id="earned">—</div>
+    </div>
+    <div class="rw-stat">
+      <div class="label">Member since</div>
+      <div class="value" id="memberSince" style="font-size:18px;">—</div>
+    </div>
+    <div class="rw-stat">
+      <div class="label">Referral link</div>
+      <div class="value" style="font-size:14px; word-break:break-all;" id="refLink">—</div>
+      <div class="sub">Share to earn <span id="refReward">10,000</span> pts per signup</div>
+    </div>
+  </div>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom: 24px;">
+    <a class="rw-btn" href="./catalog.html">Redeem points →</a>
+    <button class="rw-btn ghost" id="copyRefBtn">Copy referral link</button>
+  </div>
+
+  <div class="rw-panel" id="profilePanel">
+    <h2 class="rw-h2" style="margin-top:0;">Profile</h2>
+    <form id="profileForm">
+      <label class="rw-label" for="displayName">Display name</label>
+      <input class="rw-input" id="displayName" name="displayName" required maxlength="60" />
+      <button class="rw-btn" type="submit" style="margin-top:14px;">Save</button>
+      <span id="profileOk" class="rw-ok" style="margin-left:12px;"></span>
+    </form>
+  </div>
+
+  <h2 class="rw-h2">Recent points activity</h2>
+  <div class="rw-panel" style="padding:0; overflow:hidden;">
+    <table class="rw-table" id="ledgerTable">
+      <thead><tr><th>When</th><th>Reason</th><th>Note</th><th style="text-align:right;">Points</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <h2 class="rw-h2">Your Bro Package redemptions</h2>
+  <div class="rw-panel" style="padding:0; overflow:hidden;">
+    <table class="rw-table" id="redemptionsTable">
+      <thead><tr><th>Package</th><th>Cost</th><th>Status</th><th>Requested</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+</main>
+
+<div id="loadingShell" class="rw-auth-shell"><p class="rw-muted">Loading…</p></div>
+
+<script src="../js/supabase-config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../header.js"></script>
+<script>
+  const REASON_LABELS = {
+    signup: "Account creation bonus",
+    profile_complete: "Profile completed",
+    daily_login: "Daily login bonus",
+    review_submitted: "Firm review approved",
+    referral_signup: "Referral signup",
+    pro_bro_welcome: "Pro Bro welcome bonus",
+    manual_bonus: "Bonus from team",
+    admin_adjust: "Admin adjustment",
+    redemption: "Bro Package redeemed",
+  };
+
+  function fmt(n) {
+    return Number(n || 0).toLocaleString("en-US");
+  }
+  function fmtDate(iso) {
+    if (!iso) return "—";
+    return new Date(iso).toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
+  }
+
+  async function refresh() {
+    const res = await BroAuth.authedFetch("/api/rewards/me");
+    if (!res.ok) {
+      console.error("/me failed", res.status);
+      return null;
+    }
+    const data = await res.json();
+    render(data);
+    return data;
+  }
+
+  function render({ user, ledger, redemptions }) {
+    document.getElementById("email").textContent = user.email;
+    document.getElementById("balance").textContent = fmt(user.points_balance);
+    document.getElementById("earned").textContent = fmt(user.points_earned);
+    document.getElementById("memberSince").textContent = fmtDate(user.created_at);
+
+    document.getElementById("displayName").value = user.display_name || "";
+
+    const proPill = document.getElementById("proPill");
+    proPill.className = "rw-pill " + (user.is_pro_bro ? "pro" : "");
+    proPill.textContent = user.is_pro_bro ? "Pro Bro · 1.5× points" : "Free Bro";
+    document.getElementById("refReward").textContent = user.is_pro_bro ? "15,000" : "10,000";
+
+    const refUrl = `${window.location.origin}/rewards/signup.html?ref=${encodeURIComponent(user.referral_code)}`;
+    document.getElementById("refLink").textContent = refUrl;
+    document.getElementById("copyRefBtn").onclick = () => {
+      navigator.clipboard.writeText(refUrl);
+    };
+
+    const lbody = document.querySelector("#ledgerTable tbody");
+    if (!ledger.length) {
+      lbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:24px; color:var(--rw-text-2);">No activity yet</td></tr>`;
+    } else {
+      lbody.innerHTML = ledger.map((row) => `
+        <tr>
+          <td>${fmtDate(row.created_at)}</td>
+          <td>${REASON_LABELS[row.reason] || row.reason}</td>
+          <td class="rw-muted">${row.note || ""}</td>
+          <td class="amount ${row.amount >= 0 ? "pos" : "neg"}" style="text-align:right;">
+            ${row.amount >= 0 ? "+" : ""}${fmt(row.amount)}
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    const rbody = document.querySelector("#redemptionsTable tbody");
+    if (!redemptions.length) {
+      rbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:24px; color:var(--rw-text-2);">No redemptions yet — <a href="./catalog.html" style="color:var(--rw-accent-2);">browse Bro Packages</a></td></tr>`;
+    } else {
+      rbody.innerHTML = redemptions.map((row) => `
+        <tr>
+          <td>${row.title}</td>
+          <td class="amount neg">−${fmt(row.points_cost)}</td>
+          <td><span class="rw-pill ${row.status}">${row.status}</span></td>
+          <td>${fmtDate(row.created_at)}</td>
+        </tr>
+      `).join("");
+    }
+  }
+
+  document.getElementById("signOutBtn").addEventListener("click", async () => {
+    await BroAuth.signOut();
+    window.location.href = "./login.html";
+  });
+
+  document.getElementById("profileForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const ok = document.getElementById("profileOk");
+    ok.textContent = "";
+    const displayName = document.getElementById("displayName").value.trim();
+    const res = await BroAuth.authedFetch("/api/rewards/profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ display_name: displayName }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      ok.textContent = data.awarded ? "Saved · profile bonus awarded!" : "Saved";
+      refresh();
+    } else {
+      ok.textContent = "Failed to save";
+    }
+  });
+
+  BroAuth.ready.then(async () => {
+    if (!BroAuth.getSession()) {
+      window.location.href = "./login.html";
+      return;
+    }
+    document.getElementById("loadingShell").style.display = "none";
+    document.getElementById("main").style.display = "block";
+    await refresh();
+  });
+</script>
+
+</body>
+</html>

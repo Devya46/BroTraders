@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Log in · BroTrading Rewards</title>
+<script src="../head.js"></script>
+<link rel="stylesheet" href="./_styles.css" />
+</head>
+<body class="rw-body">
+
+<div class="rw-auth-shell">
+  <div class="rw-auth-card">
+    <a href="../index.html"><img src="../bro-trading-logo.jpeg" class="logo" alt="BroTrading" /></a>
+    <h1>Log in</h1>
+    <p class="sub">Welcome back. Sign in to your Bro Rewards account.</p>
+
+    <button id="googleBtn" class="rw-google-btn" type="button">
+      <img src="https://www.google.com/favicon.ico" alt="" />
+      Continue with Google
+    </button>
+
+    <div class="rw-divider">or with email</div>
+
+    <form id="loginForm" autocomplete="on">
+      <label class="rw-label" for="email">Email</label>
+      <input class="rw-input" type="email" id="email" name="email" required autocomplete="email" />
+      <label class="rw-label" for="password">Password</label>
+      <input class="rw-input" type="password" id="password" name="password" required autocomplete="current-password" />
+      <button class="rw-btn full" type="submit" style="margin-top:16px;">Log in</button>
+      <div id="err" class="rw-err"></div>
+    </form>
+
+    <p class="switch">
+      No account yet? <a href="./signup.html">Create one</a>
+    </p>
+  </div>
+</div>
+
+<script src="../js/supabase-config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  const form = document.getElementById("loginForm");
+  const err = document.getElementById("err");
+  const googleBtn = document.getElementById("googleBtn");
+
+  // Already logged in? bounce to account.
+  BroAuth.ready.then(() => {
+    if (BroAuth.getSession()) {
+      window.location.href = "./account.html";
+    }
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    err.textContent = "";
+    const email = form.email.value.trim();
+    const password = form.password.value;
+    const { data, error } = await BroAuth.signIn({ email, password });
+    if (error) {
+      err.textContent = error.message || "Login failed.";
+      return;
+    }
+    window.location.href = "./account.html";
+  });
+
+  googleBtn.addEventListener("click", async () => {
+    err.textContent = "";
+    const { error } = await BroAuth.signInWithGoogle();
+    if (error) err.textContent = error.message || "Google sign-in failed.";
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bro Packages · BroTrading Rewards</title>
+<script src="../head.js"></script>
+<link rel="stylesheet" href="./_styles.css" />
+</head>
+<body class="rw-body">
+
+<div id="header"></div>
+
+<main class="rw-main">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+    <div>
+      <h1 class="rw-h1">Bro Packages</h1>
+      <p class="rw-muted">Redeem your points for funded accounts and Pro Bro perks. 1000 pts ≈ €1.</p>
+    </div>
+    <div class="rw-stat" style="min-width: 200px;">
+      <div class="label">Your balance</div>
+      <div class="value" id="balance">—</div>
+    </div>
+  </div>
+
+  <div id="pkgGrid" class="rw-pkg-grid" style="margin-top: 24px;"></div>
+
+  <div id="redeemMsg" class="rw-ok" style="margin-top:16px;"></div>
+  <div id="redeemErr" class="rw-err" style="margin-top:16px;"></div>
+
+  <h2 class="rw-h2">How it works</h2>
+  <div class="rw-panel">
+    <p class="rw-muted" style="margin:0 0 8px;">1. Browse our partner prop firms via Bro Trading and use code BRO / BROTRADING at checkout.</p>
+    <p class="rw-muted" style="margin:0 0 8px;">2. Earn points for account creation, profile completion, daily logins, firm reviews, and referrals. Pro Bros earn 1.5× on everything plus a 25,000 pt welcome bonus.</p>
+    <p class="rw-muted" style="margin:0;">3. Redeem points for the Bro Packages above. Redemptions are reviewed and fulfilled manually within 1–2 business days.</p>
+  </div>
+
+</main>
+
+<script src="../js/supabase-config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../header.js"></script>
+<script>
+  function fmt(n) { return Number(n || 0).toLocaleString("en-US"); }
+
+  let userState = null;
+
+  async function loadAll() {
+    const [meRes, pkgRes] = await Promise.all([
+      BroAuth.authedFetch("/api/rewards/me"),
+      fetch("/api/rewards/packages"),
+    ]);
+    if (!meRes.ok) return;
+    const me = await meRes.json();
+    const pkgs = (await pkgRes.json()).packages || [];
+    userState = me.user;
+    document.getElementById("balance").textContent = fmt(me.user.points_balance);
+    renderPackages(pkgs, me.user.points_balance);
+  }
+
+  function renderPackages(pkgs, balance) {
+    const grid = document.getElementById("pkgGrid");
+    if (!pkgs.length) {
+      grid.innerHTML = `<p class="rw-muted">No packages available right now — check back soon.</p>`;
+      return;
+    }
+    grid.innerHTML = pkgs.map((p) => {
+      const canAfford = balance >= p.points_cost;
+      const stockNote =
+        p.stock === null ? "" :
+        p.stock <= 0 ? `<span class="rw-pill cancelled">Out of stock</span>` :
+        `<span class="rw-pill">${p.stock} left this month</span>`;
+      return `
+        <article class="rw-pkg">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+            <h3>${p.title}</h3>
+            ${stockNote}
+          </div>
+          <p>${p.description || ""}</p>
+          <div class="cost">${fmt(p.points_cost)} pts <small>≈ €${(p.points_cost / 1000).toFixed(0)} value</small></div>
+          <button class="rw-btn full" data-slug="${p.slug}" ${canAfford && (p.stock === null || p.stock > 0) ? "" : "disabled"}>
+            ${!canAfford ? "Not enough points" : (p.stock !== null && p.stock <= 0 ? "Out of stock" : "Redeem")}
+          </button>
+        </article>
+      `;
+    }).join("");
+
+    grid.querySelectorAll("button[data-slug]").forEach((btn) => {
+      btn.addEventListener("click", () => redeem(btn.dataset.slug, btn));
+    });
+  }
+
+  async function redeem(slug, btn) {
+    const ok = document.getElementById("redeemMsg");
+    const err = document.getElementById("redeemErr");
+    ok.textContent = ""; err.textContent = "";
+    if (!confirm("Confirm: spend points on this Bro Package?")) return;
+    btn.disabled = true;
+    btn.textContent = "Redeeming…";
+    const res = await BroAuth.authedFetch("/api/rewards/redeem", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ package_slug: slug }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      err.textContent = data.error === "insufficient_points"
+        ? `You need ${fmt(data.points_required - data.points_balance)} more points.`
+        : `Could not redeem: ${data.error}`;
+      btn.disabled = false;
+      btn.textContent = "Redeem";
+      return;
+    }
+    ok.textContent = `Redeemed: ${data.redemption.title}. We'll fulfill it within 1–2 business days — check your account page.`;
+    await loadAll();
+  }
+
+  BroAuth.ready.then(() => {
+    if (!BroAuth.getSession()) {
+      window.location.href = "./login.html?next=" + encodeURIComponent("/rewards/catalog.html");
+      return;
+    }
+    loadAll();
+  });
+</script>
+
+</body>
+</html>

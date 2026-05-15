@@ -2,6 +2,7 @@
 //
 // - Looks up the firm slug in functions/go/_links.js
 // - Logs the click to D1 (env binding "DB") without blocking the redirect
+// - Attributes the click to a logged-in user if ?u=<supabase_user_id> is present
 // - 302 redirects to the real affiliate URL
 //
 // Update affiliate URLs in _links.js — never hardcode them in HTML.
@@ -26,6 +27,9 @@ export async function onRequest(context) {
   return Response.redirect(dest, 302);
 }
 
+// UUID v4 regex (broad — Supabase user UUIDs are RFC 4122 v4).
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 async function logClick(env, request, firm) {
   if (!env.DB) return; // D1 binding not configured yet — skip silently.
 
@@ -37,6 +41,8 @@ async function logClick(env, request, firm) {
   const utmSource = url.searchParams.get('utm_source') || '';
   const utmMedium = url.searchParams.get('utm_medium') || '';
   const utmCampaign = url.searchParams.get('utm_campaign') || '';
+  const rawU = url.searchParams.get('u') || '';
+  const userId = UUID_RE.test(rawU) ? rawU : null;
   const now = new Date().toISOString();
 
   try {
@@ -44,10 +50,10 @@ async function logClick(env, request, firm) {
       .prepare(
         `INSERT INTO clicks
            (firm, referrer, user_agent, country, colo,
-            utm_source, utm_medium, utm_campaign, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+            utm_source, utm_medium, utm_campaign, user_id, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
-      .bind(firm, referrer, userAgent, country, colo, utmSource, utmMedium, utmCampaign, now)
+      .bind(firm, referrer, userAgent, country, colo, utmSource, utmMedium, utmCampaign, userId, now)
       .run();
   } catch (e) {
     // Logged to Pages Function logs; redirect already happened.

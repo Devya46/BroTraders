@@ -73,4 +73,29 @@
   const onScroll = () => header?.classList.toggle("bt-scrolled", window.scrollY > 10);
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  // --- Rewards link auth-aware swap ---
+  // If a Supabase session exists in localStorage, point "Rewards" at the account
+  // dashboard and rename it. Reads localStorage directly so we don't have to
+  // bundle supabase-js on every page just for this.
+  const rewardsLink = document.getElementById("btRewardsLink");
+  if (rewardsLink) {
+    try {
+      let signedIn = false;
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (!k || !/^sb-.+-auth-token$/.test(k)) continue;
+        const raw = localStorage.getItem(k);
+        const obj = raw ? JSON.parse(raw) : null;
+        if (obj?.user?.id || obj?.currentSession?.user?.id) {
+          signedIn = true;
+          break;
+        }
+      }
+      if (signedIn) {
+        rewardsLink.setAttribute("href", "/rewards/account.html");
+        rewardsLink.textContent = "My Rewards";
+      }
+    } catch (e) {}
+  }
 })();

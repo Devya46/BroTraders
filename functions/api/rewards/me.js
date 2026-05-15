@@ -1,0 +1,57 @@
+// GET /api/rewards/me — current user state + recent ledger.
+//
+// Returns:
+//   { user: {...}, ledger: [...20 most recent], redemptions: [...10 most recent] }
+
+import { jsonResponse, jsonError, verifySupabaseToken, getUserRow } from "./_lib.js";
+
+export async function onRequestGet(context) {
+  const { request, env } = context;
+  if (!env.DB) return jsonError("D1 binding missing", 500);
+
+  const user = await verifySupabaseToken(request, env);
+  if (!user) return jsonError("unauthorized", 401);
+
+  const row = await getUserRow(env, user.id);
+  if (!row) return jsonError("user_not_synced", 404, { hint: "Call /api/rewards/sync first" });
+
+  const ledger = await env.DB
+    .prepare(
+      `SELECT id, amount, reason, ref_id, note, created_at
+       FROM points_ledger
+       WHERE user_id = ?
+       ORDER BY created_at DESC
+       LIMIT 20`
+    )
+    .bind(user.id)
+    .all();
+
+  const redemptions = await env.DB
+    .prepare(
+      `SELECT r.id, r.package_slug, r.points_cost, r.status, r.created_at, r.fulfilled_at,
+              p.title, p.description
+       FROM redemptions r
+       JOIN bro_packages p ON p.slug = r.package_slug
+       WHERE r.user_id = ?
+       ORDER BY r.created_at DESC
+       LIMIT 10`
+    )
+    .bind(user.id)
+    .all();
+
+  return jsonResponse({
+    user: {
+      id: row.id,
+      email: row.email,
+      display_name: row.display_name,
+      is_pro_bro: !!row.is_pro_bro,
+      points_balance: row.points_balance,
+      points_earned: row.points_earned,
+      profile_complete: !!row.profile_complete,
+      referral_code: row.referral_code,
+      created_at: row.created_at,
+    },
+    ledger: ledger.results || [],
+    redemptions: redemptions.results || [],
+  });
+}
